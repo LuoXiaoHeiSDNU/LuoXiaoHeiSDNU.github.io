@@ -2,7 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://example.com/2023/05/24/2/</loc>
+    <loc>https://gabaili.top/2023/05/25/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Hexo%E5%88%9B%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2%EF%BC%88%E9%9B%B6%E5%9F%BA%E7%A1%80%EF%BC%89/</loc>
+    
+    <lastmod>2023-05-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://gabaili.top/2023/05/24/2/</loc>
+    
+    <lastmod>2023-05-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://gabaili.top/2023/05/24/Strat/</loc>
     
     <lastmod>2023-05-24</lastmod>
     
@@ -11,7 +29,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/2023/05/24/Strat/</loc>
+    <loc>https://gabaili.top/about/index.html</loc>
     
     <lastmod>2023-05-24</lastmod>
     
@@ -20,25 +38,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/2023/05/24/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/</loc>
-    
-    <lastmod>2023-05-24</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/about/index.html</loc>
-    
-    <lastmod>2023-05-24</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/resources/index.html</loc>
+    <loc>https://gabaili.top/resources/index.html</loc>
     
     <lastmod>2023-05-23</lastmod>
     
@@ -47,7 +47,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/index.html</loc>
+    <loc>https://gabaili.top/tags/index.html</loc>
     
     <lastmod>2023-05-23</lastmod>
     
@@ -56,7 +56,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/categories/index.html</loc>
+    <loc>https://gabaili.top/categories/index.html</loc>
     
     <lastmod>2023-05-23</lastmod>
     
@@ -66,7 +66,7 @@
   
 
   <url>
-    <loc>http://example.com/</loc>
+    <loc>https://gabaili.top/</loc>
     <lastmod>2023-05-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -74,14 +74,14 @@
 
   
   <url>
-    <loc>http://example.com/tags/%E5%8D%9A%E5%AE%A2/</loc>
+    <loc>https://gabaili.top/tags/%E6%9D%82%E8%AE%BA/</loc>
     <lastmod>2023-05-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/%E6%9D%82%E8%AE%BA/</loc>
+    <loc>https://gabaili.top/tags/%E5%8D%9A%E5%AE%A2/</loc>
     <lastmod>2023-05-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -90,21 +90,21 @@
 
   
   <url>
-    <loc>http://example.com/categories/%E5%8D%9A%E5%AE%A2/</loc>
+    <loc>https://gabaili.top/categories/%E6%9D%82%E8%AE%BA%EF%BC%88%E8%AF%BB%E8%80%85%E6%97%A0%E9%9C%80%E9%98%85%E8%AF%BB%EF%BC%89/</loc>
     <lastmod>2023-05-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/%E6%9D%82%E8%AE%BA%EF%BC%88%E8%AF%BB%E8%80%85%E6%97%A0%E9%9C%80%E9%98%85%E8%AF%BB%EF%BC%89/</loc>
+    <loc>https://gabaili.top/categories/%E5%8D%9A%E5%AE%A2/</loc>
     <lastmod>2023-05-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/%E5%8D%9A%E5%AE%A2/%E5%86%99%E4%BD%9C/</loc>
+    <loc>https://gabaili.top/categories/%E5%8D%9A%E5%AE%A2/%E5%86%99%E4%BD%9C/</loc>
     <lastmod>2023-05-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
