@@ -23,12 +23,12 @@
     var CONFIG = {"hostname":"gabaili.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="特别声明：本文章主要是借助于这篇知乎大大的文章来进行的，在这里笔者只是稍作整理，用更简练的语言来做了一个流程，以及一些遇到的一些问题和解决方案。 从零开始搭建个人博客（超详细） - 知乎 (zhihu.com)  其实搭建个人博客的过程是最让是捉急的，但完成的那一刻却是让人幸福无比的。 本文是利用GitHub和Hexo选择了Next主题来进行搭建的静态网站，总的来说，搭建博客需要以下几步：注册G">
+  <meta name="description" content="在本篇文章，笔者将利用GitHub加Hexo来帮助读者建立一个属于自己的博客网站，并且给出了安装过程中可能出现问题的一般解决方案">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何使用Hexo创建自己的博客（零基础）">
 <meta property="og:url" content="https://gabaili.top/2023/05/25/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Hexo%E5%88%9B%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2%EF%BC%88%E9%9B%B6%E5%9F%BA%E7%A1%80%EF%BC%89/index.html">
 <meta property="og:site_name" content="态度决定生活">
-<meta property="og:description" content="特别声明：本文章主要是借助于这篇知乎大大的文章来进行的，在这里笔者只是稍作整理，用更简练的语言来做了一个流程，以及一些遇到的一些问题和解决方案。 从零开始搭建个人博客（超详细） - 知乎 (zhihu.com)  其实搭建个人博客的过程是最让是捉急的，但完成的那一刻却是让人幸福无比的。 本文是利用GitHub和Hexo选择了Next主题来进行搭建的静态网站，总的来说，搭建博客需要以下几步：注册G">
+<meta property="og:description" content="在本篇文章，笔者将利用GitHub加Hexo来帮助读者建立一个属于自己的博客网站，并且给出了安装过程中可能出现问题的一般解决方案">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gabaili.top/pic/3/b3.1.png">
 <meta property="og:image" content="https://gabaili.top/pic/3/b3.2.png">
@@ -43,10 +43,18 @@
 <meta property="og:image" content="https://gabaili.top/pic/3/b3.11.png">
 <meta property="og:image" content="https://gabaili.top/pic/3/b3.12.png">
 <meta property="og:image" content="https://gabaili.top/pic/3/b3.13.png">
+<meta property="og:image" content="https://gabaili.top/pic/3/14.png">
+<meta property="og:image" content="https://gabaili.top/pic/3/15.png">
+<meta property="og:image" content="https://gabaili.top/pic/3/16.png">
+<meta property="og:image" content="https://gabaili.top/pic/3/17.png">
+<meta property="og:image" content="https://gabaili.top/pic/3/18.png">
+<meta property="og:image" content="https://gabaili.top/pic/3/19.png">
+<meta property="og:image" content="https://gabaili.top/pic/3/20.png">
+<meta property="og:image" content="https://gabaili.top/pic/3/21.png">
 <meta property="article:published_time" content="2023-05-25T01:52:16.000Z">
-<meta property="article:modified_time" content="2023-05-25T03:19:28.847Z">
+<meta property="article:modified_time" content="2023-05-25T04:11:27.579Z">
 <meta property="article:author" content="Gabaili">
-<meta property="article:tag" content="技术|网络安全|分享|生活">
+<meta property="article:tag" content="博客">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://gabaili.top/pic/3/b3.1.png">
 
@@ -215,7 +223,16 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-05-25 09:52:16 / 修改时间：11:19:28" itemprop="dateCreated datePublished" datetime="2023-05-25T09:52:16+08:00">2023-05-25</time>
+              <time title="创建时间：2023-05-25 09:52:16 / 修改时间：12:11:27" itemprop="dateCreated datePublished" datetime="2023-05-25T09:52:16+08:00">2023-05-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8D%9A%E5%AE%A2%EF%BC%8C%E5%88%9B%E5%BB%BA/" itemprop="url" rel="index"><span itemprop="name">博客，创建</span></a>
+                </span>
             </span>
 
           
@@ -233,6 +250,7 @@
   </span>
   
   
+            <div class="post-description">在本篇文章，笔者将利用GitHub加Hexo来帮助读者建立一个属于自己的博客网站，并且给出了安装过程中可能出现问题的一般解决方案</div>
 
         </div>
       </header>
@@ -248,6 +266,7 @@
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/102592286">从零开始搭建个人博客（超详细） - 知乎 (zhihu.com)</a></p>
 </blockquote>
 <p>其实搭建个人博客的过程是最让是捉急的，但完成的那一刻却是让人幸福无比的。</p>
+<p><strong>请注意：阅读任何一篇关于安装技术的文章，都应该先把步骤看一遍再进行安装，而不是一步步的对应安装！</strong></p>
 <p>本文是利用GitHub和Hexo选择了Next主题来进行搭建的静态网站，总的来说，搭建博客需要以下几步：注册GitHub，创建用于博客的GitHub的库文件，在本地链接到GitHub的库文件，利用GitHub作为我们的服务器来解析博客，下面就进入我们的正题：</p>
 <h3 id="注册GitHub"><a href="#注册GitHub" class="headerlink" title="注册GitHub"></a>注册GitHub</h3><p>已经拥有GitHub账号的小伙伴可以跳过这一步进行下一步的操作：</p>
 <ol>
@@ -269,7 +288,7 @@
 <p><img src="/pic/3/b3.3.png" alt="b3.3"></p>
 <p>如果没有弹出下载界面请刷新界面重新进行下载。</p>
 </li>
-<li><p>根据安装提示进行安装需要注意的事是，安装目录无须一定安装在C盘，因为其并不是系统的必要组件，可根据自己的需求选择安装目录，其他选项按照图片的选择进行配置即可：</p>
+<li><p>根据安装提示进行安装需要注意的事是，安装目录无须一定安装在C盘，因为其并不是系统的必要组件，可根据自己的需求选择安装目录，<code>但是请尽量保证安装目录是纯英文的</code>，其他选项按照图片的选择进行配置即可：</p>
 <p><img src="/pic/3/b3.4.png" alt="b3.4"></p>
 <p><img src="/pic/3/b3.5.png" alt="b3.5"></p>
 <p><img src="/pic/3/b3.6.png" alt="b3.6"></p>
@@ -282,13 +301,57 @@
 <p>新版的Git安装界面和图片中给出的有些出入，新版的安装规则是，出现上面图片中额外的界面不需要选择任何选项（譬如：安装程序帮你选好了一项，你无需取消或者额外选择信息，保持原样即可），点击NEXT即可</p>
 </blockquote>
 </li>
-<li><p>如何确保安装成功：在桌面鼠标右键，选择Git Bash Here：</p>
+<li><p>如何确保安装成功：在桌面鼠标右键，选择<code>Git Bash Here</code>：</p>
 <img src="/pic/3/b3.12.png" alt="b3.12" style="zoom:50%;" />
 
 <p>在其界面键入下面的指令：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git</span><br></pre></td></tr></table></figure>
 
 <p>得到下面的界面即为安装成功：<br><img src="/pic/3/b3.13.png" alt="b3.13"></p>
+</li>
+<li><p>至此你应该已经完成Git的安装，如果出现了任何安装问题，可以依据错误代码去网上查找相应的解决方案。</p>
+</li>
+</ol>
+<h3 id="本地绑定到GitHub，提交文件测试"><a href="#本地绑定到GitHub，提交文件测试" class="headerlink" title="本地绑定到GitHub，提交文件测试"></a>本地绑定到GitHub，提交文件测试</h3><p>我们把GitHub作为我们博客的服务器，因此每次修改文件都需要提交给GitHub，而通过普通的提交往往麻烦且稳定性较差，因此我们需要用Git将本地连接到GitHub上。</p>
+<p>链接的方式是SSH（安全外壳协议，Secure Shell 的缩写），无需做深入的理解，可以理解为一个身份认证的功能，只有拥有SSH的钥匙才能证明你的身份，GitHub只有验证了你的身份才会允许你上传文件到对应的库中，是不是类似于你的社交账号和密码，只有你输入密码才能够证实你的身份。</p>
+<ol>
+<li><p>验证本地是否安装了SSH，其一般都集成在Git Bash中，我们创建一个文件专门用于这个步骤的测试，后期可以删掉，因此无需刻意命名，但注意前文中提到的，尽量使用英文格式。</p>
+<p>在桌面创建一个text文件夹，在其中右键，选择<code>Git Bash Here</code>，并键入下面的命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/3/14.png" alt="14"></p>
+<p>如上图所示，即为ssh正常配置。</p>
+<blockquote>
+<p>请注意在Git中的复制粘贴和Windows中不同，在Windows中为Ctrl+C和Ctrl+v而在Git对应的为Ctrl+insert 和 Shift+insert，或者通过在Git中右键选择对应的复制粘贴即可。</p>
+</blockquote>
+</li>
+<li><p>下面我们生成本机对应的ssh信息，键入下面的命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure>
+
+<p>无论提示什么，我们选择敲击四次回车键（Enter），系统会为我们生成对应的文件，在Windows中默认生成到<em>“C:&#x2F;Users&#x2F;你的计算机的用户名&#x2F;.ssh”</em>，如下图所示：</p>
+<img src="/pic/3/15.png" alt="15" style="zoom:50%;" />
+</li>
+<li><p>下面我们需要将我们的文件提交到GitHub中，进入设置界面：</p>
+<p><img src="/pic/3/16.png" alt="16"></p>
+<p>如下图，先点击 <code>SSH and GPG keys</code>，再点击 <code>New SSH key</code>.</p>
+<p><img src="/pic/3/17.png" alt="17"></p>
+<p>我们在第二步中的<code>C:/Users/你的计算机的用户名/.ssh</code>中找到文件&#96;&#96;id_rsa.pub&#96;，用记事本将其打开，将其内容复制下来，粘贴到如图的key中，Title可以不写，但为了以后方便管理可以设置为Blog_Key：</p>
+<p><img src="/pic/3/18.png" alt="18"></p>
+<p>我们验证一下是否正确的可以连接到GitHub服务器，在Git界面中输入下面的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+
+<p>第一次链接，可能要 输入一个yes，输入即可，提示下面的信息即为成功：</p>
+<img src="/pic/3/19.png" alt="19" style="zoom:50%;" />
+
+<p>如果提示下面的信息：</p>
+<img src="/pic/3/20.png" alt="20" style="zoom:50%;" />
+
+<p>请检查当前你是否开启了代理的加速器，如果开启了，请关闭代理服务器软件，例如steam++等，并重新尝试链接。如果仍然提示错误，显示time out，请在按照<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/443847295">使用SwitchHosts加速访问Github - 知乎 (zhihu.com)</a>安装SwitchHosts，并在成功链接GitHub后重新键入上面的命令。</p>
+<blockquote>
+<p>其原因是，代理软件和我们Git会产生冲突，于是我们可以不适用代理软件，而是通过修改本地的Host 的信息来帮助我们的主机定位GitHub，SwitchHosts就是一个自动帮我们修改Host文件的软件，非常推荐读者使用。</p>
+<p>如果在SwitchHosts出现写入错误问题，请找到主机Host文件，右键属性，将其权限全部打开，这会提高电脑风险，但是个人电脑一般不会有什么影响：</p>
+<p><img src="/pic/3/21.png" alt="21"></p>
+</blockquote>
 </li>
 </ol>
 
@@ -316,6 +379,9 @@
 
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag"># 博客</a>
+          </div>
 
         
 
@@ -386,7 +452,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E5%86%8CGitHub"><span class="nav-number">1.</span> <span class="nav-text">注册GitHub</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Git"><span class="nav-number">2.</span> <span class="nav-text">安装Git</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E5%86%8CGitHub"><span class="nav-number">1.</span> <span class="nav-text">注册GitHub</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Git"><span class="nav-number">2.</span> <span class="nav-text">安装Git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E7%BB%91%E5%AE%9A%E5%88%B0GitHub%EF%BC%8C%E6%8F%90%E4%BA%A4%E6%96%87%E4%BB%B6%E6%B5%8B%E8%AF%95"><span class="nav-number">3.</span> <span class="nav-text">本地绑定到GitHub，提交文件测试</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -409,7 +475,7 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
