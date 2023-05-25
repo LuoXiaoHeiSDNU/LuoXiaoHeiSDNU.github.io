@@ -23,12 +23,12 @@
     var CONFIG = {"hostname":"gabaili.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="在本篇文章，笔者将利用GitHub加Hexo来帮助读者建立一个属于自己的博客网站，并且给出了安装过程中可能出现问题的一般解决方案">
+  <meta name="description" content="在本篇文章，笔者将利用GitHub加Hexo来帮助读者建立一个属于自己的博客网站，并且给出了安装过程中可能出现问题的一般解决方案，这这一章中主要介绍了利用Git将本地与GitHub库进行链接。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何使用Hexo创建自己的博客（零基础）">
+<meta property="og:title" content="如何使用Hexo创建自己的博客（零基础）-上篇">
 <meta property="og:url" content="https://gabaili.top/2023/05/25/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Hexo%E5%88%9B%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2%EF%BC%88%E9%9B%B6%E5%9F%BA%E7%A1%80%EF%BC%89/index.html">
 <meta property="og:site_name" content="态度决定生活">
-<meta property="og:description" content="在本篇文章，笔者将利用GitHub加Hexo来帮助读者建立一个属于自己的博客网站，并且给出了安装过程中可能出现问题的一般解决方案">
+<meta property="og:description" content="在本篇文章，笔者将利用GitHub加Hexo来帮助读者建立一个属于自己的博客网站，并且给出了安装过程中可能出现问题的一般解决方案，这这一章中主要介绍了利用Git将本地与GitHub库进行链接。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gabaili.top/pic/3/b3.1.png">
 <meta property="og:image" content="https://gabaili.top/pic/3/b3.2.png">
@@ -51,8 +51,20 @@
 <meta property="og:image" content="https://gabaili.top/pic/3/19.png">
 <meta property="og:image" content="https://gabaili.top/pic/3/20.png">
 <meta property="og:image" content="https://gabaili.top/pic/3/21.png">
+<meta property="og:image" content="https://gabaili.top/pic/3/22.png">
+<meta property="og:image" content="https://gabaili.top/pic/3/23.png">
+<meta property="og:image" content="https://gabaili.top/pic/3/24.png">
+<meta property="og:image" content="https://gabaili.top/pic/3/25.png">
+<meta property="og:image" content="https://gabaili.top/pic/3/26.png">
+<meta property="og:image" content="https://gabaili.top/pic/3/27.png">
+<meta property="og:image" content="https://gabaili.top/pic/3/28.png">
+<meta property="og:image" content="https://gabaili.top/pic/3/29.png">
+<meta property="og:image" content="https://gabaili.top/pic/3/30.png">
+<meta property="og:image" content="https://gabaili.top/pic/3/31.png">
+<meta property="og:image" content="https://gabaili.top/pic/3/32.png">
+<meta property="og:image" content="https://gabaili.top/pic/3/33.png">
 <meta property="article:published_time" content="2023-05-25T01:52:16.000Z">
-<meta property="article:modified_time" content="2023-05-25T04:11:27.579Z">
+<meta property="article:modified_time" content="2023-05-25T08:11:26.489Z">
 <meta property="article:author" content="Gabaili">
 <meta property="article:tag" content="博客">
 <meta name="twitter:card" content="summary">
@@ -71,7 +83,7 @@
   };
 </script>
 
-  <title>如何使用Hexo创建自己的博客（零基础） | 态度决定生活</title>
+  <title>如何使用Hexo创建自己的博客（零基础）-上篇 | 态度决定生活</title>
   
 
 
@@ -210,11 +222,15 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          如何使用Hexo创建自己的博客（零基础）
+          如何使用Hexo创建自己的博客（零基础）-上篇
         </h1>
 
         <div class="post-meta">
 
+
+  <i class="fa fa-thumb-tack"></i>
+  <font color=7D26CD>置顶</font>
+  <span class="post-meta-divider">|</span>
 
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -223,7 +239,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-05-25 09:52:16 / 修改时间：12:11:27" itemprop="dateCreated datePublished" datetime="2023-05-25T09:52:16+08:00">2023-05-25</time>
+              <time title="创建时间：2023-05-25 09:52:16 / 修改时间：16:11:26" itemprop="dateCreated datePublished" datetime="2023-05-25T09:52:16+08:00">2023-05-25</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -250,7 +266,7 @@
   </span>
   
   
-            <div class="post-description">在本篇文章，笔者将利用GitHub加Hexo来帮助读者建立一个属于自己的博客网站，并且给出了安装过程中可能出现问题的一般解决方案</div>
+            <div class="post-description">在本篇文章，笔者将利用GitHub加Hexo来帮助读者建立一个属于自己的博客网站，并且给出了安装过程中可能出现问题的一般解决方案，这这一章中主要介绍了利用Git将本地与GitHub库进行链接。</div>
 
         </div>
       </header>
@@ -353,7 +369,66 @@
 <p><img src="/pic/3/21.png" alt="21"></p>
 </blockquote>
 </li>
+<li><p>链接到GitHub进行文件的提交主要有两种方式：①本地没有Git仓库；②本地有Git仓库，并且我们进行了多次的commit操作，关于第二种方法请参照前文中提出的网址进行操作，这里我们仅仅介绍第一种方法：</p>
+<p>①我们先建立一个库用于测试链接：</p>
+<img src="/pic/3/22.png" alt="22" style="zoom:50%;" />
+
+<img src="/pic/3/23.png" alt="23" style="zoom:50%;" />
+
+<p><img src="/pic/3/24.png" alt="24"></p>
+<p>查看一下库的链接，复制下来，切记切记选择SSH的链接，原文的博主没有注明，我自行操作的时候后期出了点问题：</p>
+<img src="/pic/3/25.png" alt="25" style="zoom: 50%;" />
+
+<p>回到我们最开始在桌面创建的测试文件，输入下面的指令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone 填入你复制的网址不要使用Ctrl+C</span><br></pre></td></tr></table></figure>
+
+<img src="/pic/3/26.png" alt="26" style="zoom:50%;" />
+
+<p>②回到我们在桌面创建的文件中，发现出现文件夹，即为链接成功：</p>
+<img src="/pic/3/27.png" alt="27" style="zoom:50%;" />
+
+<blockquote>
+<p>我在前面图片中使用的库名为mytest，但是这里文件夹的名称为hello，是因为我链接的是hello的库，如果读者按照前面的正常操作最后得到的应该文件夹名字与GitHub中库名是一致的。</p>
+<p>细节是需要注意的，但是也得松弛有度！</p>
+</blockquote>
+<p>③我们测试是否可以在库中正常提交信息：我们在库名文件夹下创建一个文件，名称为<code>this is my text</code>文件用于测试上传功能：</p>
+<img src="/pic/3/28.png" alt="28" style="zoom:50%;" />
+
+<p>在当前的目录下右键，进入Git bash，后文简称为Git，只要不特殊提及都是指的Git bash，而Git GUI在本文中不适用，键入命令&#x2F;&#x2F;该命令为显示当前库中文件的状态，可以帮助我们确认哪些文件未上传：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+
+<p>不出意外应该显示下面的信息：</p>
+<img src="/pic/3/29.png" alt="29" style="zoom:50%;" />
+
+<p>图片中框起来的部分即表示当前有一个文件尚未提交，<code>this is my text.txt</code>，ok我们可以使用下面的代码进行文件的提交：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add &quot;this is my text.txt&quot;</span><br><span class="line">git commit -m &quot;commit text file&quot;</span><br></pre></td></tr></table></figure>
+
+<p>第一句代码是将文件<code>this is my text.txt</code>提交到我们Git的文件缓冲区，然后再利用第二局代码将缓冲区的文件提交到GitHub库中去。</p>
+<img src="/pic/3/30.png" alt="30" style="zoom:50%;" />
+
+<p>这里你们的提示信息有可能是1 insertions(+)，这是正常的，但是如果是第一次进去这个界面有可能会提示下面的信息：</p>
+<img src="/pic/3/31.png" alt="31" style="zoom:50%;" />
+
+<p>我们分别执行以下的代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name&quot;此处贴那些你的GitHub用户名，引号不删除，不是昵称！！&quot;</span><br><span class="line">git config --global user.email&quot;此处填写你的GitHub邮箱地址，引号不删除&quot;</span><br></pre></td></tr></table></figure>
+
+<p>现在输入下面的命令，将本地仓库提交到远程仓库中，如果弹出GitHub的验证页面，请不要担心输入GitHub的密码即可。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push</span><br></pre></td></tr></table></figure>
+
+<p>Git给出下面的提示：</p>
+<img src="/pic/3/32.png" alt="32" style="zoom:50%;" />
+
+<p>再回到GitHub的对应的库中，发现库中已经有我们本地添加的文件了：</p>
+<img src="/pic/3/33.png" alt="33" style="zoom:50%;" />
+
+<blockquote>
+<p>如果出现了预料外的情况，请自行在网络上查询相关信息，或者留下评论，我会在看到的第一时间内帮助你解答。</p>
+</blockquote>
+</li>
 </ol>
+<hr>
+<p>不同版本的Git语言会有所区别，如果出现了预料外的语言问题，建议查阅相关的手册进行解决。</p>
+<p>至此我们已经成功的在本地建立了和GitHub的链接，下篇博客将完成剩下的部分</p>
 
     </div>
 
@@ -369,7 +444,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://gabaili.top/2023/05/25/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Hexo%E5%88%9B%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2%EF%BC%88%E9%9B%B6%E5%9F%BA%E7%A1%80%EF%BC%89/" title="如何使用Hexo创建自己的博客（零基础）">https://gabaili.top/2023/05/25/如何使用Hexo创建自己的博客（零基础）/</a>
+    <a href="https://gabaili.top/2023/05/25/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Hexo%E5%88%9B%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2%EF%BC%88%E9%9B%B6%E5%9F%BA%E7%A1%80%EF%BC%89/" title="如何使用Hexo创建自己的博客（零基础）-上篇">https://gabaili.top/2023/05/25/如何使用Hexo创建自己的博客（零基础）/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
