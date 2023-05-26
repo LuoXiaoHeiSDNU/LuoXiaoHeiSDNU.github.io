@@ -23,23 +23,24 @@
     var CONFIG = {"hostname":"gabaili.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="在这篇文章中你将学会如何在Hexo中创建一个基础博客，当然你需要更多的关于Marthdown的知识才能让你书写的流畅。以及如何在Hexo中插入一个图片，和一些需要注意的细节~">
+  <meta name="description" content="本文章的主要意义是，第一次提出了可验证的联邦学习方案，第一次的提出了双盲化梯度的方法！">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo中如何创建博客；Hexo中如何插入图片">
-<meta property="og:url" content="https://gabaili.top/2023/05/24/Strat/index.html">
+<meta property="og:title" content="VerifyNet: Secure and Verifiable Federated Learning">
+<meta property="og:url" content="https://gabaili.top/2023/05/26/VerifyNet-Secure-and-Verifiable-Federated-Learning/index.html">
 <meta property="og:site_name" content="态度决定生活">
-<meta property="og:description" content="在这篇文章中你将学会如何在Hexo中创建一个基础博客，当然你需要更多的关于Marthdown的知识才能让你书写的流畅。以及如何在Hexo中插入一个图片，和一些需要注意的细节~">
+<meta property="og:description" content="本文章的主要意义是，第一次提出了可验证的联邦学习方案，第一次的提出了双盲化梯度的方法！">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gabaili.top/pic/1.png">
-<meta property="og:image" content="https://gabaili.top/pic/2.png">
-<meta property="article:published_time" content="2023-05-24T09:46:41.000Z">
-<meta property="article:modified_time" content="2023-05-25T07:04:52.350Z">
+<meta property="og:image" content="https://gabaili.top/pic/VerifyNet/1.jpeg">
+<meta property="article:published_time" content="2023-05-26T02:03:55.000Z">
+<meta property="article:modified_time" content="2023-05-26T02:08:08.006Z">
 <meta property="article:author" content="Gabaili">
-<meta property="article:tag" content="博客">
+<meta property="article:tag" content="联邦学习">
+<meta property="article:tag" content="可验证">
+<meta property="article:tag" content="跨设备">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gabaili.top/pic/1.png">
+<meta name="twitter:image" content="https://gabaili.top/pic/VerifyNet/1.jpeg">
 
-<link rel="canonical" href="https://gabaili.top/2023/05/24/Strat/">
+<link rel="canonical" href="https://gabaili.top/2023/05/26/VerifyNet-Secure-and-Verifiable-Federated-Learning/">
 
 
 <script id="page-configurations">
@@ -52,7 +53,7 @@
   };
 </script>
 
-  <title>Hexo中如何创建博客；Hexo中如何插入图片 | 态度决定生活</title>
+  <title>VerifyNet: Secure and Verifiable Federated Learning | 态度决定生活</title>
   
 
 
@@ -178,7 +179,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://gabaili.top/2023/05/24/Strat/">
+    <link itemprop="mainEntityOfPage" href="https://gabaili.top/2023/05/26/VerifyNet-Secure-and-Verifiable-Federated-Learning/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -191,7 +192,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hexo中如何创建博客；Hexo中如何插入图片
+          VerifyNet: Secure and Verifiable Federated Learning
         </h1>
 
         <div class="post-meta">
@@ -202,27 +203,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2023-05-24 17:46:41" itemprop="dateCreated datePublished" datetime="2023-05-24T17:46:41+08:00">2023-05-24</time>
+              <time title="创建时间：2023-05-26 10:03:55 / 修改时间：10:08:08" itemprop="dateCreated datePublished" datetime="2023-05-26T10:03:55+08:00">2023-05-26</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-05-25 15:04:52" itemprop="dateModified" datetime="2023-05-25T15:04:52+08:00">2023-05-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%8D%9A%E5%AE%A2/" itemprop="url" rel="index"><span itemprop="name">博客</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%8D%9A%E5%AE%A2/%E5%86%99%E4%BD%9C/" itemprop="url" rel="index"><span itemprop="name">写作</span></a>
+                  <a href="/categories/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">联邦学习</span></a>
                 </span>
             </span>
 
@@ -235,13 +226,13 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2023/05/24/Strat/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2023/05/24/Strat/" itemprop="commentCount"></span>
+    <a title="valine" href="/2023/05/26/VerifyNet-Secure-and-Verifiable-Federated-Learning/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/05/26/VerifyNet-Secure-and-Verifiable-Federated-Learning/" itemprop="commentCount"></span>
     </a>
   </span>
   
   
-            <div class="post-description">在这篇文章中你将学会如何在Hexo中创建一个基础博客，当然你需要更多的关于Marthdown的知识才能让你书写的流畅。以及如何在Hexo中插入一个图片，和一些需要注意的细节~</div>
+            <div class="post-description">本文章的主要意义是，第一次提出了可验证的联邦学习方案，第一次的提出了双盲化梯度的方法！</div>
 
         </div>
       </header>
@@ -252,47 +243,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <ul>
-<li><h3 id="如何创建一个博客文章："><a href="#如何创建一个博客文章：" class="headerlink" title="如何创建一个博客文章："></a>如何创建一个博客文章：</h3></li>
-</ul>
-<p>  请在自己博客的站点根文件中右键，选择Git Bash Here，进入Git界面：</p>
-  <img src="/pic/1.png" alt="1" style="zoom:50%;" />
-
-<p>  键入指令:</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo n [layout_name] [blog_name]</span><br></pre></td></tr></table></figure>
-
-<p>  其中[layout_name]指的是您期待创立博客文章的基础模板是什么样的，可以选择不填入这样会默认选择默认的模板</p>
-<p>  而[blog_name]则是您期待创建博客的名称，当然这个名称只是分辨的作用，你可以在创建好的文件中修改具体的题目。（默认创建的文件在站点文件的\source\posts中）</p>
-<blockquote>
-<p>本文使用的都是</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new mysty Strat</span><br></pre></td></tr></table></figure>
-
-<p>其中的mysty是自行创建的博客格式，其具体内容如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">tags: </span><br><span class="line">categories: </span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-</blockquote>
-<ul>
-<li><h3 id="如何在博客文件中插入图片"><a href="#如何在博客文件中插入图片" class="headerlink" title="如何在博客文件中插入图片"></a>如何在博客文件中插入图片</h3><p>本网站的博客都是在Typora中编写的，因此会依据Typora进行解释，关于Typora的下载可以在资源中找到，<u>请注意资源来源为：吾爱破解，如果可以请尽量支持正版</u>。</p>
-<p>在博客中插入图片并不像Word中那样简单，我们需要在主站的根文件中运行Git，输入下面的代码：</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-renderer-marked</span><br></pre></td></tr></table></figure>
-
-<p>在等待完成安装后，请在主站的配置文件*_config,yaml*中修改相应的配置为：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">marked:</span></span><br><span class="line">  <span class="attr">prependRoot:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">postAsset:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<p>目前为止我们就可以通过</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![](image.jpg)</span><br></pre></td></tr></table></figure>
-
-<p>的方式插入图片了，如果不进行这个操作，默认的插入方式是：。</p>
-<p>为了更好的管理图片我们可以在我们站点文件的<em>source</em>文件夹中创建一个图片文件夹，例如<em>pic</em>：<br><img src="/pic/2.png" alt="2"></p>
-<p>到这里只剩下一步了，此时在你的Typora中预览是没有任何问题的，但是其实在浏览器中并不是如此进行编译的，我们要将图片的地址更改为：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![img](/pic/xxx.png)</span><br></pre></td></tr></table></figure>
-
-<p>如果要进行图片大小的变化也是同理，参考下面的例子：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">![1](/pic/1.png)</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;/pic/1.png&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;1&quot;</span> <span class="attr">style</span>=<span class="string">&quot;zoom:50%;&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<p>不论你对自己的博客做了如何的操作，如果你是利用Hexo布置的你的博客，请确保你在执行完成操作后执行了下面的代码：（他们的作用类似于保存）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-
+        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>本文章的主要意义是，第一次提出了可验证的联邦学习方案，第一次的提出了双盲化梯度的方法！</p>
+<h3 id="本文主要解决的问题-x2F-闪光点"><a href="#本文主要解决的问题-x2F-闪光点" class="headerlink" title="本文主要解决的问题&#x2F;闪光点"></a>本文主要解决的问题&#x2F;闪光点</h3><ol>
+<li>用户上传的梯度会在不经意之间泄露用户个人信息，我们使用<a target="_blank" rel="noopener" href="https://www.notion.so/a48e7ec99d7f4b819afed6ce7ccb19a2">安全聚合双盲化的方法</a>。</li>
+<li>如何验证服务器正确的聚合了我们需要的信息？使用可验证的算法。</li>
+<li>如何保证用户的掉线不会对我们的结果产生影响？同1采用双盲化方法</li>
+</ol>
+<h3 id="基本框架-x2F-算法"><a href="#基本框架-x2F-算法" class="headerlink" title="基本框架&#x2F;算法"></a>基本框架&#x2F;算法</h3><p><img src="/pic/VerifyNet/1.jpeg" alt="1"></p>
+<h3 id="提出的问题"><a href="#提出的问题" class="headerlink" title="提出的问题"></a>提出的问题</h3><ol>
+<li>这种验证方案需要在用户本地进行大量的计算和额外的通信开销，如何在跨设备的联邦学习上应用这一功能称为非常复杂的一项工程，依然需要更加轻量级的方法来实现。</li>
+</ol>
 
     </div>
 
@@ -308,7 +268,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://gabaili.top/2023/05/24/Strat/" title="Hexo中如何创建博客；Hexo中如何插入图片">https://gabaili.top/2023/05/24/Strat/</a>
+    <a href="https://gabaili.top/2023/05/26/VerifyNet-Secure-and-Verifiable-Federated-Learning/" title="VerifyNet: Secure and Verifiable Federated Learning">https://gabaili.top/2023/05/26/VerifyNet-Secure-and-Verifiable-Federated-Learning/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -319,7 +279,9 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag"># 博客</a>
+              <a href="/tags/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 联邦学习</a>
+              <a href="/tags/%E5%8F%AF%E9%AA%8C%E8%AF%81/" rel="tag"># 可验证</a>
+              <a href="/tags/%E8%B7%A8%E8%AE%BE%E5%A4%87/" rel="tag"># 跨设备</a>
           </div>
 
         
@@ -327,11 +289,11 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2023/05/24/2/" rel="next" title="杂论—用户无需阅读">
-      杂论—用户无需阅读 <i class="fa fa-chevron-right"></i>
+    <a href="/2023/05/25/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Hexo%E5%88%9B%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2%E4%B8%8B%E7%AF%87/" rel="prev" title="如何使用Hexo创建自己的博客（零基础）-下篇">
+      <i class="fa fa-chevron-left"></i> 如何使用Hexo创建自己的博客（零基础）-下篇
     </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -391,7 +353,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">如何创建一个博客文章：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%9C%A8%E5%8D%9A%E5%AE%A2%E6%96%87%E4%BB%B6%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87"><span class="nav-number">2.</span> <span class="nav-text">如何在博客文件中插入图片</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E6%96%87%E4%B8%BB%E8%A6%81%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98-x2F-%E9%97%AA%E5%85%89%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">本文主要解决的问题&#x2F;闪光点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6-x2F-%E7%AE%97%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">基本框架&#x2F;算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E5%87%BA%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">提出的问题</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
