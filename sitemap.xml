@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://gabaili.top/2023/05/25/%E7%B4%A2%E5%BC%95%E7%95%8C%E9%9D%A2/</loc>
+    
+    <lastmod>2023-05-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://gabaili.top/2023/05/26/VerifyNet-Secure-and-Verifiable-Federated-Learning/</loc>
     
     <lastmod>2023-05-26</lastmod>
@@ -23,15 +32,6 @@
     <loc>https://gabaili.top/2023/05/25/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Hexo%E5%88%9B%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2%E4%B8%8B%E7%AF%87/</loc>
     
     <lastmod>2023-05-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://gabaili.top/2023/05/25/%E7%B4%A2%E5%BC%95%E7%95%8C%E9%9D%A2/</loc>
-    
-    <lastmod>2023-05-25</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -101,6 +101,20 @@
 
   
   <url>
+    <loc>https://gabaili.top/tags/%E6%9D%82%E8%AE%BA/</loc>
+    <lastmod>2023-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://gabaili.top/tags/%E5%8D%9A%E5%AE%A2/</loc>
+    <lastmod>2023-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://gabaili.top/tags/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2023-05-26</lastmod>
     <changefreq>weekly</changefreq>
@@ -121,24 +135,10 @@
     <priority>0.2</priority>
   </url>
   
-  <url>
-    <loc>https://gabaili.top/tags/%E5%8D%9A%E5%AE%A2/</loc>
-    <lastmod>2023-05-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://gabaili.top/tags/%E6%9D%82%E8%AE%BA/</loc>
-    <lastmod>2023-05-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
 
   
   <url>
-    <loc>https://gabaili.top/categories/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/</loc>
+    <loc>https://gabaili.top/categories/%E6%9D%82%E8%AE%BA%EF%BC%88%E8%AF%BB%E8%80%85%E6%97%A0%E9%9C%80%E9%98%85%E8%AF%BB%EF%BC%89/</loc>
     <lastmod>2023-05-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -152,14 +152,7 @@
   </url>
   
   <url>
-    <loc>https://gabaili.top/categories/%E6%9D%82%E8%AE%BA%EF%BC%88%E8%AF%BB%E8%80%85%E6%97%A0%E9%9C%80%E9%98%85%E8%AF%BB%EF%BC%89/</loc>
-    <lastmod>2023-05-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://gabaili.top/categories/%E5%8D%9A%E5%AE%A2/%E5%88%9B%E4%BD%9C/</loc>
+    <loc>https://gabaili.top/categories/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2023-05-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -167,6 +160,20 @@
   
   <url>
     <loc>https://gabaili.top/categories/%E5%8D%9A%E5%AE%A2/%E5%86%99%E4%BD%9C/</loc>
+    <lastmod>2023-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://gabaili.top/categories/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/%E5%8F%AF%E9%AA%8C%E8%AF%81/</loc>
+    <lastmod>2023-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://gabaili.top/categories/%E5%8D%9A%E5%AE%A2/%E5%88%9B%E4%BD%9C/</loc>
     <lastmod>2023-05-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
