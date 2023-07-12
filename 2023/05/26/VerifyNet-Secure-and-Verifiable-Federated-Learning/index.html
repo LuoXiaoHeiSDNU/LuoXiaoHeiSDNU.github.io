@@ -30,15 +30,17 @@
 <meta property="og:site_name" content="态度决定生活">
 <meta property="og:description" content="本文章的主要意义是，第一次提出了可验证的联邦学习方案，第一次的提出了双盲化梯度的方法！">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gabaili.top/pic/VerifyNet/1.jpeg">
+<meta property="og:image" content="https://gabaili.top/pic/VerifyNet/31.png">
+<meta property="og:image" content="https://gabaili.top/pic/VerifyNet/32.png">
+<meta property="og:image" content="https://gabaili.top/pic/VerifyNet/33.jfif">
 <meta property="article:published_time" content="2023-05-26T02:03:55.000Z">
-<meta property="article:modified_time" content="2023-05-26T02:19:10.291Z">
+<meta property="article:modified_time" content="2023-07-12T12:33:24.432Z">
 <meta property="article:author" content="Gabaili">
 <meta property="article:tag" content="联邦学习">
 <meta property="article:tag" content="跨设备">
 <meta property="article:tag" content="可验证">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gabaili.top/pic/VerifyNet/1.jpeg">
+<meta name="twitter:image" content="https://gabaili.top/pic/VerifyNet/31.png">
 
 <link rel="canonical" href="https://gabaili.top/2023/05/26/VerifyNet-Secure-and-Verifiable-Federated-Learning/">
 
@@ -205,10 +207,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-05-26 10:03:55 / 修改时间：10:19:10" itemprop="dateCreated datePublished" datetime="2023-05-26T10:03:55+08:00">2023-05-26</time>
+              <time title="创建时间：2023-05-26 10:03:55" itemprop="dateCreated datePublished" datetime="2023-05-26T10:03:55+08:00">2023-05-26</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-07-12 20:33:24" itemprop="dateModified" datetime="2023-07-12T20:33:24+08:00">2023-07-12</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -243,14 +251,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>244</span>
+              <span>4.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>4 分钟</span>
             </span>
             <div class="post-description">本文章的主要意义是，第一次提出了可验证的联邦学习方案，第一次的提出了双盲化梯度的方法！</div>
 
@@ -263,13 +271,53 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>本文章的主要意义是，第一次提出了可验证的联邦学习方案，第一次的提出了双盲化梯度的方法！</p>
-<h3 id="本文主要解决的问题-闪光点"><a href="#本文主要解决的问题-闪光点" class="headerlink" title="本文主要解决的问题/闪光点"></a>本文主要解决的问题/闪光点</h3><ol>
-<li>用户上传的梯度会在不经意之间泄露用户个人信息，我们使用<a target="_blank" rel="noopener" href="https://www.notion.so/a48e7ec99d7f4b819afed6ce7ccb19a2">安全聚合双盲化的方法</a>。</li>
-<li>如何验证服务器正确的聚合了我们需要的信息？使用可验证的算法。</li>
-<li>如何保证用户的掉线不会对我们的结果产生影响？同1采用双盲化方法</li>
-</ol>
-<h3 id="基本框架-算法"><a href="#基本框架-算法" class="headerlink" title="基本框架/算法"></a>基本框架/算法</h3><p><img src="/pic/VerifyNet/1.jpeg" alt="1"></p>
+        <h3 id="摘要："><a href="#摘要：" class="headerlink" title="摘要："></a>摘要：</h3><p>本文主要针对于两个问题：1）如何保护用户上传到云服务器的信息（eg.梯度信息）2）如何保证服务器正确的聚合了用户上传的信息。提出了一种可验证的联邦学习方案，<font color=#FF0000 >第一次</font>将可验证引入到联邦学习中，<font color=#FF0000 >第一次</font>提出了双盲化的方法保护了用户上传的梯度信息。本文提出的方法是构建在离散对数的困难问题上的。</p>
+<h3 id="关键字：隐私保护，深度学习，可验证联邦学习，云计算"><a href="#关键字：隐私保护，深度学习，可验证联邦学习，云计算" class="headerlink" title="关键字：隐私保护，深度学习，可验证联邦学习，云计算"></a>关键字：隐私保护，深度学习，可验证联邦学习，云计算</h3><h3 id="引言："><a href="#引言：" class="headerlink" title="引言："></a>引言：</h3><p>联邦学习中需要解决的两个关键问题是：1）保护用户上传梯度 2）数据的完整性（其中尤为重要的是服务器返回的结果是否正确）；</p>
+<p>数据完整行是联邦学习经常被忽略的一个点，不进行数据完整性的校验会导致更多的隐私信息泄露，例如，常见的白盒攻击可以通过给用户特定的结果来诱导用户泄露更多的隐私信息。</p>
+<p>现阶段对可验证的研究非常少，大多基于额外的硬件组件，此外我们还需要<font color=#FF0000 >考虑用户的掉线情况</font>。</p>
+<p>本文，我们提出了一种可验证联邦学习，称为VerifyNet，使用全同态哈希和伪随机计算来提供可验证的联邦学习，使用密钥分享协议来解决用户掉线问题，本文主要贡献如下：</p>
+<ul>
+<li>基于全同态哈希和伪随机生成技术实现了聚合结果的可验证性</li>
+<li>提出了一种双盲化的方法解决用户掉线问题</li>
+<li>给出了完整的安全性证明，和大量的实验分析方案可行新</li>
+</ul>
+<h3 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a>问题描述：</h3><p>A.联邦学习：常见的机器学习分为中心式的机器学习和联邦式机器学习</p>
+<p>B.系统框图：</p>
+<p><img src="/pic/VerifyNet/31.png" alt="1"></p>
+<p>C. 威胁模型和设计目标</p>
+<p>本文中我们认为TA是完全可信的，云服务器和用户都是诚实但好奇的，他们可能存在合谋的情况来获得特定用户的隐私信息。此外，云服务器可以试图构建一个假的<em>proof</em>或返回一个错误的聚合结果来诱导用户接受这个信息。</p>
+<h3 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h3><p>双线性对、全同态哈希、伪随机函数、秘密分享、密钥协商</p>
+<h3 id="技术引进"><a href="#技术引进" class="headerlink" title="技术引进"></a>技术引进</h3><p>在联邦学习中，我们在进行模型的训练过程中，需要注意三点内容：用户上传的梯度必须经过加密，否则敌手会轻易的得到用户的隐私数据；服务器返回的结果必须能够被用户所检验，这是保证用户权益的重要内容；我们要考虑用户的掉线情况，保证掉线的用户不会对聚合结果产生影响。</p>
+<p><em>A.单盲化保护用户的梯度信息：</em></p>
+<p>用户在上传自己的梯度数据时，通过下面的式子进行加密：</p>
+
+
+ $$ { {\hat x}_n} = {x_n} + \sum\limits_{m \in \mathcal {U} :n < m} {{r_{n,m}}}  - \sum\limits_{m \in \mathcal{ U} :n > m} { {r_{n,m}} }  $$
+
+
+<p>其中的 ${ {r_{n,m} } }$是用户$n$与用户$m$通过密钥协商确定的共同密钥，云服务器拿到信息后可以通过聚合得到如下的结果：</p>
+<script type="math/tex; mode=display">\mathbf{z}=\sum_{n \in \mathcal{U}} \hat{x_n}=\sum_{n \in \mathcal{U}} x_n</script><p>我们发现用户上传时添加的密钥$r_{n,m}$在进行求和的时候被消除了，这就是单盲化保护用户的隐私方案，但是它不仅仅造成了大量的通信开销，并且不能在用户掉线的时候提供一个有效的帮助，最重要的验证也无法得到实现，所以我们提出了一种双盲化的方案。</p>
+<p><em>B. 双盲化保护用户的梯度信息</em></p>
+<p>在这里我们先改良 ${{r_{n,m}}}$的计算，我们通过$s_{n, m} \leftarrow \mathbf{K A .agree } \left(N_n^{S K}, N_m^{P K}\right)$来代替之前由两个用户通过密钥协商确定的密钥，原式子则变成了</p>
+<script type="math/tex; mode=display">\hat{x_n}=x_n+\sum_{m \in \mathcal{U}: n<m} \mathbf{P R G}\left(s_{n, m}\right)-\sum_{m \in \mathcal{U}: n>m} \mathbf{PRG}\left(s_{n, m}\right)</script><p>其中的 ${{\bf{PRG}}\left( {{s_{n,m}}} \right)}$是通过$s_{n, m}$作为种子，利用伪随机生成器生成的随机数。为了解决用户的掉线问题，我们需要考虑到用户离线应如何将用户加入的随机数进行剔除，因此我们采用秘密分享协议，将用户的私钥  ${N_n^{SK}}$通过秘密分享的形式进行一个分享。</p>
+<p>这样一旦用户无法及时的上传自己的信息，服务器可以请求其他用户提交该用户的分享值，解密得到相应的  ${{s_{n,m}}}$，进而踢出相关的数据。</p>
+<p>然而依然存在一种情况，用户有可能只是网络不太好，并不能及时的上传自己的信息，而是延后的提交信息，但此时服务器已经请求了用户的私钥分享值，就会导致该“迟到的用户”提交的梯度信息被解锁得到原始数据。</p>
+<p>为了解决这个问题，我们采用二次盲化的手段，具体公式如下：</p>
+<script type="math/tex; mode=display">\hat{x_n}=x_n+\mathbf{P R G}\left(\beta_n\right)+\sum_{m \in \mathcal{U}: n<m} \mathbf{P R G}\left(s_{n, m}\right)  -\sum_{m \in \mathcal{U}: n>m} \mathbf{P R G}\left(s_{n, m}\right)</script><p>其中的  ${{\beta _n}}$是由用户$n$自行生成的数据，其也通过秘密分享的手段分享给其他的用户，因此在云服务器只需要请求掉线的用户的 ${{s_{n,m}}}$的份额，以及在线用户  ${{\beta _n}}$的份额即可完成聚合的任务。</p>
+<p>尽管如此，双盲化协议主要是为了保护用户上传的梯度信息以及解决用户掉线的问题，但是仍然没有完成验证的目标，于是我们又提出了下面的方案。</p>
+<h3 id="提出的框架"><a href="#提出的框架" class="headerlink" title="提出的框架"></a>提出的框架</h3><p>正确性证明：</p>
+<script type="math/tex; mode=display">\begin{aligned} (A, B)= &\left({\prod_{n=1}^{n=\left|\mathcal{U}_3\right|} A_n}, \stackrel{}{\left.\prod_{n=1}^{n=\left|\mathcal{U}_3\right|} B_n\right)}\right. \\ = & \left(g^{\sum_{n \in \mathcal{U}_3} H F_{\delta, \rho}\left(x_n\right)}, h^{\sum_{n \in \mathcal{U}_3} H F_{\delta, \rho}\left(x_n\right)}\right) \\ = & \left(g^{H F_{\delta, \rho}\left(\sum_{n \in \mathcal{U}_3} x_n\right)}, h^{H F_{\delta, \rho}\left(\sum_{n \in \mathcal{U}_3} x_n\right)}\right) \\ = & \left(A^{\prime}, B^{\prime}\right) \\ e(A, h)= & e\left(g^{H F_{\delta, \rho}(\sigma)}, h\right)=e\left(g, h^{H F_{\delta, \rho}(\sigma)}\right) \\ = & e(g, B) \\ e(L, h)= & e\left(g^{\sum_{n \in \mathcal{U}_3} \gamma_n \gamma+v_n v-H F_{\delta, \rho}\left(x_n\right)}, h\right)^{1 / d} \\ = & e\left(g, h^{\sum_{n \in \mathcal{U}_3} \gamma_n \gamma+v_n v-H F_{\delta, \rho}\left(x_n\right)}\right)^{1 / d} \\ = & e(g, Q) \\ & e(A, h) \cdot e(L, h)^d \\ = & e\left(g^{H F_{\delta, \rho}(\sigma)}, h\right) \cdot e\left(g^{\sum_{n \in \mathcal{U}_3} \gamma_n \gamma+v_n v-H F_{\delta, \rho}\left(x_n\right)}, h\right) \\ = & e(g, h)^{\sum_{n \in \mathcal{U}_3} \gamma_n \gamma+v_n v} \\ = & \Phi \end{aligned}</script><p>算法协议如下图所示：</p>
+<p><img src="/pic/VerifyNet/32.png" alt="2"></p>
+<p><strong>基本框架/算法</strong></p>
+<p><img src="/pic/VerifyNet/33.jfif" alt="3"></p>
+<h3 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h3><p><em>A.深度学习的隐私保护</em></p>
+<p>针对深度学习的梯度保护策略，我们有许多方案，常见的有：差分隐私，安全多方计算以及密码学原语[11,18,19]。以差分隐私为基础的梯度保护策略都被证实是不安全的[14]，在GAN网络下是亦被攻破的。在[11]文章中，使用了安全多方计算来保护用户的梯度，但是其没有考虑到用户离线的问题。</p>
+<p><em>B.可验证的深度学习</em></p>
+<p>云服务器可能会返回错误的聚合结果欺骗用户，在[16]中，使用了交互式证明系统来验证服务器的聚合结果。在[17]中，则是使用了一些可信任的硬件来帮助我们验证正确性。这些研究都是基于硬件或者只使用于部分的可验证环境中。</p>
+<blockquote>
+<p>[11] K. Bonawitz et al., “Practical secure aggregation for privacy-preserving machine learning,” in Proc. ACM CCS, 2017, pp. 1175–1191. [14] B. Hitaj, G. Ateniese, and F. Perez-Cruz, “Deep models under the GAN: Information leakage from collaborative deep learning,” in Proc. ACM CCS, 2017, pp. 603–618. [16] Z. Ghodsi, T. Gu, and S. Garg, “SafetyNets: Verifiable execution of deep neural networks on an untrusted cloud,” in Proc. Adv. Neural Inf. Process. Syst., 2017, pp. 4672–4681. [17] F. Tramèr and D. Boneh, “Slalom: Fast, verifiable and private execution of neural networks in trusted hardware,” Jun. 2018, arXiv:1806.03287. [Online]. Available: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1806.03287">https://arxiv.org/abs/1806.03287</a> [18] R. Shokri and V. Shmatikov, “Privacy-preserving deep learning,” in Proc. ACM CCS, 2015, pp. 1310–1321. [19] L. T. Phong, Y. Aono, T. Hayashi, L. Wang, and S. Moriai, “Privacypreserving deep learning via additively homomorphic encryption,” IEEE Trans. Inf. Forensics Security, vol. 13, no. 5, pp. 1333–1345, May 2018.</p>
+</blockquote>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>在本文中，我们提出了VerifyNet，它支持向每个用户验证服务器的计算结果。此外，VerifyNet支持用户在训练过程中退出。安全性分析表明，在诚实但好奇的安全设置下，我们的VerifyNet具有很高的安全性。此外，在真实数据上进行的实验也证明了我们提出的方案的实际性能。作为未来研究工作的一部分，我们将重点关注降低整个协议的通信开销。</p>
 <h3 id="提出的问题"><a href="#提出的问题" class="headerlink" title="提出的问题"></a>提出的问题</h3><ol>
 <li>这种验证方案需要在用户本地进行大量的计算和额外的通信开销，如何在跨设备的联邦学习上应用这一功能称为非常复杂的一项工程，依然需要更加轻量级的方法来实现。</li>
 </ol>
@@ -376,7 +424,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E6%96%87%E4%B8%BB%E8%A6%81%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98-%E9%97%AA%E5%85%89%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">本文主要解决的问题&#x2F;闪光点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6-%E7%AE%97%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">基本框架&#x2F;算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E5%87%BA%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">提出的问题</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%91%98%E8%A6%81%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">摘要：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E5%AD%97%EF%BC%9A%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4%EF%BC%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%EF%BC%8C%E5%8F%AF%E9%AA%8C%E8%AF%81%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0%EF%BC%8C%E4%BA%91%E8%AE%A1%E7%AE%97"><span class="nav-number">2.</span> <span class="nav-text">关键字：隐私保护，深度学习，可验证联邦学习，云计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E8%A8%80%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">引言：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A"><span class="nav-number">4.</span> <span class="nav-text">问题描述：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86"><span class="nav-number">5.</span> <span class="nav-text">预备知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%80%E6%9C%AF%E5%BC%95%E8%BF%9B"><span class="nav-number">6.</span> <span class="nav-text">技术引进</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E5%87%BA%E7%9A%84%E6%A1%86%E6%9E%B6"><span class="nav-number">7.</span> <span class="nav-text">提出的框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="nav-number">8.</span> <span class="nav-text">相关工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E8%AE%BA"><span class="nav-number">9.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E5%87%BA%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">10.</span> <span class="nav-text">提出的问题</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -457,12 +505,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">15k</span>
+    <span title="站点总字数">20k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">14 分钟</span>
+    <span title="站点阅读时长">18 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
