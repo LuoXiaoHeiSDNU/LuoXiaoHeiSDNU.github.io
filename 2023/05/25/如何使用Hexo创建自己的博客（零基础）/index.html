@@ -279,7 +279,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.6k</span>
+              <span>3.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -310,7 +310,7 @@
 <ol>
 <li>打开GitHub官网：<a target="_blank" rel="noopener" href="http://github.com/">http://github.com/</a></li>
 <li>点击sign up进行注册，根据官网提示一步步的进行即可；</li>
-<li>需要注意的是在我们选择账户类型的时候选择Free即可，Pro是用于企业或者不想开放的个人用户：<br><img src="/pic/3/b3.1.png" alt="b3.1" style="zoom:50%;" /></li>
+<li>需要注意的是在我们选择账户类型的时候选择Free即可，Pro是用于企业或者不想开放的个人用户：<img src="/pic/3/b3.1.png" alt="b3.1" style="zoom:50%;" /></li>
 <li>在Welcome to GitHub界面选择Skip this step即可，这是一个问卷调查，读者可以选择自己感兴趣的内容，也可以不选择跳过；</li>
 <li>验证邮箱通过，至此你就完成了GitHub的注册，请注意务必要记住自己的<font color=#FF0000 >账户名称</font>，而不是昵称。</li>
 </ol>
@@ -340,9 +340,11 @@
 </blockquote>
 </li>
 <li><p>如何确保安装成功：在桌面鼠标右键，选择<code>Git Bash Here</code>：</p>
-<p><img src="/pic/3/b3.12.png" alt="b3.12" style="zoom:50%;" /></p>
+<img src="/pic/3/b3.12.png" alt="b3.12" style="zoom:50%;" />
+
 <p>在其界面键入下面的指令：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git</span><br></pre></td></tr></table></figure>
+
 <p>得到下面的界面即为安装成功：<br><img src="/pic/3/b3.13.png" alt="b3.13"></p>
 </li>
 <li><p>至此你应该已经完成Git的安装，如果出现了任何安装问题，可以依据错误代码去网上查找相应的解决方案。</p>
@@ -354,6 +356,7 @@
 <li><p>验证本地是否安装了SSH，其一般都集成在Git Bash中，我们创建一个文件专门用于这个步骤的测试，后期可以删掉，因此无需刻意命名，但注意前文中提到的，尽量使用英文格式。</p>
 <p>在桌面创建一个text文件夹，在其中右键，选择<code>Git Bash Here</code>，并键入下面的命令：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh</span><br></pre></td></tr></table></figure>
+
 <p><img src="/pic/3/14.png" alt="14"></p>
 <p>如上图所示，即为ssh正常配置。</p>
 <blockquote>
@@ -362,21 +365,25 @@
 </li>
 <li><p>下面我们生成本机对应的ssh信息，键入下面的命令：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure>
-<p>无论提示什么，我们选择敲击四次回车键（Enter），系统会为我们生成对应的文件，在Windows中默认生成到<em>“C:/Users/你的计算机的用户名/.ssh”</em>，如下图所示：</p>
-<p><img src="/pic/3/15.png" alt="15" style="zoom:50%;" /></p>
+
+<p>无论提示什么，我们选择敲击四次回车键（Enter），系统会为我们生成对应的文件，在Windows中默认生成到<em>“C:&#x2F;Users&#x2F;你的计算机的用户名&#x2F;.ssh”</em>，如下图所示：</p>
+<img src="/pic/3/15.png" alt="15" style="zoom:50%;" />
 </li>
 <li><p>下面我们需要将我们的文件提交到GitHub中，进入设置界面：</p>
 <p><img src="/pic/3/16.png" alt="16"></p>
 <p>如下图，先点击 <code>SSH and GPG keys</code>，再点击 <code>New SSH key</code>.</p>
 <p><img src="/pic/3/17.png" alt="17"></p>
-<p>我们在第二步中的<code>C:/Users/你的计算机的用户名/.ssh</code>中找到文件<code>`id_rsa.pub</code>，用记事本将其打开，将其内容复制下来，粘贴到如图的key中，Title可以不写，但为了以后方便管理可以设置为Blog_Key：</p>
+<p>我们在第二步中的<code>C:/Users/你的计算机的用户名/.ssh</code>中找到文件&#96;&#96;id_rsa.pub&#96;，用记事本将其打开，将其内容复制下来，粘贴到如图的key中，Title可以不写，但为了以后方便管理可以设置为Blog_Key：</p>
 <p><img src="/pic/3/18.png" alt="18"></p>
 <p>我们验证一下是否正确的可以连接到GitHub服务器，在Git界面中输入下面的代码：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+
 <p>第一次链接，可能要 输入一个yes，输入即可，提示下面的信息即为成功：</p>
-<p><img src="/pic/3/19.png" alt="19" style="zoom:50%;" /></p>
+<img src="/pic/3/19.png" alt="19" style="zoom:50%;" />
+
 <p>如果提示下面的信息：</p>
-<p><img src="/pic/3/20.png" alt="20" style="zoom:50%;" /></p>
+<img src="/pic/3/20.png" alt="20" style="zoom:50%;" />
+
 <p>请检查当前你是否开启了代理的加速器，如果开启了，请关闭代理服务器软件，例如steam++等，并重新尝试链接。如果仍然提示错误，显示time out，请在按照<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/443847295">使用SwitchHosts加速访问Github - 知乎 (zhihu.com)</a>安装SwitchHosts，并在成功链接GitHub后重新键入上面的命令。</p>
 <blockquote>
 <p>其原因是，代理软件和我们Git会产生冲突，于是我们可以不适用代理软件，而是通过修改本地的Host 的信息来帮助我们的主机定位GitHub，SwitchHosts就是一个自动帮我们修改Host文件的软件，非常推荐读者使用。</p>
@@ -386,38 +393,56 @@
 </li>
 <li><p>链接到GitHub进行文件的提交主要有两种方式：①本地没有Git仓库；②本地有Git仓库，并且我们进行了多次的commit操作，关于第二种方法请参照前文中提出的网址进行操作，这里我们仅仅介绍第一种方法：</p>
 <p>①我们先建立一个库用于测试链接：</p>
-<p><img src="/pic/3/22.png" alt="22" style="zoom:50%;" /></p>
-<p><img src="/pic/3/23.png" alt="23" style="zoom:50%;" /></p>
+<img src="/pic/3/22.png" alt="22" style="zoom:50%;" />
+
+<img src="/pic/3/23.png" alt="23" style="zoom:50%;" />
+
 <p><img src="/pic/3/24.png" alt="24"></p>
-<p>查看一下库的链接，复制下来，切记切记选择SSH的链接，原文的博主没有注明，我自行操作的时候后期出了点问题：<br><img src="/pic/3/25.png" alt="25" style="zoom: 50%;" /></p>
+<p>查看一下库的链接，复制下来，切记切记选择SSH的链接，原文的博主没有注明，我自行操作的时候后期出了点问题：</p>
+<img src="/pic/3/25.png" alt="25" style="zoom: 50%;" />
+
 <p>回到我们最开始在桌面创建的测试文件，输入下面的指令：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone 填入你复制的网址不要使用Ctrl+C</span><br></pre></td></tr></table></figure>
-<p><img src="/pic/3/26.png" alt="26" style="zoom:50%;" /></p>
-<p>②回到我们在桌面创建的文件中，发现出现文件夹，即为链接成功：<br><img src="/pic/3/27.png" alt="27" style="zoom:50%;" /></p>
+
+<img src="/pic/3/26.png" alt="26" style="zoom:50%;" />
+
+<p>②回到我们在桌面创建的文件中，发现出现文件夹，即为链接成功：</p>
+<img src="/pic/3/27.png" alt="27" style="zoom:50%;" />
+
 <blockquote>
 <p>我在前面图片中使用的库名为mytest，但是这里文件夹的名称为hello，是因为我链接的是hello的库，如果读者按照前面的正常操作最后得到的应该文件夹名字与GitHub中库名是一致的。</p>
 <p>细节是需要注意的，但是也得松弛有度！</p>
 </blockquote>
 <p>③我们测试是否可以在库中正常提交信息：我们在库名文件夹下创建一个文件，名称为<code>this is my text</code>文件用于测试上传功能：</p>
-<p><img src="/pic/3/28.png" alt="28" style="zoom:50%;" /></p>
-<p>在当前的目录下右键，进入Git bash，后文简称为Git，只要不特殊提及都是指的Git bash，而Git GUI在本文中不适用，键入命令//该命令为显示当前库中文件的状态，可以帮助我们确认哪些文件未上传：</p>
+<img src="/pic/3/28.png" alt="28" style="zoom:50%;" />
+
+<p>在当前的目录下右键，进入Git bash，后文简称为Git，只要不特殊提及都是指的Git bash，而Git GUI在本文中不适用，键入命令&#x2F;&#x2F;该命令为显示当前库中文件的状态，可以帮助我们确认哪些文件未上传：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+
 <p>不出意外应该显示下面的信息：</p>
-<p><img src="/pic/3/29.png" alt="29" style="zoom:50%;" /></p>
+<img src="/pic/3/29.png" alt="29" style="zoom:50%;" />
+
 <p>图片中框起来的部分即表示当前有一个文件尚未提交，<code>this is my text.txt</code>，ok我们可以使用下面的代码进行文件的提交：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add &quot;this is my text.txt&quot;</span><br><span class="line">git commit -m &quot;commit text file&quot;</span><br></pre></td></tr></table></figure>
+
 <p>第一句代码是将文件<code>this is my text.txt</code>提交到我们Git的文件缓冲区，然后再利用第二局代码将缓冲区的文件提交到GitHub库中去。</p>
-<p><img src="/pic/3/30.png" alt="30" style="zoom:50%;" /></p>
+<img src="/pic/3/30.png" alt="30" style="zoom:50%;" />
+
 <p>这里你们的提示信息有可能是1 insertions(+)，这是正常的，但是如果是第一次进去这个界面有可能会提示下面的信息：</p>
-<p><img src="/pic/3/31.png" alt="31" style="zoom:50%;" /></p>
+<img src="/pic/3/31.png" alt="31" style="zoom:50%;" />
+
 <p>我们分别执行以下的代码</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name&quot;此处贴那些你的GitHub用户名，引号不删除，不是昵称！！&quot;</span><br><span class="line">git config --global user.email&quot;此处填写你的GitHub邮箱地址，引号不删除&quot;</span><br></pre></td></tr></table></figure>
+
 <p>现在输入下面的命令，将本地仓库提交到远程仓库中，如果弹出GitHub的验证页面，请不要担心输入GitHub的密码即可。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push</span><br></pre></td></tr></table></figure>
+
 <p>Git给出下面的提示：</p>
-<p><img src="/pic/3/32.png" alt="32" style="zoom:50%;" /></p>
+<img src="/pic/3/32.png" alt="32" style="zoom:50%;" />
+
 <p>再回到GitHub的对应的库中，发现库中已经有我们本地添加的文件了：</p>
-<p><img src="/pic/3/33.png" alt="33" style="zoom:50%;" /></p>
+<img src="/pic/3/33.png" alt="33" style="zoom:50%;" />
+
 <blockquote>
 <p>如果出现了预料外的情况，请自行在网络上查询相关信息，或者留下评论，我会在看到的第一时间内帮助你解答。</p>
 </blockquote>
@@ -543,7 +568,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -608,12 +633,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">20k</span>
+    <span title="站点总字数">23k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">18 分钟</span>
+    <span title="站点阅读时长">21 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
@@ -674,6 +699,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

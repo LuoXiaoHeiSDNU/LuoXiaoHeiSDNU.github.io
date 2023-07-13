@@ -251,14 +251,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.6k</span>
+              <span>5.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
+              <span>5 分钟</span>
             </span>
             <div class="post-description">本文章的主要意义是，第一次提出了可验证的联邦学习方案，第一次的提出了双盲化梯度的方法！</div>
 
@@ -295,20 +295,25 @@
  $$ { {\hat x}_n} = {x_n} + \sum\limits_{m \in \mathcal {U} :n < m} {{r_{n,m}}}  - \sum\limits_{m \in \mathcal{ U} :n > m} { {r_{n,m}} }  $$
 
 
+
 <p>其中的 ${ {r_{n,m} } }$是用户$n$与用户$m$通过密钥协商确定的共同密钥，云服务器拿到信息后可以通过聚合得到如下的结果：</p>
-<script type="math/tex; mode=display">\mathbf{z}=\sum_{n \in \mathcal{U}} \hat{x_n}=\sum_{n \in \mathcal{U}} x_n</script><p>我们发现用户上传时添加的密钥$r_{n,m}$在进行求和的时候被消除了，这就是单盲化保护用户的隐私方案，但是它不仅仅造成了大量的通信开销，并且不能在用户掉线的时候提供一个有效的帮助，最重要的验证也无法得到实现，所以我们提出了一种双盲化的方案。</p>
+<p>$$\mathbf{z}&#x3D;\sum_{n \in \mathcal{U}} \hat{x_n}&#x3D;\sum_{n \in \mathcal{U}} x_n$$</p>
+<p>我们发现用户上传时添加的密钥$r_{n,m}$在进行求和的时候被消除了，这就是单盲化保护用户的隐私方案，但是它不仅仅造成了大量的通信开销，并且不能在用户掉线的时候提供一个有效的帮助，最重要的验证也无法得到实现，所以我们提出了一种双盲化的方案。</p>
 <p><em>B. 双盲化保护用户的梯度信息</em></p>
 <p>在这里我们先改良 ${{r_{n,m}}}$的计算，我们通过$s_{n, m} \leftarrow \mathbf{K A .agree } \left(N_n^{S K}, N_m^{P K}\right)$来代替之前由两个用户通过密钥协商确定的密钥，原式子则变成了</p>
-<script type="math/tex; mode=display">\hat{x_n}=x_n+\sum_{m \in \mathcal{U}: n<m} \mathbf{P R G}\left(s_{n, m}\right)-\sum_{m \in \mathcal{U}: n>m} \mathbf{PRG}\left(s_{n, m}\right)</script><p>其中的 ${{\bf{PRG}}\left( {{s_{n,m}}} \right)}$是通过$s_{n, m}$作为种子，利用伪随机生成器生成的随机数。为了解决用户的掉线问题，我们需要考虑到用户离线应如何将用户加入的随机数进行剔除，因此我们采用秘密分享协议，将用户的私钥  ${N_n^{SK}}$通过秘密分享的形式进行一个分享。</p>
+<p>$$ \hat{x_n}&#x3D;x_n+\sum_{m \in \mathcal{U}: n&lt;m} \mathbf{P R G}\left(s_{n, m}\right)-\sum_{m \in \mathcal{U}: n&gt;m} \mathbf{PRG}\left(s_{n, m}\right) $$</p>
+<p>其中的 ${{\bf{PRG}}\left( {{s_{n,m}}} \right)}$是通过$s_{n, m}$作为种子，利用伪随机生成器生成的随机数。为了解决用户的掉线问题，我们需要考虑到用户离线应如何将用户加入的随机数进行剔除，因此我们采用秘密分享协议，将用户的私钥  ${N_n^{SK}}$通过秘密分享的形式进行一个分享。</p>
 <p>这样一旦用户无法及时的上传自己的信息，服务器可以请求其他用户提交该用户的分享值，解密得到相应的  ${{s_{n,m}}}$，进而踢出相关的数据。</p>
 <p>然而依然存在一种情况，用户有可能只是网络不太好，并不能及时的上传自己的信息，而是延后的提交信息，但此时服务器已经请求了用户的私钥分享值，就会导致该“迟到的用户”提交的梯度信息被解锁得到原始数据。</p>
 <p>为了解决这个问题，我们采用二次盲化的手段，具体公式如下：</p>
-<script type="math/tex; mode=display">\hat{x_n}=x_n+\mathbf{P R G}\left(\beta_n\right)+\sum_{m \in \mathcal{U}: n<m} \mathbf{P R G}\left(s_{n, m}\right)  -\sum_{m \in \mathcal{U}: n>m} \mathbf{P R G}\left(s_{n, m}\right)</script><p>其中的  ${{\beta _n}}$是由用户$n$自行生成的数据，其也通过秘密分享的手段分享给其他的用户，因此在云服务器只需要请求掉线的用户的 ${{s_{n,m}}}$的份额，以及在线用户  ${{\beta _n}}$的份额即可完成聚合的任务。</p>
+<p>$$ \hat{x_n}&#x3D;x_n+\mathbf{P R G}\left(\beta_n\right)+\sum_{m \in \mathcal{U}: n&lt;m} \mathbf{P R G}\left(s_{n, m}\right)  -\sum_{m \in \mathcal{U}: n&gt;m} \mathbf{P R G}\left(s_{n, m}\right) $$</p>
+<p>其中的  ${{\beta _n}}$是由用户$n$自行生成的数据，其也通过秘密分享的手段分享给其他的用户，因此在云服务器只需要请求掉线的用户的 ${{s_{n,m}}}$的份额，以及在线用户  ${{\beta _n}}$的份额即可完成聚合的任务。</p>
 <p>尽管如此，双盲化协议主要是为了保护用户上传的梯度信息以及解决用户掉线的问题，但是仍然没有完成验证的目标，于是我们又提出了下面的方案。</p>
 <h3 id="提出的框架"><a href="#提出的框架" class="headerlink" title="提出的框架"></a>提出的框架</h3><p>正确性证明：</p>
-<script type="math/tex; mode=display">\begin{aligned} (A, B)= &\left({\prod_{n=1}^{n=\left|\mathcal{U}_3\right|} A_n}, \stackrel{}{\left.\prod_{n=1}^{n=\left|\mathcal{U}_3\right|} B_n\right)}\right. \\ = & \left(g^{\sum_{n \in \mathcal{U}_3} H F_{\delta, \rho}\left(x_n\right)}, h^{\sum_{n \in \mathcal{U}_3} H F_{\delta, \rho}\left(x_n\right)}\right) \\ = & \left(g^{H F_{\delta, \rho}\left(\sum_{n \in \mathcal{U}_3} x_n\right)}, h^{H F_{\delta, \rho}\left(\sum_{n \in \mathcal{U}_3} x_n\right)}\right) \\ = & \left(A^{\prime}, B^{\prime}\right) \\ e(A, h)= & e\left(g^{H F_{\delta, \rho}(\sigma)}, h\right)=e\left(g, h^{H F_{\delta, \rho}(\sigma)}\right) \\ = & e(g, B) \\ e(L, h)= & e\left(g^{\sum_{n \in \mathcal{U}_3} \gamma_n \gamma+v_n v-H F_{\delta, \rho}\left(x_n\right)}, h\right)^{1 / d} \\ = & e\left(g, h^{\sum_{n \in \mathcal{U}_3} \gamma_n \gamma+v_n v-H F_{\delta, \rho}\left(x_n\right)}\right)^{1 / d} \\ = & e(g, Q) \\ & e(A, h) \cdot e(L, h)^d \\ = & e\left(g^{H F_{\delta, \rho}(\sigma)}, h\right) \cdot e\left(g^{\sum_{n \in \mathcal{U}_3} \gamma_n \gamma+v_n v-H F_{\delta, \rho}\left(x_n\right)}, h\right) \\ = & e(g, h)^{\sum_{n \in \mathcal{U}_3} \gamma_n \gamma+v_n v} \\ = & \Phi \end{aligned}</script><p>算法协议如下图所示：</p>
+<p>$$\begin{aligned} (A, B)&#x3D; &amp;\left({\prod_{n&#x3D;1}^{n&#x3D;\left|\mathcal{U}<em>3\right|} A_n}, \stackrel{}{\left.\prod</em>{n&#x3D;1}^{n&#x3D;\left|\mathcal{U}<em>3\right|} B_n\right)}\right. \ &#x3D; &amp; \left(g^{\sum</em>{n \in \mathcal{U}<em>3} H F</em>{\delta, \rho}\left(x_n\right)}, h^{\sum_{n \in \mathcal{U}<em>3} H F</em>{\delta, \rho}\left(x_n\right)}\right) \ &#x3D; &amp; \left(g^{H F_{\delta, \rho}\left(\sum_{n \in \mathcal{U}<em>3} x_n\right)}, h^{H F</em>{\delta, \rho}\left(\sum_{n \in \mathcal{U}<em>3} x_n\right)}\right) \ &#x3D; &amp; \left(A^{\prime}, B^{\prime}\right) \ e(A, h)&#x3D; &amp; e\left(g^{H F</em>{\delta, \rho}(\sigma)}, h\right)&#x3D;e\left(g, h^{H F_{\delta, \rho}(\sigma)}\right) \ &#x3D; &amp; e(g, B) \ e(L, h)&#x3D; &amp; e\left(g^{\sum_{n \in \mathcal{U}<em>3} \gamma_n \gamma+v_n v-H F</em>{\delta, \rho}\left(x_n\right)}, h\right)^{1 &#x2F; d} \ &#x3D; &amp; e\left(g, h^{\sum_{n \in \mathcal{U}<em>3} \gamma_n \gamma+v_n v-H F</em>{\delta, \rho}\left(x_n\right)}\right)^{1 &#x2F; d} \ &#x3D; &amp; e(g, Q) \ &amp; e(A, h) \cdot e(L, h)^d \ &#x3D; &amp; e\left(g^{H F_{\delta, \rho}(\sigma)}, h\right) \cdot e\left(g^{\sum_{n \in \mathcal{U}<em>3} \gamma_n \gamma+v_n v-H F</em>{\delta, \rho}\left(x_n\right)}, h\right) \ &#x3D; &amp; e(g, h)^{\sum_{n \in \mathcal{U}_3} \gamma_n \gamma+v_n v} \ &#x3D; &amp; \Phi \end{aligned}$$</p>
+<p>算法协议如下图所示：</p>
 <p><img src="/pic/VerifyNet/32.png" alt="2"></p>
-<p><strong>基本框架/算法</strong></p>
+<p><strong>基本框架&#x2F;算法</strong></p>
 <p><img src="/pic/VerifyNet/33.jfif" alt="3"></p>
 <h3 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h3><p><em>A.深度学习的隐私保护</em></p>
 <p>针对深度学习的梯度保护策略，我们有许多方案，常见的有：差分隐私，安全多方计算以及密码学原语[11,18,19]。以差分隐私为基础的梯度保护策略都被证实是不安全的[14]，在GAN网络下是亦被攻破的。在[11]文章中，使用了安全多方计算来保护用户的梯度，但是其没有考虑到用户离线的问题。</p>
@@ -440,7 +445,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -505,12 +510,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">20k</span>
+    <span title="站点总字数">23k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">18 分钟</span>
+    <span title="站点阅读时长">21 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
@@ -571,6 +576,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

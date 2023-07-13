@@ -275,14 +275,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.8k</span>
+              <span>4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>4 分钟</span>
             </span>
             <div class="post-description">在本篇文章，笔者将利用GitHub加Hexo来帮助读者建立一个属于自己的博客网站，并且给出了安装过程中可能出现问题的一般解决方案，这这一章中主要介绍了如何利用域名解析来帮助我们实现在世界的任何一地都可以访问到你的博客。</div>
 
@@ -298,12 +298,15 @@
         <h3 id="如何购买属于自己的域名"><a href="#如何购买属于自己的域名" class="headerlink" title="如何购买属于自己的域名"></a>如何购买属于自己的域名</h3><p>可以购买域名的地方有很多，例如<a target="_blank" rel="noopener" href="https://cloud.tencent.com/">腾讯云 产业智变·云启未来 - 腾讯 (tencent.com)</a>，以及<a target="_blank" rel="noopener" href="https://wanwang.aliyun.com/">阿里云企航_万网域名_工商财税_知识产权_资质备案_智能设计_网站建设-阿里云 (aliyun.com)</a>这里我们使用阿里云来进行购买：</p>
 <ol>
 <li><p>注册一个阿里云账号，如果已经注册好了请直接进行登录：</p>
-<p><img src="/pic/4/1.png" alt="1" style="zoom:50%;" /></p>
+<img src="/pic/4/1.png" alt="1" style="zoom:50%;" />
+
 <p>自己中文的网址注册就不扯那么多了，直接一步步的进行就行。</p>
 </li>
 <li><p>直接搜索自己心意的域名</p>
-<p><img src="/pic/4/2.png" alt="2" style="zoom:50%;" /></p>
-<p><img src="/pic/4/3.png" alt="3" style="zoom:50%;" /></p>
+<img src="/pic/4/2.png" alt="2" style="zoom:50%;" />
+
+<img src="/pic/4/3.png" alt="3" style="zoom:50%;" />
+
 <p>选择自己喜欢的域名就行，考虑到价格的问题，可以选择一个相对便宜就行，域名后缀的简单解释为：</p>
 <blockquote>
 <p><strong>com：</strong>全世界范围使用最多的域名，原用于商业组织，现个人也能注册。</p>
@@ -312,13 +315,14 @@
 <p>Org、gov、edu，很多人说搜索引擎给予比其他域名后缀更高的权重。当然，背后原因是使用这些域名对应的组织更可信、数量也更少、内容也更被需要。</p>
 <p><strong>org：</strong>原用于非盈利组织，现也用于国际化公司。</p>
 <p><strong>gov：</strong>用于政府网站。</p>
-<p><strong>edu:</strong>用于教育机构等专用组织，主要用于教育机构。</p>
+<p>**edu:**用于教育机构等专用组织，主要用于教育机构。</p>
 <p>接下来的域名是一些相对小众，一辉把有代表性的介绍给大家。</p>
 <p><strong>top</strong>:意为顶尖、王者。主要用于娱乐、时尚、互联网行业，无限制。</p>
 </blockquote>
 <p>还可以注意下续费价格，选择好适合自己的点击加入清单：</p>
-<p><img src="/pic/4/4.png" alt="4" style="zoom:50%;" /></p>
-<p><img src="/pic/4/5.png" alt="5" style="zoom:50%;" /></p>
+<img src="/pic/4/4.png" alt="4" style="zoom:50%;" />
+
+<img src="/pic/4/5.png" alt="5" style="zoom:50%;" />
 </li>
 <li><p>购买的设置，可以随个人的实际情况进行选择：<br><img src="/pic/4/6.png" alt="6"></p>
 <p>创建模板直接按照其要求进行填写就行，填写完成后会自动的审核提交的身份证信息和邮箱信息，身份证信息是官方网络注册局审核的（好像是叫这个名），一般是1个小时左右，有的时候节假期啥的可能时间比较长。</p>
@@ -327,28 +331,40 @@
 <h3 id="安装node-js"><a href="#安装node-js" class="headerlink" title="安装node.js"></a>安装node.js</h3><p>node是一款可以通过集成的命令帮助我们管理博客网站的程序；</p>
 <ol>
 <li><p>进入官网<a target="_blank" rel="noopener" href="https://nodejs.org/en">Node.js (nodejs.org)</a></p>
-<p><img src="/pic/4/7.png" alt="7" style="zoom:50%;" /></p>
+<img src="/pic/4/7.png" alt="7" style="zoom:50%;" />
+
 <p>根据提示点击next即可，唯一需要注意的是这也不是一款必要的系统文件，我们没必要安装在C盘，安装在其他的盘下即可。</p>
 <p>验证是否正确安装，摁住Windows徽标键+R键，输入<code>cmd</code>打开命令提示符，分别键入以下的命令：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
-<p><img src="/pic/4/8.png" alt="8" style="zoom:50%;" /></p>
+
+<img src="/pic/4/8.png" alt="8" style="zoom:50%;" />
+
 <p>可能读者显示的版本号不同，但是只要cmd不报错我们就可以正常使用。</p>
 </li>
 <li><p>设置一下npm在安装模块时的路径和环境变量，此处设置一方面是为了防止其在安装时占用C盘的空间，并且有的组件放在C盘可能会出现不可知的问题，故我们放在另一个地方：<br>我们可以在我们安装nodejs的根文件下建立两个空文件夹<code>node_cache</code>、<code>node_global</code>，再次打开cmd键入下面的命令：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config set prefix &quot;这里填入你创建的空文件夹的地址，例如：D:\nodejs\node_global&quot;</span><br><span class="line">npm config set cache &quot;这里填入你创建的空文件夹的地址，例如：D:\nodejs\node_cache&quot;</span><br></pre></td></tr></table></figure>
+
 <p>引号无需删除，到这里，我们再次调用nmp时候，就会下载到我们默认的文件夹中了。</p>
-<p>设置环境变量：<strong>win10系统 —&gt; 打开控制面板 —&gt; 系统 —&gt;高级系统设置 —&gt; 环境变量 ，</strong>或者直接在控制面板搜索环境变量亦可。然后在系统变量中新建一个变量名为“NODE_PATH”，值为“D:\nodejs\node_global\node_modules”，如下图：</p>
-<p><img src="/pic/4/9.png" alt="9" style="zoom:50%;" /></p>
-<p><img src="/pic/4/10.png" alt="10" style="zoom:50%;" /></p>
+<p>设置环境变量：<strong>win10系统 –&gt; 打开控制面板 –&gt; 系统 –&gt;高级系统设置 –&gt; 环境变量 ，</strong>或者直接在控制面板搜索环境变量亦可。然后在系统变量中新建一个变量名为“NODE_PATH”，值为“D:\nodejs\node_global\node_modules”，如下图：</p>
+<img src="/pic/4/9.png" alt="9" style="zoom:50%;" />
+
+<img src="/pic/4/10.png" alt="10" style="zoom:50%;" />
+
 <p>然后编辑用户变量里的Path，将相应npm的路径改为：D:\nodejs\node_global，如下图：</p>
-<p><img src="/pic/4/11.png" alt="11" style="zoom:50%;" /></p>
-<p><img src="/pic/4/12.png" alt="12" style="zoom:50%;" /></p>
-<p><img src="/pic/4/13.png" alt="13" style="zoom:50%;" /></p>
+<img src="/pic/4/11.png" alt="11" style="zoom:50%;" />
+
+<img src="/pic/4/12.png" alt="12" style="zoom:50%;" />
+
+<img src="/pic/4/13.png" alt="13" style="zoom:50%;" />
+
 <p>测试一下：在 cmd 命令下执行 ：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install webpack -g</span><br></pre></td></tr></table></figure>
-<p><img src="/pic/4/14.png" alt="14" style="zoom:50%;" /></p>
+
+<img src="/pic/4/14.png" alt="14" style="zoom:50%;" />
+
 <p>然后 webpack 这个模块已经在我们设置默认的文件夹中了：</p>
-<p><img src="/pic/4/15.png" alt="15" style="zoom:50%;" /></p>
+<img src="/pic/4/15.png" alt="15" style="zoom:50%;" />
+
 <blockquote>
 <p>这里原博主写的十分详细，这里就不再进行重复的操作了，大家可以依靠原博主的步骤进行操作即可。</p>
 </blockquote>
@@ -362,14 +378,20 @@
 </li>
 <li><p>下面我们安装Hexo，我是放在了<code>D:\Blog\hexo</code>目录下，当然你可以自己选择放在哪里，在当前文件夹下右键进入Git界面，输入下面的代码：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
 <p>待其安装完成后执行初始化博客的代码如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+
 <p>完成后执行动态部署命令：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+
 <p>此时应该部署完毕，我们输入下面的指令进行查看：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
 <p><img src="/pic/4/17.png" alt="17"></p>
-<p>此时我们可以访问 <a target="_blank" rel="noopener" href="http://localhost:4000">http://localhost:4000</a> 来访问本地搭建的hexo网站：<br><img src="/pic/4/18.png" alt="18" style="zoom:50%;" /></p>
+<p>此时我们可以访问 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 来访问本地搭建的hexo网站：</p>
+<img src="/pic/4/18.png" alt="18" style="zoom:50%;" />
+
 <p>查阅完成后使用ctrl +c 停止运行服务器。</p>
 <blockquote>
 <p>在上面的操作中，只要没有出现红色的字体erro等就证明操作是正常的，如果出现其他问题，请在网上依据其错误代码进行自行的查阅。</p>
@@ -377,45 +399,60 @@
 </li>
 <li><p>将Hexo部署到GitHub</p>
 <p>回到我们的hexo文件夹（或者你自己定义的位置）中，用记事本打开<code>_config.yml</code>，将下面的片段插入到文件的最后：</p>
-<p><img src="/pic/4/19.png" alt="19" style="zoom:50%;" /></p>
+<img src="/pic/4/19.png" alt="19" style="zoom:50%;" />
+
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:LuoXiaoHeiSDNU/LuoXiaoHeiSDNU.github.io.git  #你的仓库地址</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-<p>仓库地址请选择ssh的地址，具体在下面的这里：<br><img src="/pic/4/20.png" alt="20" style="zoom:50%;" /></p>
+
+<p>仓库地址请选择ssh的地址，具体在下面的这里：</p>
+<img src="/pic/4/20.png" alt="20" style="zoom:50%;" />
+
 <p>回到我们的hexo文件夹中，进入Git，键入下面的部署命令：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
 <p>待其完成后键入下面的三条命令：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean   #清除缓存文件 db.json 和已生成的静态文件 public</span><br><span class="line">hexo g       #生成网站静态文件到默认设置的 public 文件夹(hexo generate 的缩写)</span><br><span class="line">hexo d       #自动生成网站静态文件，并部署到设定的仓库(hexo deploy 的缩写)</span><br></pre></td></tr></table></figure>
+
 <p>至此我们直接通过网站<code>https://你的GitHub的名字.github.io</code>访问你的网站了。</p>
 </li>
 </ol>
 <h3 id="解析我们的域名"><a href="#解析我们的域名" class="headerlink" title="解析我们的域名"></a>解析我们的域名</h3><p>为什么要解析域名，我们发现此时我们可以使用<code>https://你的GitHub的名字.github.io</code>访问网址，但是我们没法通过购买的域名来访问我们的网站，因此我们需要通过域名的解析进行映射</p>
 <ol>
 <li><p>进入域名解析的网站</p>
-<p><img src="/pic/4/21.png" alt="21" style="zoom:50%;" /></p>
-<p><img src="/pic/4/22.png" alt="22" style="zoom:50%;" /></p>
-<p><img src="/pic/4/23.png" alt="23" style="zoom:50%;" /></p>
+<img src="/pic/4/21.png" alt="21" style="zoom:50%;" />
+
+<img src="/pic/4/22.png" alt="22" style="zoom:50%;" />
+
+<img src="/pic/4/23.png" alt="23" style="zoom:50%;" />
 </li>
 <li><p>我们先把网站放一下，我们需要先获得前文中<code>https://你的GitHub的名字.github.io</code>的IPV4地址，我们在cmd命令行中执行下面的命令，记录下方框中的IP地址</p>
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ping</span> luoxiaoheisdnu.github.io    #<span class="built_in">ping</span> + 你的GitHub的网址，无需区分大小写</span><br></pre></td></tr></table></figure>
-<p><img src="/pic/4/26.png" alt="26" style="zoom:50%;" /></p>
-<p>除此之外，我们找到hexo文件中的source文件夹，在其中创建一个CNAME.txt，在其中写入你的域名，不建议加www或者https，例如我就直接写入，gabaili.top，而不是<a target="_blank" rel="noopener" href="https://gabaili.top，保存后将其后缀名删去，即CNAME">https://gabaili.top，保存后将其后缀名删去，即CNAME</a></p>
-<p><img src="/pic/4/28.png" alt="28" style="zoom:50%;" /></p>
+
+<img src="/pic/4/26.png" alt="26" style="zoom:50%;" />
+
+<p>除此之外，我们找到hexo文件中的source文件夹，在其中创建一个CNAME.txt，在其中写入你的域名，不建议加www或者https，例如我就直接写入，gabaili.top，而不是<a target="_blank" rel="noopener" href="https://gabaili.top,保存后将其后缀名删去,即cname/">https://gabaili.top，保存后将其后缀名删去，即CNAME</a></p>
+<img src="/pic/4/28.png" alt="28" style="zoom:50%;" />
 </li>
 <li><p>在我们域名解析的网址，依据下面的截图以此填入相应的信息，注意，别填成我的，填写自己的网站地址信息。</p>
-<p><img src="/pic/4/24.png" alt="24" style="zoom:50%;" /></p>
-<p><img src="/pic/4/25.png" alt="25" style="zoom:50%;" /></p>
-<p><img src="/pic/4/27.png" alt="27" style="zoom:50%;" /></p>
+<img src="/pic/4/24.png" alt="24" style="zoom:50%;" />
+
+<img src="/pic/4/25.png" alt="25" style="zoom:50%;" />
+
+<img src="/pic/4/27.png" alt="27" style="zoom:50%;" />
+
 <p>根据第二张图片写入第三张图片的相关内容。</p>
 </li>
 <li><p>最后在hexo文件夹中，打开Git键入下面的命令：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
 <p>至此你可以直接输入你域名的地址，来访问自己的网页啦！</p>
 </li>
 </ol>
 <h3 id="安装Next主题"><a href="#安装Next主题" class="headerlink" title="安装Next主题"></a>安装Next主题</h3><ol>
 <li><p>尽管我们使用了hexo的主题，但是其看起来并不是定制化的，因此我们采用Next主题，并且读者也可以根据其进行进一步的改进，在hexo（也成为<strong>站点文件夹</strong>）文件夹中进入Git界面，键入下面的命令安装Next主题。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+
 <p>你可以看到在themes文件夹中已经创建了一个新的文件：</p>
-<p><img src="/pic/4/29.png" alt="29" style="zoom:50%;" /></p>
+<img src="/pic/4/29.png" alt="29" style="zoom:50%;" />
 </li>
 <li><p>进入我们的站点配置文件夹（hexo文件夹），打开<code>_config-.yml</code>，进行主题的修改：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># Site</span><br><span class="line">title: 枫叶苑  #网站显示的名字</span><br><span class="line">subtitle: &#x27;&#x27; #网站的子标题</span><br><span class="line">description: 选择有时候比努力更重要     #简介或者格言</span><br><span class="line">keywords: #供网络爬虫爬取</span><br><span class="line">author: 枫叶     #作者</span><br><span class="line">language: zh-CN     #主题语言</span><br><span class="line">timezone: Asia/Shanghai    #中国的时区</span><br><span class="line"></span><br><span class="line"># Extensions</span><br><span class="line">## Plugins: https://hexo.io/plugins/</span><br><span class="line">## Themes: https://hexo.io/themes/</span><br><span class="line">theme: next   #主题改为next</span><br></pre></td></tr></table></figure>
@@ -552,7 +589,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -617,12 +654,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">20k</span>
+    <span title="站点总字数">23k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">18 分钟</span>
+    <span title="站点阅读时长">21 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
@@ -683,6 +720,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
