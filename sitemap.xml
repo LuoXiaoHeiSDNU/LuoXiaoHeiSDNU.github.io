@@ -206,13 +206,6 @@
   </url>
   
   <url>
-    <loc>https://gabaili.top/tags/%E7%A7%BB%E5%8A%A8%E7%BE%A4%E6%99%BA%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%A4%A9%E9%99%85%E7%BA%BF/</loc>
-    <lastmod>2023-07-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://gabaili.top/tags/%E5%AE%89%E5%85%A8%E8%81%9A%E5%90%88/</loc>
     <lastmod>2023-07-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -221,6 +214,13 @@
   
   <url>
     <loc>https://gabaili.top/tags/%E5%8F%AF%E9%AA%8C%E8%AF%81/</loc>
+    <lastmod>2023-07-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://gabaili.top/tags/%E7%A7%BB%E5%8A%A8%E7%BE%A4%E6%99%BA%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%A4%A9%E9%99%85%E7%BA%BF/</loc>
     <lastmod>2023-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -257,7 +257,7 @@
   </url>
   
   <url>
-    <loc>https://gabaili.top/categories/%E5%8D%9A%E5%AE%A2/</loc>
+    <loc>https://gabaili.top/categories/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/%E5%8C%BA%E5%9D%97%E9%93%BE/</loc>
     <lastmod>2023-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -271,13 +271,6 @@
   </url>
   
   <url>
-    <loc>https://gabaili.top/categories/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/%E5%8C%BA%E5%9D%97%E9%93%BE/</loc>
-    <lastmod>2023-07-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://gabaili.top/categories/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/%E5%A4%A9%E9%99%85%E7%BA%BF/</loc>
     <lastmod>2023-07-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -285,7 +278,7 @@
   </url>
   
   <url>
-    <loc>https://gabaili.top/categories/%E5%8D%9A%E5%AE%A2/%E5%86%99%E4%BD%9C/</loc>
+    <loc>https://gabaili.top/categories/%E5%8D%9A%E5%AE%A2/</loc>
     <lastmod>2023-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -293,6 +286,13 @@
   
   <url>
     <loc>https://gabaili.top/categories/%E5%8D%9A%E5%AE%A2/%E5%88%9B%E4%BD%9C/</loc>
+    <lastmod>2023-07-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://gabaili.top/categories/%E5%8D%9A%E5%AE%A2/%E5%86%99%E4%BD%9C/</loc>
     <lastmod>2023-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
