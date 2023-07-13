@@ -264,7 +264,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.1k</span>
+              <span>3.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -289,85 +289,70 @@
 <p>下午 2:26</p>
 <h1 id="概述-主要贡献："><a href="#概述-主要贡献：" class="headerlink" title="概述-主要贡献："></a>概述-主要贡献：</h1><p>本文主要是将联邦学习与天际线的变体相结合应用在了群智感知的场景中，主要使用到的是pailler同态加密的相关性质。</p>
 <p>文章的实验部分主要使用了两个参数，分别是训练花费时间以及训练的准确性，通过对不不同工人数量下，以及不同的数据分布的情况下（独立同分布，不独立同分布）的系统表现来展示系统的优越性。</p>
-<p>文章来源：IEEE Internet of Things Journal；10.238&#x2F;Q1</p>
+<p>文章来源：IEEE Internet of Things Journal；10.238/Q1</p>
 <h1 id="0、摘要："><a href="#0、摘要：" class="headerlink" title="0、摘要："></a>0、摘要：</h1><p>将联邦许学习与移动群体感知联系起来，引出F-MCS。本文主要解决两个问题：工人资源异构问题以及为跨设备的FL提出隐私安全方案，提出了新型的框架。（拓展了Fedavg算法，CG-skyline，基于同态加密的模型聚合。）</p>
 <h1 id="1、introduction"><a href="#1、introduction" class="headerlink" title="1、introduction"></a>1、introduction</h1><p>MCS即雇佣不同的用户，通过收集其传感器的数据来用于一些工作。为保护工人隐私，将FL与MCS结合是一个趋势。但是仍然存在两个问题：1）如何选择稳健的工人；2）缺乏针对跨设备FL的安全隐私协议（跨组织的FL最终模型仅由参与方拥有，平台不获得信息）。为解决以上问题，我们提出了FedSky，我们做出的主要的贡献是：1）新的工人选择方案，通产来说是随机选取，现在我们采用新型方案。（相较于FedAvg算法，性能提高显著）；2）新型隐私保护聚合方案，通常来说工人要与所有工人都交互，现在仅需要与邻居ID交互即可 ；3）建立了一个可以评估模型的系统。</p>
-<h1 id="2、Moldels-And-Desiginged-Goals"><a href="#2、Moldels-And-Desiginged-Goals" class="headerlink" title="2、Moldels And Desiginged Goals"></a>2、Moldels And Desiginged Goals</h1><h2 id="A-模型搭建"><a href="#A-模型搭建" class="headerlink" title="A.模型搭建"></a>A.模型搭建</h2><img src="/pic/VerifyNet/1.png" alt="1" style="zoom: 50%;" />
-
-<h2 id="B-安全模型："><a href="#B-安全模型：" class="headerlink" title="B.安全模型："></a>B.安全模型：</h2><p>假设没有合谋的情况（工人与工人，以及F-MCS），敌手可以监听通信数据以及可以监听F-MCS平台的数据库及其他的信息&#x2F;工人是诚实但好奇的。</p>
+<h1 id="2、Moldels-And-Desiginged-Goals"><a href="#2、Moldels-And-Desiginged-Goals" class="headerlink" title="2、Moldels And Desiginged Goals"></a>2、Moldels And Desiginged Goals</h1><h2 id="A-模型搭建"><a href="#A-模型搭建" class="headerlink" title="A.模型搭建"></a>A.模型搭建</h2><p><img src="/pic/VerifyNet/1.png" alt="1" style="zoom: 50%;" /></p>
+<h2 id="B-安全模型："><a href="#B-安全模型：" class="headerlink" title="B.安全模型："></a>B.安全模型：</h2><p>假设没有合谋的情况（工人与工人，以及F-MCS），敌手可以监听通信数据以及可以监听F-MCS平台的数据库及其他的信息/工人是诚实但好奇的。</p>
 <h2 id="C-设计目标"><a href="#C-设计目标" class="headerlink" title="C.设计目标"></a>C.设计目标</h2><p>设计目标：</p>
 <p>1）有效性：比传统的Fedavg效率要高；</p>
 <p>2）隐私安全：保证敌手即使拿到信息也无法退出信息是来自于哪一个工人。</p>
 <h1 id="3、Preliminaries"><a href="#3、Preliminaries" class="headerlink" title="3、Preliminaries"></a>3、Preliminaries</h1><h2 id="A-Fed-avg"><a href="#A-Fed-avg" class="headerlink" title="A.Fed-avg"></a>A.Fed-avg</h2><p>平台随机选取工人发放用户，用户本地训练模型，得到梯度，上传给平台，平台依据以下式子进行聚合：</p>
-<img src="/pic/VerifyNet/7.png" alt="7" style="zoom:50%;" />
-
-<img src="/pic/VerifyNet/8.png" alt="8" style="zoom:50%;" />
-
+<p><img src="/pic/VerifyNet/7.png" alt="7" style="zoom:50%;" /></p>
+<p><img src="/pic/VerifyNet/8.png" alt="8" style="zoom:50%;" /></p>
 <h2 id="B-Different-Variants-of-Skyline-Queries"><a href="#B-Different-Variants-of-Skyline-Queries" class="headerlink" title="B.Different Variants of Skyline Queries"></a>B.Different Variants of Skyline Queries</h2><p><strong>1）skyline：</strong>We define wa dominates wb, denoted as wa ≺ wb, if for all j ∈ [1, d], wa[j] ≥ wb[j], and there exists at least one j such that wa[j] &gt; wb[j].</p>
-<p><strong>2）k-Point G-Skyline：</strong>G &#x3D;{wu1, wu2,…,wuk} and G′ &#x3D;{w′v1, w′v2,…,w′vk}，wui ， w′vi for all i ∈ [1, k], and there exists at least one i for wui ≺ w′vi.the k-point G-skyline is the skyline groups with k workers that are not g-dominated by other groups with the same size.</p>
+<p><strong>2）k-Point G-Skyline：</strong>G ={wu1, wu2,…,wuk} and G′ ={w′v1, w′v2,…,w′vk}，wui ， w′vi for all i ∈ [1, k], and there exists at least one i for wui ≺ w′vi.the k-point G-skyline is the skyline groups with k workers that are not g-dominated by other groups with the same size.</p>
 <p><strong>3）C-Skyline：</strong>受限的天际线，C表示一系列的限制条件</p>
 <p><strong>4）k-Point CG-Skyline：</strong>在受限天际线下找到符合2）条件的天际线群。</p>
-<img src="/pic/VerifyNet/9.png" alt="9" style="zoom:50%;" />
-
+<p><img src="/pic/VerifyNet/9.png" alt="9" style="zoom:50%;" /></p>
 <h2 id="C-Bilinear-Pairing"><a href="#C-Bilinear-Pairing" class="headerlink" title="C. Bilinear Pairing"></a>C. Bilinear Pairing</h2><p>Let G and GT be two cyclic groups of the same prime order q. g is a generator of group G.e : G × G → GT has the following properties：</p>
 <ol>
-<li>Bilinearity: For all x, y ∈ G, then e(xa, yb) &#x3D; e(x, y)ab for a, b ∈ Zq∗.</li>
-<li>Nondegeneracy: e(g, g) ≠ 1GT . &#x2F;&#x2F;所谓退化性，就是指任意的G1群的元素和G2群的元素，映射的结果都是GT群中的单位元。相应的非退化性就是上述所说的存在G1群的元素和G2群的元素的映射结果不为GT群中的单位元。</li>
+<li>Bilinearity: For all x, y ∈ G, then e(xa, yb) = e(x, y)ab for a, b ∈ Zq∗.</li>
+<li>Nondegeneracy: e(g, g) ≠ 1GT . //所谓退化性，就是指任意的G1群的元素和G2群的元素，映射的结果都是GT群中的单位元。相应的非退化性就是上述所说的存在G1群的元素和G2群的元素的映射结果不为GT群中的单位元。</li>
 <li>Computability: For all x, y ∈ G, there exists an efficient algorithm to compute e(x, y) ∈ GT .</li>
 </ol>
 <h2 id="D-Paillier-Cryptosystem"><a href="#D-Paillier-Cryptosystem" class="headerlink" title="D. Paillier Cryptosystem"></a>D. Paillier Cryptosystem</h2><p>加密过程：</p>
-<img src="/pic/VerifyNet/10.png" alt="10" style="zoom:50%;" />
-
+<p><img src="/pic/VerifyNet/10.png" alt="10" style="zoom:50%;" /></p>
 <p>解密过程：</p>
-<img src="/pic/VerifyNet/11.png" alt="11" style="zoom:50%;" />
-
+<p><img src="/pic/VerifyNet/11.png" alt="11" style="zoom:50%;" /></p>
 <p>同态性：</p>
-<img src="/pic/VerifyNet/12.png" alt="12" style="zoom:50%;" />
-
+<p><img src="/pic/VerifyNet/12.png" alt="12" style="zoom:50%;" /></p>
 <h1 id="4、PROPOSED-SCHEME"><a href="#4、PROPOSED-SCHEME" class="headerlink" title="4、PROPOSED SCHEME"></a>4、PROPOSED SCHEME</h1><p>空缺的地方请参考PPT，因为排版问题，公式消失了</p>
-<img src="/pic/VerifyNet/13.png" alt="13" style="zoom:50%;" />
-
+<p><img src="/pic/VerifyNet/13.png" alt="13" style="zoom:50%;" /></p>
 <h2 id="A-KeyDist-Phase"><a href="#A-KeyDist-Phase" class="headerlink" title="A. KeyDist Phase"></a>A. KeyDist Phase</h2><p>TKG(信任密钥生成机构)主要完成以下操作:</p>
-<p>1）通过paillier密钥生成函数KeyGen由(p,q,n,λ,μ)生成p的公钥pkp&#x3D;(n,g)和私钥skp&#x3D;(λ,μ)；</p>
+<p>1）通过paillier密钥生成函数KeyGen由(p,q,n,λ,μ)生成p的公钥pkp=(n,g)和私钥skp=(λ,μ)；</p>
 <p>2）选取Hash函数H1（{0, 1}∗ → Zn2）、H2（{0, 1}∗ → Zn）、H0（{0, 1}∗ → G）；</p>
 <p>3）选取双线性映射的一个关系函数e（G × G → GT）</p>
 <p>4）广播发送(pkp, H1, e )给平台P，秘密发送skp给平台；</p>
-<p>5）选取一个随机数S，并计算每个送人的IDwi，通过IDwi&#x3D;H0（wi），进而计算IDSwi；</p>
+<p>5）选取一个随机数S，并计算每个送人的IDwi，通过IDwi=H0（wi），进而计算IDSwi；</p>
 <p>6）将H2分享给全部的工人，秘密的分享IDSwi给对应的工人；</p>
 <p>图表中的skwi不太懂</p>
-<h2 id="B-WorkSel-Phase"><a href="#B-WorkSel-Phase" class="headerlink" title="B. WorkSel Phase"></a>B. WorkSel Phase</h2><p>根据实际情况进行限制条件的选取，例如Con1&#x3D;[min1,max1],Con2&#x3D;[min2,max2],if min1 &gt; min2 and max1 &gt; max2，那么我们说1的限制条件比2要苛刻。具体选取流程如下所述：先计算其Sum值（即两个元素的和值），将其按照从大到小的顺序放入一个队列中（即文中的QW），创建两个空的队列Qsky（大小为每次训练要求的工人数量）、Qnon，依次遍历这个队列，首个元素放入到Qsky中，后面的元素依次与Qsky的元素进行对比，若被Qsky中的任意一个元素支配，则将其放入到Qnon中去，直到遍历完成w中全部的元素，或者Qsky中的位置被填满。</p>
+<h2 id="B-WorkSel-Phase"><a href="#B-WorkSel-Phase" class="headerlink" title="B. WorkSel Phase"></a>B. WorkSel Phase</h2><p>根据实际情况进行限制条件的选取，例如Con1=[min1,max1],Con2=[min2,max2],if min1 &gt; min2 and max1 &gt; max2，那么我们说1的限制条件比2要苛刻。具体选取流程如下所述：先计算其Sum值（即两个元素的和值），将其按照从大到小的顺序放入一个队列中（即文中的QW），创建两个空的队列Qsky（大小为每次训练要求的工人数量）、Qnon，依次遍历这个队列，首个元素放入到Qsky中，后面的元素依次与Qsky的元素进行对比，若被Qsky中的任意一个元素支配，则将其放入到Qnon中去，直到遍历完成w中全部的元素，或者Qsky中的位置被填满。</p>
 <p>若遍历完w中的元素，仍然没有填满Qsky中的元素，那么我们从Qnon中依次拿取需要的元素即可。</p>
-<p>此流程基于两个事实：1)从QW中拿出的第一个元素一定是我们需要的天际线工人。2)属于支配地位的元素一定比其对应被支配元素优先使用（拿出）。*&#x2F;&#x2F;解释可以查看原文*</p>
+<p>此流程基于两个事实：1)从QW中拿出的第一个元素一定是我们需要的天际线工人。2)属于支配地位的元素一定比其对应被支配元素优先使用（拿出）。<em>//解释可以查看原文</em></p>
 <p>我们可以用这个小例子来理解一下：</p>
-<img src="/pic/VerifyNet/14.png" alt="14" style="zoom:50%;" />
-
-<h2 id="C-DataAgg-Phase"><a href="#C-DataAgg-Phase" class="headerlink" title="C. DataAgg Phase"></a>C. DataAgg Phase</h2><p>第一步：平台（后面统称为P）计算：yi &#x3D; Ni&#x2F;(N1 + N2 +···+Nk)作为一个待传送的参数，其值表示的是每一个工人的权重且yi ← yi · 1000.（为保证精准度，我们取小数点后三位），平台将全部的工人放到一个队列中，并且规定了他们的左右邻居。</p>
-<img src="/pic/VerifyNet/15.png" alt="15" style="zoom:50%;" />
-
+<p><img src="/pic/VerifyNet/14.png" alt="14" style="zoom:50%;" /></p>
+<h2 id="C-DataAgg-Phase"><a href="#C-DataAgg-Phase" class="headerlink" title="C. DataAgg Phase"></a>C. DataAgg Phase</h2><p>第一步：平台（后面统称为P）计算：yi = Ni/(N1 + N2 +···+Nk)作为一个待传送的参数，其值表示的是每一个工人的权重且yi ← yi · 1000.（为保证精准度，我们取小数点后三位），平台将全部的工人放到一个队列中，并且规定了他们的左右邻居。</p>
+<p><img src="/pic/VerifyNet/15.png" alt="15" style="zoom:50%;" /></p>
 <p>第二步：P选择一个随机数αi ∈ Zn*，并将一下的消息传送给对应序号i的工人。</p>
-<p>第三步：每个工人应该执行的操作：根据本地的数据计算平台发送模型的梯度gi，根据固定的学习率计算xi ← xt − η · gi，xi取小数点后八位，即xi &#x3D; 108 · xi mod n.</p>
+<p>第三步：每个工人应该执行的操作：根据本地的数据计算平台发送模型的梯度gi，根据固定的学习率计算xi ← xt − η · gi，xi取小数点后八位，即xi = 108 · xi mod n.</p>
 <p>第四步：工人计算如下的参数：</p>
-<img src="/pic/VerifyNet/16.png" alt="16" style="zoom:50%;" />
-
-<img src="/pic/VerifyNet/17.png" alt="17" style="zoom:50%;" />
-
+<p><img src="/pic/VerifyNet/16.png" alt="16" style="zoom:50%;" /></p>
+<p><img src="/pic/VerifyNet/17.png" alt="17" style="zoom:50%;" /></p>
 <p>并将πi传送给P</p>
 <p>第五步：P接受用户发送的πi，如果应该参与运算的工人有一个没有发送πi，则舍弃本轮数据，否则P进行如下的运算</p>
-<img src="/pic/VerifyNet/18.png" alt="18" style="zoom:50%;" />
-
+<p><img src="/pic/VerifyNet/18.png" alt="18" style="zoom:50%;" /></p>
 <p>我们取则平台可以用D(sk, c)进行解密，解密公式可以表示如下：</p>
-<p>其正确性可以通过以下进行解释： ∑k i&#x3D;1 Sip &#x3D; S1p + S2p +···+Skp &#x3D; S(1,k) − S(1,2) + S(2,1) − S(2,3) + ··· + S(k,k−1) − S(k,1) mod n.我们注意到根据前文中提到的函数H2以及双线性映射的相关知识有S(i,j) &#x3D; S(j,i) &#x3D; H2(e(IDwi , IDwj )S)，进而∑k i&#x3D;1 Sip &#x3D; 0 modn；即可以将∑k i&#x3D;1 Sip写为∑k i&#x3D;1 Sip&#x3D;γ · n，进而前文的式子，可以写成</p>
-<img src="/pic/VerifyNet/20.png" alt="20" style="zoom:50%;" />
-
-<p>我们将看为一个随机数，则前式可以写为 θ &#x3D; g m ̅  · rn，由palliar相关知识可以通过D(sk,c)解出相应m ̅，但是值得注意的是此时的m ̅并不是我们最后想要的m，m ̅即可能是积极的亦可能是消极的，通过下面的变换做最后的变换：</p>
-<img src="/pic/VerifyNet/19.png" alt="19" style="zoom:50%;" />
-
+<p>其正确性可以通过以下进行解释： ∑k i=1 Sip = S1p + S2p +···+Skp = S(1,k) − S(1,2) + S(2,1) − S(2,3) + ··· + S(k,k−1) − S(k,1) mod n.我们注意到根据前文中提到的函数H2以及双线性映射的相关知识有S(i,j) = S(j,i) = H2(e(IDwi , IDwj )S)，进而∑k i=1 Sip = 0 modn；即可以将∑k i=1 Sip写为∑k i=1 Sip=γ · n，进而前文的式子，可以写成</p>
+<p><img src="/pic/VerifyNet/20.png" alt="20" style="zoom:50%;" /></p>
+<p>我们将看为一个随机数，则前式可以写为 θ = g m ̅  · rn，由palliar相关知识可以通过D(sk,c)解出相应m ̅，但是值得注意的是此时的m ̅并不是我们最后想要的m，m ̅即可能是积极的亦可能是消极的，通过下面的变换做最后的变换：</p>
+<p><img src="/pic/VerifyNet/19.png" alt="19" style="zoom:50%;" /></p>
 <p>最后P根据工人们发送的m，根据进行迭代，将更新后的模型xt+1发送给新的工人，重复如上的步骤，知道达到系统要求即可。</p>
 <h1 id="5、SECURITY-ANALYSIS"><a href="#5、SECURITY-ANALYSIS" class="headerlink" title="5、SECURITY ANALYSIS"></a>5、SECURITY ANALYSIS</h1><p>此处的安全性证明不是很明白，有机会再多多研讨以下吧</p>
 <p>前提假设：P是不会与工人wi进行合谋的</p>
-<h2 id="A-Semantic-Security-of-πi"><a href="#A-Semantic-Security-of-πi" class="headerlink" title="A. Semantic Security of πi"></a>A. Semantic Security of πi</h2><p><em>&#x2F;&#x2F;语义安全性证明可以简单理解成，给定两个x0, x1参与方，对C其中任意一个进行加密，发送给A。若A仅仅能以50%猜出此次为哪个参与方的密文，则说此协议已经达到了语义上的安全。</em></p>
+<h2 id="A-Semantic-Security-of-πi"><a href="#A-Semantic-Security-of-πi" class="headerlink" title="A. Semantic Security of πi"></a>A. Semantic Security of πi</h2><p><em>//语义安全性证明可以简单理解成，给定两个x0, x1参与方，对C其中任意一个进行加密，发送给A。若A仅仅能以50%猜出此次为哪个参与方的密文，则说此协议已经达到了语义上的安全。</em></p>
 <p>假设存在一个攻击者（即尝试破解算法或获取消息的人）A和挑战者（即运行算法，接受攻击者攻击的人）C；</p>
-<p>执行步骤如下： 1）C运行密钥生成协议，生成pkp &#x3D; (n, g), skp &#x3D; (λ, μ)，发送 skp给A；</p>
+<p>执行步骤如下： 1）C运行密钥生成协议，生成pkp = (n, g), skp = (λ, μ)，发送 skp给A；</p>
 <p>2）A选择两个参与方，以及随机数y,α，t，将(x0, x1, y,α,t)发送给C；</p>
 <p>3）C随机选择b，计算πb，发送给A</p>
 <p>4）A对其进行猜测</p>
@@ -375,7 +360,7 @@
 <p>&lt;<FedSky An Efficient and Privacy-Preserving Scheme for Federated Mobile Crowdsensing.pptx>&gt;</p>
 <p>参考变量表</p>
 <p>算法的细节如下：</p>
-<img src="/pic/VerifyNet/21.png" alt="21" style="zoom:50%;" />
+<p><img src="/pic/VerifyNet/21.png" alt="21" style="zoom:50%;" /></p>
 
     </div>
 

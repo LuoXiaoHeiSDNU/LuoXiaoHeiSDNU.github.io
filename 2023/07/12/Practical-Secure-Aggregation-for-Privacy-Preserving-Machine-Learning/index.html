@@ -237,7 +237,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.1k</span>
+              <span>1.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -271,13 +271,11 @@
 </blockquote>
 <p>单盲化主要存在两点问题：用户之间需要协商一个随机数 ${s_{u,v}}$，这会导致二次的通信开销；单盲化无法解决用户掉线的问题。</p>
 <p>单盲化的公式如下所示</p>
-<p>$$<br>\begin{aligned}z &amp; &#x3D;\sum_{u \in \mathcal{U}} \boldsymbol{y}<em>u \&amp; &#x3D;\sum</em>{u \in \mathcal{U}}\left(\boldsymbol{x}<em>u+\sum</em>{v \in \mathcal{U}: u&lt;v} s_{u, v}-\sum_{v \in \mathcal{U}: u&gt;v} s_{v, u}\right) \&amp; &#x3D;\sum_{u \in \mathcal{U}} \boldsymbol{x}<em>u(\bmod R)\end{aligned}<br>$$<br>本文提出的双盲化，与wiki中的模板是相同的，但是需要再次指明的一点是，服务器只能请求一个用户的一个信息，即只能请求用户$u$的 ${s</em>{u,v}}$份额或者 ${b_u}$的份额。也就是说服务器只能请求在线用户的${b_u}$份额，以及离线用户的 ${s_{u,v}}$份额，公式如下：</p>
-<p>$$ \begin{aligned}y_u&#x3D;x_u &amp; +\operatorname{PRG}\left(b_u\right) \&amp; +\sum_{v \in \mathcal{U}: u&lt;v} \operatorname{PRG}\left(s_{u, v}\right) \&amp; -\sum_{v \in \mathcal{U}: u&gt;v} \operatorname{PRG}\left(s_{v, u}\right) \quad(\bmod R)\end{aligned} $$</p>
-<p>本文提出的系统模型如下所示：</p>
-<img src="/pic/SA-body/1.png" alt="7" style="zoom:50%;" />
-
-<h3 id="实用的安全聚合协议"><a href="#实用的安全聚合协议" class="headerlink" title="实用的安全聚合协议"></a>实用的安全聚合协议</h3><img src="/pic/SA-body/2.png" alt="7" style="zoom:50%;" />
-
+<script type="math/tex; mode=display">
+\begin{aligned}z & =\sum_{u \in \mathcal{U}} \boldsymbol{y}_u \\& =\sum_{u \in \mathcal{U}}\left(\boldsymbol{x}_u+\sum_{v \in \mathcal{U}: u<v} s_{u, v}-\sum_{v \in \mathcal{U}: u>v} s_{v, u}\right) \\& =\sum_{u \in \mathcal{U}} \boldsymbol{x}_u(\bmod R)\end{aligned}</script><p>本文提出的双盲化，与wiki中的模板是相同的，但是需要再次指明的一点是，服务器只能请求一个用户的一个信息，即只能请求用户$u$的 ${s_{u,v}}$份额或者 ${b_u}$的份额。也就是说服务器只能请求在线用户的${b_u}$份额，以及离线用户的 ${s_{u,v}}$份额，公式如下：</p>
+<script type="math/tex; mode=display">\begin{aligned}y_u=x_u & +\operatorname{PRG}\left(b_u\right) \\& +\sum_{v \in \mathcal{U}: u<v} \operatorname{PRG}\left(s_{u, v}\right) \\& -\sum_{v \in \mathcal{U}: u>v} \operatorname{PRG}\left(s_{v, u}\right) \quad(\bmod R)\end{aligned}</script><p>本文提出的系统模型如下所示：</p>
+<p><img src="/pic/SA-body/1.png" alt="7" style="zoom:50%;" /></p>
+<h3 id="实用的安全聚合协议"><a href="#实用的安全聚合协议" class="headerlink" title="实用的安全聚合协议"></a>实用的安全聚合协议</h3><p><img src="/pic/SA-body/2.png" alt="7" style="zoom:50%;" /></p>
 <h3 id="安全分析"><a href="#安全分析" class="headerlink" title="安全分析"></a>安全分析</h3><p><strong>诚实但好奇用户：</strong></p>
 <p>本文的安全性证明主要运用的是模拟的证明方法，关于模拟的证明方法并不是很清楚，后续如果有需要再仔细阅读进行补充。</p>
 <h3 id="性能分析"><a href="#性能分析" class="headerlink" title="性能分析"></a>性能分析</h3><p>主要针对了用户以及服务器进行了通信开销以及计算开销的分析，详细的分析过程可以参考原文，本处不再进行赘述</p>
