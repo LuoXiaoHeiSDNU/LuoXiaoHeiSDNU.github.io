@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://gabaili.top/2023/05/26/VerSA-Verifiable-Secure-Aggregation-for-Cross-Device-Federated-Learning/</loc>
+    
+    <lastmod>2023-07-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://gabaili.top/2023/05/26/VerifyNet-Secure-and-Verifiable-Federated-Learning/</loc>
     
     <lastmod>2023-07-13</lastmod>
@@ -66,15 +75,6 @@
   
   <url>
     <loc>https://gabaili.top/2023/05/25/%E7%B4%A2%E5%BC%95%E7%95%8C%E9%9D%A2/</loc>
-    
-    <lastmod>2023-05-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://gabaili.top/2023/05/26/VerSA-Verifiable-Secure-Aggregation-for-Cross-Device-Federated-Learning/</loc>
     
     <lastmod>2023-05-26</lastmod>
     

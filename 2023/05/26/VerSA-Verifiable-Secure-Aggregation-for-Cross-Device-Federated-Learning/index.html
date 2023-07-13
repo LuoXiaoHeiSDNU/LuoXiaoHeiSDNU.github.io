@@ -23,22 +23,26 @@
     var CONFIG = {"hostname":"gabaili.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="闪光点：其证明部分使用的是规约证明，格式漂亮，写论文可以参考">
+  <meta name="description" content="本篇文章只做拓展，后续在TIFS以及TDSC上都证明了系统的不可行性，因此快跑！！！">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VerSA: Verifiable Secure Aggregation for Cross-Device Federated Learning">
 <meta property="og:url" content="https://gabaili.top/2023/05/26/VerSA-Verifiable-Secure-Aggregation-for-Cross-Device-Federated-Learning/index.html">
 <meta property="og:site_name" content="态度决定生活">
-<meta property="og:description" content="闪光点：其证明部分使用的是规约证明，格式漂亮，写论文可以参考">
+<meta property="og:description" content="本篇文章只做拓展，后续在TIFS以及TDSC上都证明了系统的不可行性，因此快跑！！！">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gabaili.top/pic/VerifyNet/2.jpg">
+<meta property="og:image" content="https://gabaili.top/pic/VerSA/1.png">
+<meta property="og:image" content="https://gabaili.top/pic/VerSA/2.png">
+<meta property="og:image" content="https://gabaili.top/pic/VerSA/3.png">
+<meta property="og:image" content="https://gabaili.top/pic/VerSA/4.png">
+<meta property="og:image" content="https://gabaili.top/pic/VerSA/1.jfif">
 <meta property="article:published_time" content="2023-05-26T02:31:13.000Z">
-<meta property="article:modified_time" content="2023-05-26T03:23:50.833Z">
+<meta property="article:modified_time" content="2023-07-13T13:37:45.472Z">
 <meta property="article:author" content="Gabaili">
 <meta property="article:tag" content="联邦学习">
 <meta property="article:tag" content="跨设备">
 <meta property="article:tag" content="可验证">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gabaili.top/pic/VerifyNet/2.jpg">
+<meta name="twitter:image" content="https://gabaili.top/pic/VerSA/1.png">
 
 <link rel="canonical" href="https://gabaili.top/2023/05/26/VerSA-Verifiable-Secure-Aggregation-for-Cross-Device-Federated-Learning/">
 
@@ -205,10 +209,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-05-26 10:31:13 / 修改时间：11:23:50" itemprop="dateCreated datePublished" datetime="2023-05-26T10:31:13+08:00">2023-05-26</time>
+              <time title="创建时间：2023-05-26 10:31:13" itemprop="dateCreated datePublished" datetime="2023-05-26T10:31:13+08:00">2023-05-26</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-07-13 21:37:45" itemprop="dateModified" datetime="2023-07-13T21:37:45+08:00">2023-07-13</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -243,16 +253,16 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>278</span>
+              <span>6.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>6 分钟</span>
             </span>
-            <div class="post-description">闪光点：其证明部分使用的是规约证明，格式漂亮，写论文可以参考</div>
+            <div class="post-description">本篇文章只做拓展，后续在TIFS以及TDSC上都证明了系统的不可行性，因此快跑！！！</div>
 
         </div>
       </header>
@@ -263,19 +273,87 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="概述："><a href="#概述：" class="headerlink" title="概述："></a>概述：</h3><p>流程上来说和Secure Aggregation是一样的，贡献来说也就是居于原有的SA提出了一种新的联邦学习的聚合模型吧，没有使用双线性映射或者全通态哈希函数，而是仅仅使用了PRG伪随机函数生成器就完成了我们需要的操作。</p>
-<h3 id="本文主要解决的问题-闪光点："><a href="#本文主要解决的问题-闪光点：" class="headerlink" title="本文主要解决的问题/闪光点："></a>本文主要解决的问题/闪光点：</h3><ul>
-<li><p>优化了通信负载，提供了一种高效的新型聚合方法（双盲化）；</p>
-</li>
-<li><p>提出了自己的验证联邦学习聚合的验证算法：<script type="math/tex">a \circ v + b(\bmod R)</script></p>
-<p>其中去除了VerifyNet中设计的全同态哈希函数的验证算法；</p>
-</li>
-<li><p>其也解决的用户掉线的问题，使用到的技术就是安全聚合-双盲化</p>
-</li>
+        <h1 id="VerSA-Verifiable-Secure-Aggregation-for-Cross-Device-Federated-Learning"><a href="#VerSA-Verifiable-Secure-Aggregation-for-Cross-Device-Federated-Learning" class="headerlink" title="VerSA: Verifiable Secure Aggregation for Cross-Device Federated Learning"></a>VerSA: Verifiable Secure Aggregation for Cross-Device Federated Learning</h1><h3 id="摘要："><a href="#摘要：" class="headerlink" title="摘要："></a>摘要：</h3><p>先前的工作需要基于一个可信的三方来帮助我们完成协议的验证过程，并且其依靠双线性对的性质会造成较大的计算开销，本文我们仅仅通过伪随机生成器以及一些简单的数学性质即可完成验证的工作。并且对于先前的方案，我们提出了一种恢复攻击，结果显示98%的数据都可以在21小时之内被破解。</p>
+<h3 id="关键字：联邦学习、分布式机器学习、安全、隐私"><a href="#关键字：联邦学习、分布式机器学习、安全、隐私" class="headerlink" title="关键字：联邦学习、分布式机器学习、安全、隐私"></a>关键字：联邦学习、分布式机器学习、安全、隐私</h3><h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>随着数据爆发的增长，很多神经网络需要依靠大量的用户数据训练模型。这对数据隐私提出了严峻的挑战，特别是当数据在多个用户之间共享时。</p>
+<p>谷歌提出了一种学习方式，称为联邦学习[5], [6]，他是数据不动，模型动，用户不提供原始数据而是提供模型训练得到的梯度信息。尽管我们没有提供原始的信息，但是已有研究表明，敌手拿到梯度信息后，可以推断特定的信息，甚至是推断出原始数据。不过通过差分隐私，安全多方计算，后量子协议可以解决这些问题。</p>
+<p>除此之外，验证服务器结果的正确性也是非常重要的，直接的方法是采用多客户端可验证计算[26], [27], [28]，但是其只为单个用户提供结果的校验，不适合我们的联邦学习（每个用户都应该得到聚合结果的正确与否）。</p>
+<p>许多方案被提出，在跨设备的联邦学习中，<font color=#FF0000 >我们主要需要考虑用户群体中可能存在轻量级的计算设备，用户之间的网络很可能是不可靠的，用户会时长的出现掉线的问题</font>。</p>
+<p>我们主要考虑两个问题：①先前的可信机构是否合理？②是否可以不通过可信机构完成结果的验证？</p>
+<p>我们发现在VerifyNet中，模型的输出是高度偏差的；用户的密钥不仅用户模型梯度的加密同样应用于模型结果的验证，基于这两点我们提出了一种恢复攻击。</p>
+<p>因此我们提出了自己的聚合方案，主要解决两点问题：不借助可信第三方来帮助我们完成验证、验证过程必须是轻量级的。</p>
+<aside> 💡 本方案我们主要采用了，伪随机生成器以及SA协议进行了构建，可以简述为：首先用户合作的生成密钥对，用户本地模型的加密。在我们的方案中，我们称该密钥对为主密钥对，由主密钥对来生成三个会话密钥，一个会话密钥用户将用户的模型梯度编码为模型的验证码（该验证码不可以明文传输，这样会导致系统容易受到暴力攻击），剩余的两个分别用于加密模型的梯度以及模型的梯度验证码。
+
+</aside>
+
+<p>我们通过实验证明了我们协议在效率上是非常高效的。</p>
+<p><strong>本文贡献：</strong></p>
+<ul>
+<li>针对VerifyNet提出了一种模型恢复攻击</li>
+<li>提出了一种轻量级的聚合验证算法VerSA</li>
+<li>进行了大量的实验</li>
+<li>通过性能分析指出我们的方案相较于之前的方式，效率快了几个数量级</li>
 </ul>
-<p><a target="_blank" rel="noopener" href="https://www.notion.so/a48e7ec99d7f4b819afed6ce7ccb19a2">安全聚合-双盲化</a></p>
-<h3 id="基本框架-算法："><a href="#基本框架-算法：" class="headerlink" title="基本框架/算法："></a>基本框架/算法：</h3><p><img src="/pic/VerifyNet/2.jpg" alt="2"></p>
-<h3 id="提出的问题"><a href="#提出的问题" class="headerlink" title="提出的问题"></a>提出的问题</h3>
+<blockquote>
+<p>[5] J. Konec ny` , H. B. McMahan, D. Ramage, and P. Richtarik, “Federated optimization: Distributed machine learning for ondevice intelligence,” 2016, arXiv:1610.02527. </p>
+<p>[6] H. B. McMahan, E. Moore, D. Ramage, and B. A. y Arcas, “Federated learning of deep networks using model averaging,” 2016, arXiv:1602.05629. </p>
+<p>[26] S. G. Choi, J. Katz, R. Kumaresan, and C. Cid, “Multi-client noninteractive verifiable computation,” in Proc. Theory Cryptogr. Conf., 2013, pp. 499–518. </p>
+<p>[27] S. D. Gordon, J. Katz, F.-H. Liu, E. Shi, and H.-S. Zhou, “Multi-client verifiable computation with stronger security guarantees,” in Proc. Theory Cryptogr. Conf., 2015, pp. 144–168. </p>
+<p>[28] C. Cachin, E. Ghosh, D. Papadopoulos, and B. Tackmann, “Stateful multi-client verifiable computation,” in Proc. Int. Conf. Appl. Cryptogr. Netw. Secur., 2018, pp. 637–656.</p>
+</blockquote>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p><strong><em>A.联邦学习</em></strong></p>
+<p>跨设备的联邦学习主要是用户的计算能力有限，网络的通信环境不可靠，用户之间并没有持续的直连通道[ 43 ] [ 44 ]。相比之下，跨组织的联邦学习则不同，大部分的参与者都是富有计算能力的，且建立的信道是安全的[ 45 ]，[ 46 ]。本文主要研究跨设备的联邦学习。</p>
+<blockquote>
+<p>[43] J. Konec ny` , H. B. McMahan, F. X. Yu, P. Richtarik, A. T. Suresh, and D. Bacon, “Federated learning: Strategies for improving communication efficiency,” 2016, arXiv:1610.05492. </p>
+<p>[44] K. Bonawitz et al., “Towards federated learning at scale: System design,” 2019, arXiv:1902.01046. </p>
+<p>[45] M. J. Sheller et al., “Federated learning in medicine: Facilitating multi-institutional collaborations without sharing patient data,” Sci. Rep., vol. 10, no. 1, pp. 1–12, 2020. </p>
+<p>[46] C. Zhang, S. Li, J. Xia, W. Wang, F. Yan, and Y. Liu, “BatchCrypt: Efficient homomorphic encryption for cross-silo federated learning,” in Proc. USENIX Annu. Tech. Conf., 2020, pp. 493–506.</p>
+</blockquote>
+<p><strong><em>B.安全聚合SA</em></strong></p>
+<p>安全聚合其实就是双盲化协议。因为这个方法采用的是轻量级的密码学原语，所以非常契合我们的跨设备的联邦学习场景。</p>
+<p><strong><em>C.可验证联邦学习</em></strong></p>
+<p>可验证性主要分为两方面：服务器试图向用户证明其正确的聚合了用户提交的数据；另一方面是，用户企图向服务器证明其正确的执行了模型的训练过程。</p>
+<h3 id="系统和威胁模型"><a href="#系统和威胁模型" class="headerlink" title="系统和威胁模型"></a>系统和威胁模型</h3><p>本文提出的系统模型和传统的联邦学习模型的对比</p>
+<p><img src="/pic/VerSA/1.png" alt="7" style="zoom:50%;" /></p>
+<p>系统模型主要分为以下几个方面： </p>
+<p><em>密钥分享阶段：</em>用户通过协商得到属于自己的密钥对，并通过门限分享协议分享私钥。 </p>
+<p><em>盲化阶段：</em>用户对本地训练生成的梯度信息进行加密，除此之外，用户生成两个密钥，公共评估密钥以及私密验证密钥，前者发送给服务器做验证使用，后者则由用户自己保留： </p>
+<p><em>去盲化以及生成证明阶段：</em>去盲化的阶段同SA协议，初次之外服务器需要利用公共评估密钥计算出聚合梯度的证明信息，并广播出来。 </p>
+<p><em>验证阶段：</em>每个用户在本地验证梯度的聚合结果是否正确，正确则接受，否则不接受。</p>
+<p><font color=#FF0000 >威胁模型：</font>服务器会有一个伪造一个验证信息，试图欺骗用户接受错误的聚合结果。用户是半诚实的，并且可能存在多个用户一同合作企图攻击某一个用户的梯度信息（合谋人数应该是＜t的）。我们不考虑用户与服务器的合谋情况，不考虑推断攻击以及投毒攻击等，尽管他们可以通过零知识证明来解决，但是其通信开销太昂贵，不适合于我们的跨设备的联邦学习。</p>
+<h3 id="恢复攻击"><a href="#恢复攻击" class="headerlink" title="恢复攻击"></a>恢复攻击</h3><p>VerifyNet网络的原理可以简述为，本地用户使用服务器提供的全局模型进行机器学习的训练，得到所需的梯度信息。通过SA对梯度信息进行加密，并生成梯度的哈希值，利用同态哈希的相关性质，完成可验证联邦学习的要求。</p>
+<p><strong>攻击模型</strong></p>
+<p>① 使用随机梯度下降法的联邦学习输出是高度可偏的，在零附近呈钟形分布，如果没有这种观察的话，在$（-∞，∞）$中执行暴力破解是不可能的，但现在是可能的；②<strong>所有用户必须共享用于同态哈希的相同秘密参数</strong>，这使得<font color=#FF0000 >用户-服务器合谋攻击</font>是非常危险的，暴力破解是可以实现的。</p>
+<p>需要注意的一点是，我们常处理的数据都是单浮点数的数据，因此我们要将其转换成整数的数据进行处理。</p>
+<p>具体的攻击流程如下所示：</p>
+<p>假设我们的原始数据是$v$，一般来说，他是一种单浮点的精度数据，因此我们需要将其转换为整数 ${v \cdot a}$，其哈希值可以表示为 $h(\left\lfloor {v \cdot a} \right\rfloor )$，由于具体的哈希函数$h$已知（通过服务器和用户合谋获取的），因此我们可以执行暴力破解，寻找对应的$r$与$n$使得$r \cdot n = \left\lfloor {v \cdot a} \right\rfloor$ 成立。进一步可以将等式整理为： $h(\left\lfloor {v \cdot a} \right\rfloor ) = h(\left\lfloor {r \cdot a} \right\rfloor \cdot i)$，因为是钟形的分布，因此我们取的范围是： $\left\lfloor { - x \cdot a} \right\rfloor &lt; \left\lfloor {r \cdot a} \right\rfloor \cdot i &lt; \left\lfloor {x \cdot a} \right\rfloor$ ，因此我们仅需要确定出 $(r,x)$的取值即可，$x$表示钟形范围的大小。</p>
+<p>攻击结果如下图所示：</p>
+<p><img src="/pic/VerSA/2.png" alt="7" style="zoom:50%;" /></p>
+<h3 id="VerSA的构建"><a href="#VerSA的构建" class="headerlink" title="VerSA的构建"></a>VerSA的构建</h3><p><strong>密码学原语：</strong> 密钥协商、秘密分享、认证加密、伪随机生成器、公钥基础设施、数字签名。</p>
+<p>底层框架使用的是安全聚合SA算法。</p>
+<p>本文使用的验证码为： $F({x_u}) = a \circ {x_u} + b$，服务器聚合两个信息， $z = \sum\nolimits_{u \in \backslash \mathcal U } $ 以及 $\overline z = a \circ \sum\nolimits_{u \in \mathcal U }  + \left| {\mathcal U } \right| \cdot b$其中 $\overline z = a \circ \sum\nolimits{u \in \mathcal U }  + \left| {\mathcal U } \right| \cdot b$，用户得到服务器的两个信息后通过验证等式$\overline{\mathbf{z}} \stackrel{?}{=} \mathbf{a} \circ \mathbf{z}+|\mathcal{U}| \cdot \mathbf{b}$是否成立判断服务器是否正确的执行了协议。</p>
+<p>现在的问题是，用户如何不通过额外的通信来确定$a、b$的值？</p>
+<p>每个用户可以单独的计算：$\alpha \leftarrow \sum_{v \in \mathcal{U}} s_{u, v}(\bmod R)$ 我们分别取 $a = PRG(\alpha \parallel 0),b = PRG(\alpha \parallel 1)$即可。</p>
+<p>正确性分析如下所示：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}\sum_{u \in \mathcal{U}} \overline{\mathbf{y}}_u & =\sum_{u \in \mathcal{U}} F\left(\mathbf{x}_u\right) \\& =\sum_{u \in \mathcal{U}} \mathbf{a} \circ \mathbf{x}_u+\sum_{u \in \mathcal{U}} \mathbf{b} \\& =\mathbf{a} \circ \sum_{u \in \mathcal{U}} \mathbf{x}_u+|\mathcal{U}| \cdot \mathbf{b}(\bmod R)\end{aligned}</script><p>系统协议如下所示：</p>
+<p><img src="/pic/VerSA/3.png" alt="7" style="zoom:50%;" /></p>
+<h3 id="安全性分析-系统评估"><a href="#安全性分析-系统评估" class="headerlink" title="安全性分析+系统评估"></a>安全性分析+系统评估</h3><p>评估内容没看，安全性分析越看越迷，不知道到底证明了个啥…</p>
+<p>有趣的是，很快在2023年，便有学者指出该方案是完全不可行的，其$\alpha$ 的值并不能正确的被计算，如下所示：</p>
+<p><img src="/pic/VerSA/4.png" alt="7" style="zoom:50%;" /></p>
+<blockquote>
+<p>可以参考这篇文章： Luo F, Wang H, Yan X. Comments on “VERSA: Verifiable Secure Aggregation for Cross-Device Federated Learning”[J]. IEEE Transactions on Dependable and Secure Computing, 2023.</p>
+</blockquote>
+<h3 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h3><p>先前的可验证的联邦学习主要有计算开销与通信开销大的问题，以及所有的用户往往需要协商一个共同的参数信息来帮助他们完整验证协议，而这些在跨设备的联邦学习中往往是困难的。</p>
+<p>Zhang等人[ 67 ]展示了如何从可能不按预期执行训练任务的不良行为用户中保证聚合模型的正确性。Peng等[ 68 ]研究了将单个中心服务器的角色分配给多方的情况。然后，他们实现了聚合模型的可验证性，前提是大多数当事人都是诚实的。</p>
+<blockquote>
+<p>[67] X. Zhang, F. Li, Z. Zhang, Q. Li, C. Wang, and J. Wu, “Enabling execution assurance of federated learning at untrusted participants,” in Proc. IEEE INFOCOM Conf. Comput. Commun., 2020, pp. 1877–1886. </p>
+<p>[68] Z. Peng et al., “VFchain: Enabling verifiable and auditable federated learning via blockchain systems,” IEEE Trans. Netw. Sci. Eng., early access, Jan. 12, 2021, doi: 10.1109/TNSE.2021.3050781.</p>
+</blockquote>
+<p>相关工作部分作者还给出了其他系统（例如，推理任务中的可验证性等等）以后写文章可以参考下这里面的参考文献。</p>
+<h3 id="基本框架-算法："><a href="#基本框架-算法：" class="headerlink" title="基本框架/算法："></a>基本框架/算法：</h3><p>PDF原件：<a target="_blank" rel="noopener" href="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c2d12acc-2a99-492e-a296-7cd549d16974/原件.pdf">原件.pdf</a></p>
+<p><img src="/pic/VerSA/1.jfif" alt="7" style="zoom:50%;" /></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>同摘要，主要贡献就是提出一种攻击方法，以及一种新颖的不需要可信第三方的方案。</p>
+
     </div>
 
     
@@ -378,7 +456,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">概述：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E6%96%87%E4%B8%BB%E8%A6%81%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98-%E9%97%AA%E5%85%89%E7%82%B9%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">本文主要解决的问题&#x2F;闪光点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6-%E7%AE%97%E6%B3%95%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">基本框架&#x2F;算法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E5%87%BA%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">提出的问题</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#VerSA-Verifiable-Secure-Aggregation-for-Cross-Device-Federated-Learning"><span class="nav-number">1.</span> <span class="nav-text">VerSA: Verifiable Secure Aggregation for Cross-Device Federated Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%91%98%E8%A6%81%EF%BC%9A"><span class="nav-number">1.0.1.</span> <span class="nav-text">摘要：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E5%AD%97%EF%BC%9A%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0%E3%80%81%E5%88%86%E5%B8%83%E5%BC%8F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%81%E5%AE%89%E5%85%A8%E3%80%81%E9%9A%90%E7%A7%81"><span class="nav-number">1.0.2.</span> <span class="nav-text">关键字：联邦学习、分布式机器学习、安全、隐私</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-number">1.0.3.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.0.4.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E5%92%8C%E5%A8%81%E8%83%81%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.0.5.</span> <span class="nav-text">系统和威胁模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%81%A2%E5%A4%8D%E6%94%BB%E5%87%BB"><span class="nav-number">1.0.6.</span> <span class="nav-text">恢复攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VerSA%E7%9A%84%E6%9E%84%E5%BB%BA"><span class="nav-number">1.0.7.</span> <span class="nav-text">VerSA的构建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E6%80%A7%E5%88%86%E6%9E%90-%E7%B3%BB%E7%BB%9F%E8%AF%84%E4%BC%B0"><span class="nav-number">1.0.8.</span> <span class="nav-text">安全性分析+系统评估</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="nav-number">1.0.9.</span> <span class="nav-text">相关工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6-%E7%AE%97%E6%B3%95%EF%BC%9A"><span class="nav-number">1.0.10.</span> <span class="nav-text">基本框架&#x2F;算法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.0.11.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -459,12 +537,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">23k</span>
+    <span title="站点总字数">29k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">21 分钟</span>
+    <span title="站点阅读时长">26 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
