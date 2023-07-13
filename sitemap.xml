@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://gabaili.top/2023/05/26/VerifyNet-Secure-and-Verifiable-Federated-Learning/</loc>
+    
+    <lastmod>2023-07-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://gabaili.top/2023/07/12/Practical-Secure-Aggregation-for-Privacy-Preserving-Machine-Learning/</loc>
     
     <lastmod>2023-07-13</lastmod>
@@ -12,15 +21,6 @@
   
   <url>
     <loc>https://gabaili.top/2023/05/26/FedSky-An-Efficient-and-Privacy-Preserving-Scheme-for-Federated-Mobile-Crowdsensing/</loc>
-    
-    <lastmod>2023-07-12</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://gabaili.top/2023/05/26/VerifyNet-Secure-and-Verifiable-Federated-Learning/</loc>
     
     <lastmod>2023-07-12</lastmod>
     
@@ -257,6 +257,13 @@
   </url>
   
   <url>
+    <loc>https://gabaili.top/categories/%E5%8D%9A%E5%AE%A2/</loc>
+    <lastmod>2023-07-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://gabaili.top/categories/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/%E5%8C%BA%E5%9D%97%E9%93%BE/</loc>
     <lastmod>2023-07-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -278,7 +285,7 @@
   </url>
   
   <url>
-    <loc>https://gabaili.top/categories/%E5%8D%9A%E5%AE%A2/</loc>
+    <loc>https://gabaili.top/categories/%E5%8D%9A%E5%AE%A2/%E5%86%99%E4%BD%9C/</loc>
     <lastmod>2023-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -286,13 +293,6 @@
   
   <url>
     <loc>https://gabaili.top/categories/%E5%8D%9A%E5%AE%A2/%E5%88%9B%E4%BD%9C/</loc>
-    <lastmod>2023-07-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://gabaili.top/categories/%E5%8D%9A%E5%AE%A2/%E5%86%99%E4%BD%9C/</loc>
     <lastmod>2023-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
