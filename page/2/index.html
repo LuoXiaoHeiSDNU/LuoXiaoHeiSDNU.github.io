@@ -566,7 +566,7 @@ $$
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-07-14 15:53:09 / 修改时间：16:21:00" itemprop="dateCreated datePublished" datetime="2023-07-14T15:53:09+08:00">2023-07-14</time>
+              <time title="创建时间：2023-07-14 15:53:09 / 修改时间：17:20:47" itemprop="dateCreated datePublished" datetime="2023-07-14T15:53:09+08:00">2023-07-14</time>
             </span>
 
           
@@ -577,7 +577,7 @@ $$
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.4k</span>
+              <span>1.5k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -596,51 +596,95 @@ $$
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="安全性规约证明"><a href="#安全性规约证明" class="headerlink" title="安全性规约证明"></a>安全性规约证明</h1><p><strong>1、基本概念和数论困难问题概述</strong></p>
-<p>基本术语：</p>
-<ul>
-<li>可证明安全性理论：攻击能⼒(<strong>安全模型</strong>：IND等) + <strong>安全⽬标</strong>：CCA等= 安全性定义</li>
-<li>安全性规约：安全性定义1 ⇒ 安全性定义2， 困难问题⇒ 安全性定义</li>
-<li>IND-CPA是公钥加密的基本要求，CCA也是一般的标准要求</li>
-</ul>
-<p>基本的密码算法安全规约的思路：</p>
-<p><img src="/pic/wiki/1.png" alt="1"></p>
-<p><strong>A、基本计算数论概念</strong></p>
-<ul>
-<li>基本的数论多项式算法 EXT-GCD (a,b)→(d,a′,b′): d=GCD(a,b)=a′a+b′b 模加、模乘（蒙哥马利）、幂乘（重复平方法） 模逆EXT-INV (a,N)→a-1</li>
-<li>元素的阶、群的阶</li>
-<li>拉格朗日定理（陪集分解）</li>
-<li>循环群、生成元、离散对数DLOGab</li>
-</ul>
-<p><strong>B、基本的计算困难问题假设以及相互的规约关系</strong></p>
-<p>大整数分解问题</p>
-<p>⼤整数分解问题：设P，Q为两个不同的素数，$N := P · Q$</p>
-<p><strong>输入</strong>N    <strong>输出</strong>(P, Q)</p>
-<p>解决大整数分解问题困难的含义：给定一个安全参数，$(P,Q)←Gen(λ)$，此时任何一个敌手解决$N=P⋅Q$的成功率都是$negl(λ)$。</p>
-<p>问：概率空间、随机性取决于λ确定后，GenGen生成(P,Q)的随机性（必然存在一种输出分布）以及敌手运行的攻击算法AA的随机性的<strong>联合</strong>概率空间？即算法AA成功的概率计算如下：</p>
-<p>$Pr[A solve the hard problem]=∑_iPr[Generate (P_i,Q_i)]⋅Pr[A solve the hard problem|(P_i,Q_i)]$</p>
-<p>还是固定(P,Q)，单由敌手运行的攻击算法A的随机性形成的概率空间？</p>
-<p>这种困难问题什么时候我们应该固定住实例，还是说困难问题的实例的随机采样加入到计算困难问题的概率计算中？</p>
-<p><strong>回答</strong>：</p>
-<p>针对问题的性质而定，比如大整数问题，必须(P,Q)的采样也需要加入到概率计算中</p>
-<p>欧拉函数计算问题</p>
-<p>设P，Q为两个不同的素数，N:= P · Q</p>
-<p><strong>输入</strong>：N    <strong>输出</strong>：$ϕ(N)=(P−1)⋅(Q−1)$</p>
-<p>⼤整数分解问题困难⇔欧拉函数计算问题困难</p>
-<p>欧拉函数计算问题困难推出大整数分解问题困难是显然的。</p>
-<p>而反过来，只需要解一个二次方程即可，也是容易的。</p>
-<p>e次方根求解问题</p>
-<p>e次⽅根求解问题：设P，Q为两个不同的素数，N := P · Q,</p>
-<p>e ∈ ℤ，满⾜GCD(e, ϕ(N)) = 1, 均匀选取a ← Z∗N</p>
-<p><strong>输⼊</strong>：(N, e, ae modN)      <strong>输出</strong>：a</p>
-<p>e次⽅根求解问题困难⇒⼤整数分解问题困难</p>
-<p><img src="/pic/wiki/2.png" alt="1"></p>
-<p>离散对数问题<br>G 为循环群，其阶为素数p、⽣成元为g，并均匀选取h ← G<br>输入：(G,p,g,h)                输出：(DLOGgh) </p>
-<p>计算性Diffie-Hellman问题<br>G 为循环群，其阶为素数p、⽣成元为g，均匀选取x, y ← ℤp 输入：(G,p,g,gx,gy)<br>输出：gxy<br>CDH问题困难⇒ DLOG问题困难 </p>
-<p>判定性Diffie-Hellman问题<br>G 为循环群，其阶为素数p、⽣成元为g，均匀选取x, y, z ← ℤp, 计算Z0 := gxy, Z1 := gzgz，均匀选取b ← {0,1},<br>输入：(G,p,g,gx,gy,Zb)        输出：output b′<br>DDH问题困难⇒ CDH问题困难<br>总结2： DDH问题困难⇒ CDH问题困难⇒ DLOG问题困难 </p>
-<p>C 公钥加密的语义及要求</p>
-<p><img src="/pic/wiki/3.png" alt="1"></p>
-<p><img src="/pic/wiki/4.png" alt="1"></p>
+          <h1 id="安全性规约证明"><a href="#安全性规约证明" class="headerlink" title="安全性规约证明"></a>安全性规约证明</h1>
+
+**1、基本概念和数论困难问题概述**
+
+基本术语：
+
+- 可证明安全性理论：攻击能⼒(**安全模型**：IND等) + **安全⽬标**：CCA等= 安全性定义
+- 安全性规约：安全性定义1 ⇒ 安全性定义2， 困难问题⇒ 安全性定义
+- IND-CPA是公钥加密的基本要求，CCA也是一般的标准要求
+
+基本的密码算法安全规约的思路：
+
+![1](/pic/wiki/1.png)
+
+**A、基本计算数论概念**
+
+- 基本的数论多项式算法 EXT-GCD (a,b)→(d,a′,b′): d=GCD(a,b)=a′a+b′b 模加、模乘（蒙哥马利）、幂乘（重复平方法） 模逆EXT-INV (a,N)→a-1
+- 元素的阶、群的阶
+- 拉格朗日定理（陪集分解）
+- 循环群、生成元、离散对数DLOGab
+
+**B、基本的计算困难问题假设以及相互的规约关系**
+
+大整数分解问题
+
+⼤整数分解问题：设P，Q为两个不同的素数，$N := P · Q$
+
+**输入**N    **输出**(P, Q)
+
+解决大整数分解问题困难的含义：给定一个安全参数，$(P,Q)←Gen(λ)$，此时任何一个敌手解决$N=P⋅Q$的成功率都是$negl(λ)$。
+
+问：概率空间、随机性取决于λ确定后，GenGen生成(P,Q)的随机性（必然存在一种输出分布）以及敌手运行的攻击算法AA的随机性的**联合**概率空间？即算法AA成功的概率计算如下：
+
+$Pr[A solve the hard problem]=∑_iPr[Generate (P_i,Q_i)]⋅Pr[A solve the hard problem|(P_i,Q_i)]$
+
+还是固定(P,Q)，单由敌手运行的攻击算法A的随机性形成的概率空间？
+
+这种困难问题什么时候我们应该固定住实例，还是说困难问题的实例的随机采样加入到计算困难问题的概率计算中？
+
+**回答**：
+
+针对问题的性质而定，比如大整数问题，必须(P,Q)的采样也需要加入到概率计算中
+
+欧拉函数计算问题
+
+设P，Q为两个不同的素数，N:= P · Q
+
+**输入**：N    **输出**：$ϕ(N)=(P−1)⋅(Q−1)$
+
+⼤整数分解问题困难⇔欧拉函数计算问题困难
+
+欧拉函数计算问题困难推出大整数分解问题困难是显然的。
+
+而反过来，只需要解一个二次方程即可，也是容易的。
+
+e次方根求解问题
+
+e次⽅根求解问题：设P，Q为两个不同的素数，N := P · Q,
+
+e ∈ ℤ，满⾜GCD(e, ϕ(N)) = 1, 均匀选取a ← Z∗N
+
+**输⼊**：(N, e, ae modN)      **输出**：a
+
+e次⽅根求解问题困难⇒⼤整数分解问题困难
+
+![1](/pic/wiki/2.png)
+
+离散对数问题 
+G 为循环群，其阶为素数p、⽣成元为g，并均匀选取h ← G 
+输入：(G,p,g,h)                输出：(DLOGgh) 
+
+计算性Diffie-Hellman问题 
+G 为循环群，其阶为素数p、⽣成元为g，均匀选取x, y ← ℤp 输入：(G,p,g,gx,gy)       
+输出：gxy 
+CDH问题困难⇒ DLOG问题困难 
+
+判定性Diffie-Hellman问题 
+G 为循环群，其阶为素数p、⽣成元为g，均匀选取x, y, z ← ℤp, 计算Z0 := gxy, Z1 := gzgz，均匀选取b ← {0,1}, 
+输入：(G,p,g,gx,gy,Zb)        输出：output b′ 
+DDH问题困难⇒ CDH问题困难 
+总结2： DDH问题困难⇒ CDH问题困难⇒ DLOG问题困难 
+
+C 公钥加密的语义及要求
+
+![1](/pic/wiki/3.png)
+
+![1](/pic/wiki/4.png)
+
+
 
       
     </div>
@@ -1246,13 +1290,13 @@ $$
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
