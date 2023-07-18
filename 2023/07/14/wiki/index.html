@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|EB Garamond:300,300italic,400,400italic,700,700italic|Source Code Pro:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"gabaili.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本部分包含了密码学中一些常用的概念，是博主自己创建的密码学Wiki。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cryptography Wiki">
+<meta property="og:url" content="https://gabaili.top/2023/07/14/wiki/index.html">
+<meta property="og:site_name" content="态度决定生活">
+<meta property="og:description" content="本部分包含了密码学中一些常用的概念，是博主自己创建的密码学Wiki。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-07-14T07:54:11.000Z">
+<meta property="article:modified_time" content="2023-07-15T08:28:16.465Z">
+<meta property="article:author" content="Gabaili">
+<meta property="article:tag" content="wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://gabaili.top/2023/07/14/wiki/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Cryptography Wiki | 态度决定生活</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">态度决定生活</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">如果真的能重来，你最想干什么？</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-resources">
+
+    <a href="/resources/" rel="section"><i class="fa fa-download fa-fw"></i>资源</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gabaili.top/2023/07/14/wiki/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Gabaili">
+      <meta itemprop="description" content="吾日三省吾身。为人谋而不忠乎？与朋友交而不信乎？传不习乎？">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="态度决定生活">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Cryptography Wiki
+        </h1>
+
+        <div class="post-meta">
+
+
+  <i class="fa fa-thumb-tack"></i>
+  <font color=7D26CD>置顶</font>
+  <span class="post-meta-divider">|</span>
+
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-07-14 15:54:11" itemprop="dateCreated datePublished" datetime="2023-07-14T15:54:11+08:00">2023-07-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-07-15 16:28:16" itemprop="dateModified" datetime="2023-07-15T16:28:16+08:00">2023-07-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/wiki/" itemprop="url" rel="index"><span itemprop="name">wiki</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2023/07/14/wiki/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/07/14/wiki/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>403</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+            <div class="post-description">本部分包含了密码学中一些常用的概念，是博主自己创建的密码学Wiki。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Cryptography-Wiki"><a href="#Cryptography-Wiki" class="headerlink" title="Cryptography Wiki"></a>Cryptography Wiki</h1><p>↓ We split the main questions to two aspect,the knowladge of cryptography and the tools of cryptography.What you need can find in this block</p>
+<p><a target="_blank" rel="noopener" href="https://www.notion.so/Katex-6d0d81290da243da96834bf784f76642?pvs=21">Katex常用数学公式</a></p>
+<hr>
+<h3 id="密码学定义的“安全”指的是不泄露关于私有输入的任何信息（泄露信息量为零）"><a href="#密码学定义的“安全”指的是不泄露关于私有输入的任何信息（泄露信息量为零）" class="headerlink" title="密码学定义的“安全”指的是不泄露关于私有输入的任何信息（泄露信息量为零）"></a>密码学定义的“安全”指的是<strong>不泄露关于私有输入的任何信息（泄露信息量为零）</strong></h3><hr>
+<h2 id="密码学知识点"><a href="#密码学知识点" class="headerlink" title="密码学知识点"></a>密码学知识点</h2><p><a href="http://gabaili.top/2023/07/14/wiki-1/">数学困难问题</a></p>
+<p><a href="http://gabaili.top/2023/07/14/wiki-2/">密码学安全证明杂论</a></p>
+<p><a href="http://gabaili.top/2023/07/14/wiki-3/">安全性规约证明</a></p>
+<p><a href="http://gabaili.top/2023/07/14/wiki-4/">联邦学习梯度解析</a></p>
+<p><a href="http://gabaili.top/2023/07/14/wiki-5/">密码学中常用的符号</a></p>
+<hr>
+<h2 id="密码学工具"><a href="#密码学工具" class="headerlink" title="密码学工具"></a>密码学工具</h2><p><a href="http://gabaili.top/2023/07/14/wiki-6/">安全聚合-双盲化</a></p>
+<p><a href="http://gabaili.top/2023/07/14/wiki-7/">哈希函数-HASH</a></p>
+<p><a href="http://gabaili.top/2023/07/14/wiki-8/">双线性配对</a></p>
+<p><a href="http://gabaili.top/2023/07/14/wiki-9/">伪随机函数·伪随机生成器</a></p>
+<p><a href="http://gabaili.top/2023/07/14/wiki-10/">秘密分享</a></p>
+<p><a href="http://gabaili.top/2023/07/14/wiki-11/">密钥协商</a></p>
+<p><a href="http://gabaili.top/2023/07/14/wiki-12/">签名方案</a></p>
+<p><a href="http://gabaili.top/2023/07/14/wiki-13/">认证加密</a></p>
+<hr>
+<h2 id="数学知识点"><a href="#数学知识点" class="headerlink" title="数学知识点"></a>数学知识点</h2><p><a href="http://gabaili.top/2023/07/14/wiki-14/">群相关知识</a></p>
+<hr>
+<h2 id="杂项："><a href="#杂项：" class="headerlink" title="杂项："></a>杂项：</h2><p><a href="http://gabaili.top/2023/07/14/wiki-15/">机器学习中的攻击模型</a>)</p>
+<hr>
+<h2 id="联邦学习的问题"><a href="#联邦学习的问题" class="headerlink" title="联邦学习的问题"></a>联邦学习的问题</h2><ol>
+<li>在联邦学习中主要是加法运算，可不可以引入乘法运算什么的？</li>
+</ol>
+<p><aside> 💡 密码学的一些问题： 在一个密码体系中，如果哈希函数泄露会意味着发生什么？</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Gabaili
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://gabaili.top/2023/07/14/wiki/" title="Cryptography Wiki">https://gabaili.top/2023/07/14/wiki/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/wiki/" rel="tag"># wiki</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/07/14/wiki-15/" rel="prev" title="机器学习中的攻击模型">
+      <i class="fa fa-chevron-left"></i> 机器学习中的攻击模型
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/07/16/%E5%A6%82%E4%BD%95%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E7%BD%91%E7%AB%99%E7%AD%BE%E5%8F%91%E8%AF%81%E4%B9%A6/" rel="next" title="如何为自己的网站（博客）签发有效证书">
+      如何为自己的网站（博客）签发有效证书 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Cryptography-Wiki"><span class="nav-number">1.</span> <span class="nav-text">Cryptography Wiki</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%86%E7%A0%81%E5%AD%A6%E5%AE%9A%E4%B9%89%E7%9A%84%E2%80%9C%E5%AE%89%E5%85%A8%E2%80%9D%E6%8C%87%E7%9A%84%E6%98%AF%E4%B8%8D%E6%B3%84%E9%9C%B2%E5%85%B3%E4%BA%8E%E7%A7%81%E6%9C%89%E8%BE%93%E5%85%A5%E7%9A%84%E4%BB%BB%E4%BD%95%E4%BF%A1%E6%81%AF%EF%BC%88%E6%B3%84%E9%9C%B2%E4%BF%A1%E6%81%AF%E9%87%8F%E4%B8%BA%E9%9B%B6%EF%BC%89"><span class="nav-number">1.0.1.</span> <span class="nav-text">密码学定义的“安全”指的是不泄露关于私有输入的任何信息（泄露信息量为零）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%86%E7%A0%81%E5%AD%A6%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="nav-number">1.1.</span> <span class="nav-text">密码学知识点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%86%E7%A0%81%E5%AD%A6%E5%B7%A5%E5%85%B7"><span class="nav-number">1.2.</span> <span class="nav-text">密码学工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="nav-number">1.3.</span> <span class="nav-text">数学知识点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%82%E9%A1%B9%EF%BC%9A"><span class="nav-number">1.4.</span> <span class="nav-text">杂项：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.5.</span> <span class="nav-text">联邦学习的问题</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Gabaili"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Gabaili</p>
+  <div class="site-description" itemprop="description">吾日三省吾身。为人谋而不忠乎？与朋友交而不信乎？传不习乎？</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.zhihu.com/" title="https:&#x2F;&#x2F;www.zhihu.com" rel="noopener" target="_blank">知乎</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://tieba.baidu.com/" title="https:&#x2F;&#x2F;tieba.baidu.com" rel="noopener" target="_blank">百度贴吧</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://nga.cn/" title="https:&#x2F;&#x2F;nga.cn" rel="noopener" target="_blank">NGA社区</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://gabaili.top/2023/05/25/%E7%B4%A2%E5%BC%95%E7%95%8C%E9%9D%A2/" title="http:&#x2F;&#x2F;gabaili.top&#x2F;2023&#x2F;05&#x2F;25&#x2F;%E7%B4%A2%E5%BC%95%E7%95%8C%E9%9D%A2&#x2F;">站内推荐链接-索引</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://gabaili.top/2023/07/14/wiki/" title="http:&#x2F;&#x2F;gabaili.top&#x2F;2023&#x2F;07&#x2F;14&#x2F;wiki&#x2F;">站内链接推荐-密码学wiki</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://gabaili.top/2023/05/24/2/" title="https:&#x2F;&#x2F;gabaili.top&#x2F;2023&#x2F;05&#x2F;24&#x2F;2&#x2F;">写作自用链接</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; Tue May 23 2023 08:00:00 GMT+0800 (中国标准时间) – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gabaili</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">49k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">45 分钟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'ZAg7NugqTyfT9XMRynJV2Bql-gzGzoHsz',
+      appKey     : 'f0LRDpHZ2N0n50gdrpiw5yGV',
+      placeholder: "说点什么吧！",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

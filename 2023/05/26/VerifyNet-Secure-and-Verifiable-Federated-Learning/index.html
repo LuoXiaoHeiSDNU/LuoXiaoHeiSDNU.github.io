@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|EB Garamond:300,300italic,400,400italic,700,700italic|Source Code Pro:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"gabaili.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文章的主要意义是，第一次提出了可验证的联邦学习方案，第一次的提出了双盲化梯度的方法！|最新更新时间2023&#x2F;7&#x2F;13">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VerifyNet: Secure and Verifiable Federated Learning">
+<meta property="og:url" content="https://gabaili.top/2023/05/26/VerifyNet-Secure-and-Verifiable-Federated-Learning/index.html">
+<meta property="og:site_name" content="态度决定生活">
+<meta property="og:description" content="本文章的主要意义是，第一次提出了可验证的联邦学习方案，第一次的提出了双盲化梯度的方法！|最新更新时间2023&#x2F;7&#x2F;13">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gabaili.top/pic/VerifyNet/31.png">
+<meta property="og:image" content="https://gabaili.top/pic/VerifyNet/32.png">
+<meta property="og:image" content="https://gabaili.top/pic/VerifyNet/33.jfif">
+<meta property="article:published_time" content="2023-05-26T02:03:55.000Z">
+<meta property="article:modified_time" content="2023-07-13T13:57:56.998Z">
+<meta property="article:author" content="Gabaili">
+<meta property="article:tag" content="联邦学习">
+<meta property="article:tag" content="跨设备">
+<meta property="article:tag" content="可验证">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gabaili.top/pic/VerifyNet/31.png">
+
+<link rel="canonical" href="https://gabaili.top/2023/05/26/VerifyNet-Secure-and-Verifiable-Federated-Learning/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>VerifyNet: Secure and Verifiable Federated Learning | 态度决定生活</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">态度决定生活</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">如果真的能重来，你最想干什么？</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-resources">
+
+    <a href="/resources/" rel="section"><i class="fa fa-download fa-fw"></i>资源</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gabaili.top/2023/05/26/VerifyNet-Secure-and-Verifiable-Federated-Learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Gabaili">
+      <meta itemprop="description" content="吾日三省吾身。为人谋而不忠乎？与朋友交而不信乎？传不习乎？">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="态度决定生活">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          VerifyNet: Secure and Verifiable Federated Learning
+        </h1>
+
+        <div class="post-meta">
+
+
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-05-26 10:03:55" itemprop="dateCreated datePublished" datetime="2023-05-26T10:03:55+08:00">2023-05-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-07-13 21:57:56" itemprop="dateModified" datetime="2023-07-13T21:57:56+08:00">2023-07-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">联邦学习</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/%E5%8F%AF%E9%AA%8C%E8%AF%81/" itemprop="url" rel="index"><span itemprop="name">可验证</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2023/05/26/VerifyNet-Secure-and-Verifiable-Federated-Learning/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/05/26/VerifyNet-Secure-and-Verifiable-Federated-Learning/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+            <div class="post-description">本文章的主要意义是，第一次提出了可验证的联邦学习方案，第一次的提出了双盲化梯度的方法！|最新更新时间2023/7/13</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="摘要："><a href="#摘要：" class="headerlink" title="摘要："></a>摘要：</h3><p>本文主要针对于两个问题：1）如何保护用户上传到云服务器的信息（eg.梯度信息）2）如何保证服务器正确的聚合了用户上传的信息。提出了一种可验证的联邦学习方案，<font color=#FF0000 >第一次</font>将可验证引入到联邦学习中，<font color=#FF0000 >第一次</font>提出了双盲化的方法保护了用户上传的梯度信息。本文提出的方法是构建在离散对数的困难问题上的。</p>
+<h3 id="关键字：隐私保护，深度学习，可验证联邦学习，云计算"><a href="#关键字：隐私保护，深度学习，可验证联邦学习，云计算" class="headerlink" title="关键字：隐私保护，深度学习，可验证联邦学习，云计算"></a>关键字：隐私保护，深度学习，可验证联邦学习，云计算</h3><h3 id="引言："><a href="#引言：" class="headerlink" title="引言："></a>引言：</h3><p>联邦学习中需要解决的两个关键问题是：1）保护用户上传梯度 2）数据的完整性（其中尤为重要的是服务器返回的结果是否正确）；</p>
+<p>数据完整行是联邦学习经常被忽略的一个点，不进行数据完整性的校验会导致更多的隐私信息泄露，例如，常见的白盒攻击可以通过给用户特定的结果来诱导用户泄露更多的隐私信息。</p>
+<p>现阶段对可验证的研究非常少，大多基于额外的硬件组件，此外我们还需要<font color=#FF0000 >考虑用户的掉线情况</font>。</p>
+<p>本文，我们提出了一种可验证联邦学习，称为VerifyNet，使用全同态哈希和伪随机计算来提供可验证的联邦学习，使用密钥分享协议来解决用户掉线问题，本文主要贡献如下：</p>
+<ul>
+<li>基于全同态哈希和伪随机生成技术实现了聚合结果的可验证性</li>
+<li>提出了一种双盲化的方法解决用户掉线问题</li>
+<li>给出了完整的安全性证明，和大量的实验分析方案可行新</li>
+</ul>
+<h3 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a>问题描述：</h3><p>A.联邦学习：常见的机器学习分为中心式的机器学习和联邦式机器学习</p>
+<p>B.系统框图：</p>
+<p><img src="/pic/VerifyNet/31.png" alt="1"></p>
+<p>C. 威胁模型和设计目标</p>
+<p>本文中我们认为TA是完全可信的，云服务器和用户都是诚实但好奇的，他们可能存在合谋的情况来获得特定用户的隐私信息。此外，云服务器可以试图构建一个假的<em>proof</em>或返回一个错误的聚合结果来诱导用户接受这个信息。</p>
+<h3 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h3><p>双线性对、全同态哈希、伪随机函数、秘密分享、密钥协商</p>
+<h3 id="技术引进"><a href="#技术引进" class="headerlink" title="技术引进"></a>技术引进</h3><p>在联邦学习中，我们在进行模型的训练过程中，需要注意三点内容：用户上传的梯度必须经过加密，否则敌手会轻易的得到用户的隐私数据；服务器返回的结果必须能够被用户所检验，这是保证用户权益的重要内容；我们要考虑用户的掉线情况，保证掉线的用户不会对聚合结果产生影响。</p>
+<p><em>A.单盲化保护用户的梯度信息：</em></p>
+<p>用户在上传自己的梯度数据时，通过下面的式子进行加密：</p>
+
+
+$$
+{ {\hat x}_n} = {x_n} + \sum\limits_{m \in \mathcal {U} :n < m} {{r_{n,m}}}  - \sum\limits_{m \in \mathcal{ U} :n > m} { {r_{n,m}} }
+$$
+
+<p>其中的 ${ {r_{n,m} } }$是用户$n$与用户$m$通过密钥协商确定的共同密钥，云服务器拿到信息后可以通过聚合得到如下的结果：</p>
+<script type="math/tex; mode=display">\mathbf{z}=\sum_{n \in \mathcal{U}} \hat{x_n}=\sum_{n \in \mathcal{U}} x_n</script><p>我们发现用户上传时添加的密钥$r_{n,m}$在进行求和的时候被消除了，这就是单盲化保护用户的隐私方案，但是它不仅仅造成了大量的通信开销，并且不能在用户掉线的时候提供一个有效的帮助，最重要的验证也无法得到实现，所以我们提出了一种双盲化的方案。</p>
+<p><em>B. 双盲化保护用户的梯度信息</em></p>
+<p>在这里我们先改良 ${{r_{n,m}}}$的计算，我们通过$s_{n, m} \leftarrow \mathbf{K A .agree } \left(N_n^{S K}, N_m^{P K}\right)$来代替之前由两个用户通过密钥协商确定的密钥，原式子则变成了</p>
+<script type="math/tex; mode=display">\hat{x_n}=x_n+\sum_{m \in \mathcal{U}: n<m} \mathbf{P R G}\left(s_{n, m}\right)-\sum_{m \in \mathcal{U}: n>m} \mathbf{PRG}\left(s_{n, m}\right)</script><p>其中的 ${{\bf{PRG}}\left( {{s_{n,m}}} \right)}$是通过$s_{n, m}$作为种子，利用伪随机生成器生成的随机数。为了解决用户的掉线问题，我们需要考虑到用户离线应如何将用户加入的随机数进行剔除，因此我们采用秘密分享协议，将用户的私钥  ${N_n^{SK}}$通过秘密分享的形式进行一个分享。</p>
+<p>这样一旦用户无法及时的上传自己的信息，服务器可以请求其他用户提交该用户的分享值，解密得到相应的  ${{s_{n,m}}}$，进而踢出相关的数据。</p>
+<p>然而依然存在一种情况，用户有可能只是网络不太好，并不能及时的上传自己的信息，而是延后的提交信息，但此时服务器已经请求了用户的私钥分享值，就会导致该“迟到的用户”提交的梯度信息被解锁得到原始数据。</p>
+<p>为了解决这个问题，我们采用二次盲化的手段，具体公式如下：</p>
+<script type="math/tex; mode=display">\hat{x_n}=x_n+\mathbf{P R G}\left(\beta_n\right)+\sum_{m \in \mathcal{U}: n<m} \mathbf{P R G}\left(s_{n, m}\right)  -\sum_{m \in \mathcal{U}: n>m} \mathbf{P R G}\left(s_{n, m}\right)</script><p>其中的  ${{\beta _n}}$是由用户$n$自行生成的数据，其也通过秘密分享的手段分享给其他的用户，因此在云服务器只需要请求掉线的用户的 ${{s_{n,m}}}$的份额，以及在线用户  ${{\beta _n}}$的份额即可完成聚合的任务。</p>
+<p>尽管如此，双盲化协议主要是为了保护用户上传的梯度信息以及解决用户掉线的问题，但是仍然没有完成验证的目标，于是我们又提出了下面的方案。</p>
+<h3 id="提出的框架"><a href="#提出的框架" class="headerlink" title="提出的框架"></a>提出的框架</h3><p>正确性证明：</p>
+<script type="math/tex; mode=display">\begin{aligned} (A, B)= &\left({\prod_{n=1}^{n=\left|\mathcal{U}_3\right|} A_n}, \stackrel{}{\left.\prod_{n=1}^{n=\left|\mathcal{U}_3\right|} B_n\right)}\right. \\ = & \left(g^{\sum_{n \in \mathcal{U}_3} H F_{\delta, \rho}\left(x_n\right)}, h^{\sum_{n \in \mathcal{U}_3} H F_{\delta, \rho}\left(x_n\right)}\right) \\ = & \left(g^{H F_{\delta, \rho}\left(\sum_{n \in \mathcal{U}_3} x_n\right)}, h^{H F_{\delta, \rho}\left(\sum_{n \in \mathcal{U}_3} x_n\right)}\right) \\ = & \left(A^{\prime}, B^{\prime}\right) \\ e(A, h)= & e\left(g^{H F_{\delta, \rho}(\sigma)}, h\right)=e\left(g, h^{H F_{\delta, \rho}(\sigma)}\right) \\ = & e(g, B) \\ e(L, h)= & e\left(g^{\sum_{n \in \mathcal{U}_3} \gamma_n \gamma+v_n v-H F_{\delta, \rho}\left(x_n\right)}, h\right)^{1 / d} \\ = & e\left(g, h^{\sum_{n \in \mathcal{U}_3} \gamma_n \gamma+v_n v-H F_{\delta, \rho}\left(x_n\right)}\right)^{1 / d} \\ = & e(g, Q) \\ & e(A, h) \cdot e(L, h)^d \\ = & e\left(g^{H F_{\delta, \rho}(\sigma)}, h\right) \cdot e\left(g^{\sum_{n \in \mathcal{U}_3} \gamma_n \gamma+v_n v-H F_{\delta, \rho}\left(x_n\right)}, h\right) \\ = & e(g, h)^{\sum_{n \in \mathcal{U}_3} \gamma_n \gamma+v_n v} \\ = & \Phi \end{aligned}</script><p>算法协议如下图所示：</p>
+<p><img src="/pic/VerifyNet/32.png" alt="2"></p>
+<p><strong>基本框架/算法</strong></p>
+<p><img src="/pic/VerifyNet/33.jfif" alt="3"></p>
+<h3 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h3><p><em>A.深度学习的隐私保护</em></p>
+<p>针对深度学习的梯度保护策略，我们有许多方案，常见的有：差分隐私，安全多方计算以及密码学原语[11,18,19]。以差分隐私为基础的梯度保护策略都被证实是不安全的[14]，在GAN网络下是亦被攻破的。在[11]文章中，使用了安全多方计算来保护用户的梯度，但是其没有考虑到用户离线的问题。</p>
+<p><em>B.可验证的深度学习</em></p>
+<p>云服务器可能会返回错误的聚合结果欺骗用户，在[16]中，使用了交互式证明系统来验证服务器的聚合结果。在[17]中，则是使用了一些可信任的硬件来帮助我们验证正确性。这些研究都是基于硬件或者只使用于部分的可验证环境中。</p>
+<blockquote>
+<p>[11] K. Bonawitz et al., “Practical secure aggregation for privacy-preserving machine learning,” in Proc. ACM CCS, 2017, pp. 1175–1191.</p>
+<p> [14] B. Hitaj, G. Ateniese, and F. Perez-Cruz, “Deep models under the GAN: Information leakage from collaborative deep learning,” in Proc. ACM CCS, 2017, pp. 603–618.</p>
+<p> [16] Z. Ghodsi, T. Gu, and S. Garg, “SafetyNets: Verifiable execution of deep neural networks on an untrusted cloud,” in Proc. Adv. Neural Inf. Process. Syst., 2017, pp. 4672–4681.</p>
+<p> [17] F. Tramèr and D. Boneh, “Slalom: Fast, verifiable and private execution of neural networks in trusted hardware,” Jun. 2018, arXiv:1806.03287. [Online]. Available: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1806.03287">https://arxiv.org/abs/1806.03287</a> </p>
+<p>[18] R. Shokri and V. Shmatikov, “Privacy-preserving deep learning,” in Proc. ACM CCS, 2015, pp. 1310–1321. </p>
+<p>[19] L. T. Phong, Y. Aono, T. Hayashi, L. Wang, and S. Moriai, “Privacypreserving deep learning via additively homomorphic encryption,” IEEE Trans. Inf. Forensics Security, vol. 13, no. 5, pp. 1333–1345, May 2018.</p>
+</blockquote>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>在本文中，我们提出了VerifyNet，它支持向每个用户验证服务器的计算结果。此外，VerifyNet支持用户在训练过程中退出。安全性分析表明，在诚实但好奇的安全设置下，我们的VerifyNet具有很高的安全性。此外，在真实数据上进行的实验也证明了我们提出的方案的实际性能。作为未来研究工作的一部分，我们将重点关注降低整个协议的通信开销。</p>
+<h3 id="提出的问题"><a href="#提出的问题" class="headerlink" title="提出的问题"></a>提出的问题</h3><ol>
+<li>这种验证方案需要在用户本地进行大量的计算和额外的通信开销，如何在跨设备的联邦学习上应用这一功能称为非常复杂的一项工程，依然需要更加轻量级的方法来实现。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Gabaili
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://gabaili.top/2023/05/26/VerifyNet-Secure-and-Verifiable-Federated-Learning/" title="VerifyNet: Secure and Verifiable Federated Learning">https://gabaili.top/2023/05/26/VerifyNet-Secure-and-Verifiable-Federated-Learning/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 联邦学习</a>
+              <a href="/tags/%E8%B7%A8%E8%AE%BE%E5%A4%87/" rel="tag"># 跨设备</a>
+              <a href="/tags/%E5%8F%AF%E9%AA%8C%E8%AF%81/" rel="tag"># 可验证</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/05/25/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Hexo%E5%88%9B%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2%E4%B8%8B%E7%AF%87/" rel="prev" title="如何使用Hexo创建自己的博客（零基础）-下篇">
+      <i class="fa fa-chevron-left"></i> 如何使用Hexo创建自己的博客（零基础）-下篇
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/05/26/VerSA-Verifiable-Secure-Aggregation-for-Cross-Device-Federated-Learning/" rel="next" title="VerSA: Verifiable Secure Aggregation for Cross-Device Federated Learning">
+      VerSA: Verifiable Secure Aggregation for Cross-Device Federated Learning <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%91%98%E8%A6%81%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">摘要：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E5%AD%97%EF%BC%9A%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4%EF%BC%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%EF%BC%8C%E5%8F%AF%E9%AA%8C%E8%AF%81%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0%EF%BC%8C%E4%BA%91%E8%AE%A1%E7%AE%97"><span class="nav-number">2.</span> <span class="nav-text">关键字：隐私保护，深度学习，可验证联邦学习，云计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E8%A8%80%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">引言：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A"><span class="nav-number">4.</span> <span class="nav-text">问题描述：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86"><span class="nav-number">5.</span> <span class="nav-text">预备知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%80%E6%9C%AF%E5%BC%95%E8%BF%9B"><span class="nav-number">6.</span> <span class="nav-text">技术引进</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E5%87%BA%E7%9A%84%E6%A1%86%E6%9E%B6"><span class="nav-number">7.</span> <span class="nav-text">提出的框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="nav-number">8.</span> <span class="nav-text">相关工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E8%AE%BA"><span class="nav-number">9.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E5%87%BA%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">10.</span> <span class="nav-text">提出的问题</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Gabaili"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Gabaili</p>
+  <div class="site-description" itemprop="description">吾日三省吾身。为人谋而不忠乎？与朋友交而不信乎？传不习乎？</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.zhihu.com/" title="https:&#x2F;&#x2F;www.zhihu.com" rel="noopener" target="_blank">知乎</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://tieba.baidu.com/" title="https:&#x2F;&#x2F;tieba.baidu.com" rel="noopener" target="_blank">百度贴吧</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://nga.cn/" title="https:&#x2F;&#x2F;nga.cn" rel="noopener" target="_blank">NGA社区</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://gabaili.top/2023/05/25/%E7%B4%A2%E5%BC%95%E7%95%8C%E9%9D%A2/" title="http:&#x2F;&#x2F;gabaili.top&#x2F;2023&#x2F;05&#x2F;25&#x2F;%E7%B4%A2%E5%BC%95%E7%95%8C%E9%9D%A2&#x2F;">站内推荐链接-索引</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://gabaili.top/2023/07/14/wiki/" title="http:&#x2F;&#x2F;gabaili.top&#x2F;2023&#x2F;07&#x2F;14&#x2F;wiki&#x2F;">站内链接推荐-密码学wiki</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://gabaili.top/2023/05/24/2/" title="https:&#x2F;&#x2F;gabaili.top&#x2F;2023&#x2F;05&#x2F;24&#x2F;2&#x2F;">写作自用链接</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; Tue May 23 2023 08:00:00 GMT+0800 (中国标准时间) – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gabaili</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">49k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">45 分钟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'ZAg7NugqTyfT9XMRynJV2Bql-gzGzoHsz',
+      appKey     : 'f0LRDpHZ2N0n50gdrpiw5yGV',
+      placeholder: "说点什么吧！",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|EB Garamond:300,300italic,400,400italic,700,700italic|Source Code Pro:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"gabaili.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本篇文章只做拓展，后续在TIFS以及TDSC上都证明了系统的不可行性，因此快跑！！！|最新更新时间2023&#x2F;7&#x2F;13">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VerSA: Verifiable Secure Aggregation for Cross-Device Federated Learning">
+<meta property="og:url" content="https://gabaili.top/2023/05/26/VerSA-Verifiable-Secure-Aggregation-for-Cross-Device-Federated-Learning/index.html">
+<meta property="og:site_name" content="态度决定生活">
+<meta property="og:description" content="本篇文章只做拓展，后续在TIFS以及TDSC上都证明了系统的不可行性，因此快跑！！！|最新更新时间2023&#x2F;7&#x2F;13">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gabaili.top/pic/VerSA/1.png">
+<meta property="og:image" content="https://gabaili.top/pic/VerSA/2.png">
+<meta property="og:image" content="https://gabaili.top/pic/VerSA/3.png">
+<meta property="og:image" content="https://gabaili.top/pic/VerSA/4.png">
+<meta property="og:image" content="https://gabaili.top/pic/VerSA/1.jfif">
+<meta property="article:published_time" content="2023-05-26T02:31:13.000Z">
+<meta property="article:modified_time" content="2023-07-13T13:56:50.398Z">
+<meta property="article:author" content="Gabaili">
+<meta property="article:tag" content="联邦学习">
+<meta property="article:tag" content="跨设备">
+<meta property="article:tag" content="可验证">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gabaili.top/pic/VerSA/1.png">
+
+<link rel="canonical" href="https://gabaili.top/2023/05/26/VerSA-Verifiable-Secure-Aggregation-for-Cross-Device-Federated-Learning/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>VerSA: Verifiable Secure Aggregation for Cross-Device Federated Learning | 态度决定生活</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">态度决定生活</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">如果真的能重来，你最想干什么？</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-resources">
+
+    <a href="/resources/" rel="section"><i class="fa fa-download fa-fw"></i>资源</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gabaili.top/2023/05/26/VerSA-Verifiable-Secure-Aggregation-for-Cross-Device-Federated-Learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Gabaili">
+      <meta itemprop="description" content="吾日三省吾身。为人谋而不忠乎？与朋友交而不信乎？传不习乎？">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="态度决定生活">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          VerSA: Verifiable Secure Aggregation for Cross-Device Federated Learning
+        </h1>
+
+        <div class="post-meta">
+
+
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-05-26 10:31:13" itemprop="dateCreated datePublished" datetime="2023-05-26T10:31:13+08:00">2023-05-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-07-13 21:56:50" itemprop="dateModified" datetime="2023-07-13T21:56:50+08:00">2023-07-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">联邦学习</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/%E5%8F%AF%E9%AA%8C%E8%AF%81/" itemprop="url" rel="index"><span itemprop="name">可验证</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2023/05/26/VerSA-Verifiable-Secure-Aggregation-for-Cross-Device-Federated-Learning/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/05/26/VerSA-Verifiable-Secure-Aggregation-for-Cross-Device-Federated-Learning/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+            <div class="post-description">本篇文章只做拓展，后续在TIFS以及TDSC上都证明了系统的不可行性，因此快跑！！！|最新更新时间2023/7/13</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="VerSA-Verifiable-Secure-Aggregation-for-Cross-Device-Federated-Learning"><a href="#VerSA-Verifiable-Secure-Aggregation-for-Cross-Device-Federated-Learning" class="headerlink" title="VerSA: Verifiable Secure Aggregation for Cross-Device Federated Learning"></a>VerSA: Verifiable Secure Aggregation for Cross-Device Federated Learning</h1><h3 id="摘要："><a href="#摘要：" class="headerlink" title="摘要："></a>摘要：</h3><p>先前的工作需要基于一个可信的三方来帮助我们完成协议的验证过程，并且其依靠双线性对的性质会造成较大的计算开销，本文我们仅仅通过伪随机生成器以及一些简单的数学性质即可完成验证的工作。并且对于先前的方案，我们提出了一种恢复攻击，结果显示98%的数据都可以在21小时之内被破解。</p>
+<h3 id="关键字：联邦学习、分布式机器学习、安全、隐私"><a href="#关键字：联邦学习、分布式机器学习、安全、隐私" class="headerlink" title="关键字：联邦学习、分布式机器学习、安全、隐私"></a>关键字：联邦学习、分布式机器学习、安全、隐私</h3><h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>随着数据爆发的增长，很多神经网络需要依靠大量的用户数据训练模型。这对数据隐私提出了严峻的挑战，特别是当数据在多个用户之间共享时。</p>
+<p>谷歌提出了一种学习方式，称为联邦学习[5], [6]，他是数据不动，模型动，用户不提供原始数据而是提供模型训练得到的梯度信息。尽管我们没有提供原始的信息，但是已有研究表明，敌手拿到梯度信息后，可以推断特定的信息，甚至是推断出原始数据。不过通过差分隐私，安全多方计算，后量子协议可以解决这些问题。</p>
+<p>除此之外，验证服务器结果的正确性也是非常重要的，直接的方法是采用多客户端可验证计算[26], [27], [28]，但是其只为单个用户提供结果的校验，不适合我们的联邦学习（每个用户都应该得到聚合结果的正确与否）。</p>
+<p>许多方案被提出，在跨设备的联邦学习中，<font color=#FF0000 >我们主要需要考虑用户群体中可能存在轻量级的计算设备，用户之间的网络很可能是不可靠的，用户会时长的出现掉线的问题</font>。</p>
+<p>我们主要考虑两个问题：①先前的可信机构是否合理？②是否可以不通过可信机构完成结果的验证？</p>
+<p>我们发现在VerifyNet中，模型的输出是高度偏差的；用户的密钥不仅用户模型梯度的加密同样应用于模型结果的验证，基于这两点我们提出了一种恢复攻击。</p>
+<p>因此我们提出了自己的聚合方案，主要解决两点问题：不借助可信第三方来帮助我们完成验证、验证过程必须是轻量级的。</p>
+<p><aside> 💡 本方案我们主要采用了，伪随机生成器以及SA协议进行了构建，可以简述为：首先用户合作的生成密钥对，用户本地模型的加密。在我们的方案中，我们称该密钥对为主密钥对，由主密钥对来生成三个会话密钥，一个会话密钥用户将用户的模型梯度编码为模型的验证码（该验证码不可以明文传输，这样会导致系统容易受到暴力攻击），剩余的两个分别用于加密模型的梯度以及模型的梯度验证码。</p>
+<p>我们通过实验证明了我们协议在效率上是非常高效的。</p>
+<p><strong>本文贡献：</strong></p>
+<ul>
+<li>针对VerifyNet提出了一种模型恢复攻击</li>
+<li>提出了一种轻量级的聚合验证算法VerSA</li>
+<li>进行了大量的实验</li>
+<li>通过性能分析指出我们的方案相较于之前的方式，效率快了几个数量级</li>
+</ul>
+<blockquote>
+<p>[5] J. Konec ny` , H. B. McMahan, D. Ramage, and P. Richtarik, “Federated optimization: Distributed machine learning for ondevice intelligence,” 2016, arXiv:1610.02527. </p>
+<p>[6] H. B. McMahan, E. Moore, D. Ramage, and B. A. y Arcas, “Federated learning of deep networks using model averaging,” 2016, arXiv:1602.05629. </p>
+<p>[26] S. G. Choi, J. Katz, R. Kumaresan, and C. Cid, “Multi-client noninteractive verifiable computation,” in Proc. Theory Cryptogr. Conf., 2013, pp. 499–518. </p>
+<p>[27] S. D. Gordon, J. Katz, F.-H. Liu, E. Shi, and H.-S. Zhou, “Multi-client verifiable computation with stronger security guarantees,” in Proc. Theory Cryptogr. Conf., 2015, pp. 144–168. </p>
+<p>[28] C. Cachin, E. Ghosh, D. Papadopoulos, and B. Tackmann, “Stateful multi-client verifiable computation,” in Proc. Int. Conf. Appl. Cryptogr. Netw. Secur., 2018, pp. 637–656.</p>
+</blockquote>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p><strong><em>A.联邦学习</em></strong></p>
+<p>跨设备的联邦学习主要是用户的计算能力有限，网络的通信环境不可靠，用户之间并没有持续的直连通道[ 43 ] [ 44 ]。相比之下，跨组织的联邦学习则不同，大部分的参与者都是富有计算能力的，且建立的信道是安全的[ 45 ]，[ 46 ]。本文主要研究跨设备的联邦学习。</p>
+<blockquote>
+<p>[43] J. Konec ny` , H. B. McMahan, F. X. Yu, P. Richtarik, A. T. Suresh, and D. Bacon, “Federated learning: Strategies for improving communication efficiency,” 2016, arXiv:1610.05492. </p>
+<p>[44] K. Bonawitz et al., “Towards federated learning at scale: System design,” 2019, arXiv:1902.01046. </p>
+<p>[45] M. J. Sheller et al., “Federated learning in medicine: Facilitating multi-institutional collaborations without sharing patient data,” Sci. Rep., vol. 10, no. 1, pp. 1–12, 2020. </p>
+<p>[46] C. Zhang, S. Li, J. Xia, W. Wang, F. Yan, and Y. Liu, “BatchCrypt: Efficient homomorphic encryption for cross-silo federated learning,” in Proc. USENIX Annu. Tech. Conf., 2020, pp. 493–506.</p>
+</blockquote>
+<p><strong><em>B.安全聚合SA</em></strong></p>
+<p>安全聚合其实就是双盲化协议。因为这个方法采用的是轻量级的密码学原语，所以非常契合我们的跨设备的联邦学习场景。</p>
+<p><strong><em>C.可验证联邦学习</em></strong></p>
+<p>可验证性主要分为两方面：服务器试图向用户证明其正确的聚合了用户提交的数据；另一方面是，用户企图向服务器证明其正确的执行了模型的训练过程。</p>
+<h3 id="系统和威胁模型"><a href="#系统和威胁模型" class="headerlink" title="系统和威胁模型"></a>系统和威胁模型</h3><p>本文提出的系统模型和传统的联邦学习模型的对比</p>
+<p><img src="/pic/VerSA/1.png" alt="1" style="zoom:50%;" /></p>
+<p>系统模型主要分为以下几个方面： </p>
+<p><em>密钥分享阶段：</em>用户通过协商得到属于自己的密钥对，并通过门限分享协议分享私钥。 </p>
+<p><em>盲化阶段：</em>用户对本地训练生成的梯度信息进行加密，除此之外，用户生成两个密钥，公共评估密钥以及私密验证密钥，前者发送给服务器做验证使用，后者则由用户自己保留： </p>
+<p><em>去盲化以及生成证明阶段：</em>去盲化的阶段同SA协议，初次之外服务器需要利用公共评估密钥计算出聚合梯度的证明信息，并广播出来。 </p>
+<p><em>验证阶段：</em>每个用户在本地验证梯度的聚合结果是否正确，正确则接受，否则不接受。</p>
+<p><font color=#FF0000 >威胁模型：</font>服务器会有一个伪造一个验证信息，试图欺骗用户接受错误的聚合结果。用户是半诚实的，并且可能存在多个用户一同合作企图攻击某一个用户的梯度信息（合谋人数应该是＜t的）。我们不考虑用户与服务器的合谋情况，不考虑推断攻击以及投毒攻击等，尽管他们可以通过零知识证明来解决，但是其通信开销太昂贵，不适合于我们的跨设备的联邦学习。</p>
+<h3 id="恢复攻击"><a href="#恢复攻击" class="headerlink" title="恢复攻击"></a>恢复攻击</h3><p>VerifyNet网络的原理可以简述为，本地用户使用服务器提供的全局模型进行机器学习的训练，得到所需的梯度信息。通过SA对梯度信息进行加密，并生成梯度的哈希值，利用同态哈希的相关性质，完成可验证联邦学习的要求。</p>
+<p><strong>攻击模型</strong></p>
+<p>① 使用随机梯度下降法的联邦学习输出是高度可偏的，在零附近呈钟形分布，如果没有这种观察的话，在$（-∞，∞）$中执行暴力破解是不可能的，但现在是可能的；②<strong>所有用户必须共享用于同态哈希的相同秘密参数</strong>，这使得<font color=#FF0000 >用户-服务器合谋攻击</font>是非常危险的，暴力破解是可以实现的。</p>
+<p>需要注意的一点是，我们常处理的数据都是单浮点数的数据，因此我们要将其转换成整数的数据进行处理。</p>
+<p>具体的攻击流程如下所示：</p>
+<p>假设我们的原始数据是$v$，一般来说，他是一种单浮点的精度数据，因此我们需要将其转换为整数 ${v \cdot a}$，其哈希值可以表示为 $h(\left\lfloor {v \cdot a} \right\rfloor )$，由于具体的哈希函数$h$已知（通过服务器和用户合谋获取的），因此我们可以执行暴力破解，寻找对应的$r$与$n$使得$r \cdot n = \left\lfloor {v \cdot a} \right\rfloor$ 成立。进一步可以将等式整理为： $h(\left\lfloor {v \cdot a} \right\rfloor ) = h(\left\lfloor {r \cdot a} \right\rfloor \cdot i)$，因为是钟形的分布，因此我们取的范围是： $\left\lfloor { - x \cdot a} \right\rfloor &lt; \left\lfloor {r \cdot a} \right\rfloor \cdot i &lt; \left\lfloor {x \cdot a} \right\rfloor$ ，因此我们仅需要确定出 $(r,x)$的取值即可，$x$表示钟形范围的大小。</p>
+<p>攻击结果如下图所示：</p>
+<p><img src="/pic/VerSA/2.png" alt="2" style="zoom:50%;" /></p>
+<h3 id="VerSA的构建"><a href="#VerSA的构建" class="headerlink" title="VerSA的构建"></a>VerSA的构建</h3><p><strong>密码学原语：</strong> 密钥协商、秘密分享、认证加密、伪随机生成器、公钥基础设施、数字签名。</p>
+<p>底层框架使用的是安全聚合SA算法。</p>
+<p>本文使用的验证码为： $F({x_u}) = a \circ {x_u} + b$，服务器聚合两个信息， $z = \sum\nolimits_{u \in \backslash \mathcal U } $ 以及 $\overline z = a \circ \sum\nolimits_{u \in \mathcal U }  + \left| {\mathcal U } \right| \cdot b$其中 $\overline z = a \circ \sum\nolimits{u \in \mathcal U }  + \left| {\mathcal U } \right| \cdot b$，用户得到服务器的两个信息后通过验证等式$\overline{\mathbf{z}} \stackrel{?}{=} \mathbf{a} \circ \mathbf{z}+|\mathcal{U}| \cdot \mathbf{b}$是否成立判断服务器是否正确的执行了协议。</p>
+<p>现在的问题是，用户如何不通过额外的通信来确定$a、b$的值？</p>
+<p>每个用户可以单独的计算：$\alpha \leftarrow \sum_{v \in \mathcal{U}} s_{u, v}(\bmod R)$ 我们分别取 $a = PRG(\alpha \parallel 0),b = PRG(\alpha \parallel 1)$即可。</p>
+<p>正确性分析如下所示：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}\sum_{u \in \mathcal{U}} \overline{\mathbf{y}}_u & =\sum_{u \in \mathcal{U}} F\left(\mathbf{x}_u\right) \\& =\sum_{u \in \mathcal{U}} \mathbf{a} \circ \mathbf{x}_u+\sum_{u \in \mathcal{U}} \mathbf{b} \\& =\mathbf{a} \circ \sum_{u \in \mathcal{U}} \mathbf{x}_u+|\mathcal{U}| \cdot \mathbf{b}(\bmod R)\end{aligned}</script><p>系统协议如下所示：</p>
+<p><img src="/pic/VerSA/3.png" alt="3" style="zoom:50%;" /></p>
+<h3 id="安全性分析-系统评估"><a href="#安全性分析-系统评估" class="headerlink" title="安全性分析+系统评估"></a>安全性分析+系统评估</h3><p>评估内容没看，安全性分析越看越迷，不知道到底证明了个啥…</p>
+<p>有趣的是，很快在2023年，便有学者指出该方案是完全不可行的，其$\alpha$ 的值并不能正确的被计算，如下所示：</p>
+<p><img src="/pic/VerSA/4.png" alt="7" style="zoom:50%;" /></p>
+<blockquote>
+<p>可以参考这篇文章： Luo F, Wang H, Yan X. Comments on “VERSA: Verifiable Secure Aggregation for Cross-Device Federated Learning”[J]. IEEE Transactions on Dependable and Secure Computing, 2023.</p>
+</blockquote>
+<h3 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h3><p>先前的可验证的联邦学习主要有计算开销与通信开销大的问题，以及所有的用户往往需要协商一个共同的参数信息来帮助他们完整验证协议，而这些在跨设备的联邦学习中往往是困难的。</p>
+<p>Zhang等人[ 67 ]展示了如何从可能不按预期执行训练任务的不良行为用户中保证聚合模型的正确性。Peng等[ 68 ]研究了将单个中心服务器的角色分配给多方的情况。然后，他们实现了聚合模型的可验证性，前提是大多数当事人都是诚实的。</p>
+<blockquote>
+<p>[67] X. Zhang, F. Li, Z. Zhang, Q. Li, C. Wang, and J. Wu, “Enabling execution assurance of federated learning at untrusted participants,” in Proc. IEEE INFOCOM Conf. Comput. Commun., 2020, pp. 1877–1886. </p>
+<p>[68] Z. Peng et al., “VFchain: Enabling verifiable and auditable federated learning via blockchain systems,” IEEE Trans. Netw. Sci. Eng., early access, Jan. 12, 2021, doi: 10.1109/TNSE.2021.3050781.</p>
+</blockquote>
+<p>相关工作部分作者还给出了其他系统（例如，推理任务中的可验证性等等）以后写文章可以参考下这里面的参考文献。</p>
+<h3 id="基本框架-算法："><a href="#基本框架-算法：" class="headerlink" title="基本框架/算法："></a>基本框架/算法：</h3><p>PDF原件：<a target="_blank" rel="noopener" href="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c2d12acc-2a99-492e-a296-7cd549d16974/原件.pdf">原件.pdf</a></p>
+<p><img src="/pic/VerSA/1.jfif" alt="4" style="zoom:50%;" /></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>同摘要，主要贡献就是提出一种攻击方法，以及一种新颖的不需要可信第三方的方案。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Gabaili
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://gabaili.top/2023/05/26/VerSA-Verifiable-Secure-Aggregation-for-Cross-Device-Federated-Learning/" title="VerSA: Verifiable Secure Aggregation for Cross-Device Federated Learning">https://gabaili.top/2023/05/26/VerSA-Verifiable-Secure-Aggregation-for-Cross-Device-Federated-Learning/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 联邦学习</a>
+              <a href="/tags/%E8%B7%A8%E8%AE%BE%E5%A4%87/" rel="tag"># 跨设备</a>
+              <a href="/tags/%E5%8F%AF%E9%AA%8C%E8%AF%81/" rel="tag"># 可验证</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/05/26/VerifyNet-Secure-and-Verifiable-Federated-Learning/" rel="prev" title="VerifyNet: Secure and Verifiable Federated Learning">
+      <i class="fa fa-chevron-left"></i> VerifyNet: Secure and Verifiable Federated Learning
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/05/26/SVeriFL-Successive-verifiable-federated-learning-with-privacy-preserving/" rel="next" title="SVeriFL: Successive verifiable federated learning with privacy-preserving">
+      SVeriFL: Successive verifiable federated learning with privacy-preserving <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#VerSA-Verifiable-Secure-Aggregation-for-Cross-Device-Federated-Learning"><span class="nav-number">1.</span> <span class="nav-text">VerSA: Verifiable Secure Aggregation for Cross-Device Federated Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%91%98%E8%A6%81%EF%BC%9A"><span class="nav-number">1.0.1.</span> <span class="nav-text">摘要：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E5%AD%97%EF%BC%9A%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0%E3%80%81%E5%88%86%E5%B8%83%E5%BC%8F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%81%E5%AE%89%E5%85%A8%E3%80%81%E9%9A%90%E7%A7%81"><span class="nav-number">1.0.2.</span> <span class="nav-text">关键字：联邦学习、分布式机器学习、安全、隐私</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-number">1.0.3.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.0.4.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E5%92%8C%E5%A8%81%E8%83%81%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.0.5.</span> <span class="nav-text">系统和威胁模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%81%A2%E5%A4%8D%E6%94%BB%E5%87%BB"><span class="nav-number">1.0.6.</span> <span class="nav-text">恢复攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VerSA%E7%9A%84%E6%9E%84%E5%BB%BA"><span class="nav-number">1.0.7.</span> <span class="nav-text">VerSA的构建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E6%80%A7%E5%88%86%E6%9E%90-%E7%B3%BB%E7%BB%9F%E8%AF%84%E4%BC%B0"><span class="nav-number">1.0.8.</span> <span class="nav-text">安全性分析+系统评估</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="nav-number">1.0.9.</span> <span class="nav-text">相关工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6-%E7%AE%97%E6%B3%95%EF%BC%9A"><span class="nav-number">1.0.10.</span> <span class="nav-text">基本框架&#x2F;算法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.0.11.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Gabaili"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Gabaili</p>
+  <div class="site-description" itemprop="description">吾日三省吾身。为人谋而不忠乎？与朋友交而不信乎？传不习乎？</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.zhihu.com/" title="https:&#x2F;&#x2F;www.zhihu.com" rel="noopener" target="_blank">知乎</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://tieba.baidu.com/" title="https:&#x2F;&#x2F;tieba.baidu.com" rel="noopener" target="_blank">百度贴吧</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://nga.cn/" title="https:&#x2F;&#x2F;nga.cn" rel="noopener" target="_blank">NGA社区</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://gabaili.top/2023/05/25/%E7%B4%A2%E5%BC%95%E7%95%8C%E9%9D%A2/" title="http:&#x2F;&#x2F;gabaili.top&#x2F;2023&#x2F;05&#x2F;25&#x2F;%E7%B4%A2%E5%BC%95%E7%95%8C%E9%9D%A2&#x2F;">站内推荐链接-索引</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://gabaili.top/2023/07/14/wiki/" title="http:&#x2F;&#x2F;gabaili.top&#x2F;2023&#x2F;07&#x2F;14&#x2F;wiki&#x2F;">站内链接推荐-密码学wiki</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://gabaili.top/2023/05/24/2/" title="https:&#x2F;&#x2F;gabaili.top&#x2F;2023&#x2F;05&#x2F;24&#x2F;2&#x2F;">写作自用链接</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; Tue May 23 2023 08:00:00 GMT+0800 (中国标准时间) – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gabaili</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">49k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">45 分钟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'ZAg7NugqTyfT9XMRynJV2Bql-gzGzoHsz',
+      appKey     : 'f0LRDpHZ2N0n50gdrpiw5yGV',
+      placeholder: "说点什么吧！",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
