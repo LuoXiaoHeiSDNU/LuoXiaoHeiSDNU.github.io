@@ -25,16 +25,18 @@
 
   <meta name="description" content="在本篇文章中，我们认为辅助节点是完全可以信任的，因为在本篇文章中，辅助节点是由医院承担的，而医院对于用户来说是可以信任的。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Efficient-Verifiable-Protocol-for-Privacy-Preserving-Aggregation-in-Federated-Learning">
+<meta property="og:title" content="Efficient Verifiable Protocol for Privacy-Preserving Aggregation in Federated Learning">
 <meta property="og:url" content="https://gabaili.top/2023/09/28/Efficient-Verifiable-Protocol-for-Privacy-Preserving-Aggregation-in-Federated-Learning/index.html">
 <meta property="og:site_name" content="态度决定生活">
 <meta property="og:description" content="在本篇文章中，我们认为辅助节点是完全可以信任的，因为在本篇文章中，辅助节点是由医院承担的，而医院对于用户来说是可以信任的。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gabaili.top/pic/Simple/1.png">
 <meta property="article:published_time" content="2023-09-28T02:17:38.000Z">
-<meta property="article:modified_time" content="2023-10-02T12:23:40.008Z">
+<meta property="article:modified_time" content="2023-10-02T13:10:19.950Z">
 <meta property="article:author" content="Gabaili">
-<meta property="article:tag" content="技术|网络安全|分享|生活">
+<meta property="article:tag" content="对称加密">
+<meta property="article:tag" content="伪随机函数">
+<meta property="article:tag" content="Diffhallman密钥分享协议">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://gabaili.top/pic/Simple/1.png">
 
@@ -51,7 +53,7 @@
   };
 </script>
 
-  <title>Efficient-Verifiable-Protocol-for-Privacy-Preserving-Aggregation-in-Federated-Learning | 态度决定生活</title>
+  <title>Efficient Verifiable Protocol for Privacy-Preserving Aggregation in Federated Learning | 态度决定生活</title>
   
 
 
@@ -187,7 +189,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Efficient-Verifiable-Protocol-for-Privacy-Preserving-Aggregation-in-Federated-Learning
+          Efficient Verifiable Protocol for Privacy-Preserving Aggregation in Federated Learning
         </h1>
 
         <div class="post-meta">
@@ -206,8 +208,21 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-02 20:23:40" itemprop="dateModified" datetime="2023-10-02T20:23:40+08:00">2023-10-02</time>
+                <time title="修改时间：2023-10-02 21:10:19" itemprop="dateModified" datetime="2023-10-02T21:10:19+08:00">2023-10-02</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">联邦学习</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/%E5%8F%AF%E9%AA%8C%E8%AF%81/" itemprop="url" rel="index"><span itemprop="name">可验证</span></a>
+                </span>
+            </span>
 
           
   
@@ -280,7 +295,7 @@ MA{C_n} = {K_n} + \alpha  \times {x_n} \\server\_compute:MAC = \sum\nolimits_{n 
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://gabaili.top/2023/09/28/Efficient-Verifiable-Protocol-for-Privacy-Preserving-Aggregation-in-Federated-Learning/" title="Efficient-Verifiable-Protocol-for-Privacy-Preserving-Aggregation-in-Federated-Learning">https://gabaili.top/2023/09/28/Efficient-Verifiable-Protocol-for-Privacy-Preserving-Aggregation-in-Federated-Learning/</a>
+    <a href="https://gabaili.top/2023/09/28/Efficient-Verifiable-Protocol-for-Privacy-Preserving-Aggregation-in-Federated-Learning/" title="Efficient Verifiable Protocol for Privacy-Preserving Aggregation in Federated Learning">https://gabaili.top/2023/09/28/Efficient-Verifiable-Protocol-for-Privacy-Preserving-Aggregation-in-Federated-Learning/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -290,6 +305,11 @@ MA{C_n} = {K_n} + \alpha  \times {x_n} \\server\_compute:MAC = \sum\nolimits_{n 
 
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/" rel="tag"># 对称加密</a>
+              <a href="/tags/%E4%BC%AA%E9%9A%8F%E6%9C%BA%E5%87%BD%E6%95%B0/" rel="tag"># 伪随机函数</a>
+              <a href="/tags/Diffhallman%E5%AF%86%E9%92%A5%E5%88%86%E4%BA%AB%E5%8D%8F%E8%AE%AE/" rel="tag"># Diffhallman密钥分享协议</a>
+          </div>
 
         
 
@@ -297,8 +317,8 @@ MA{C_n} = {K_n} + \alpha  \times {x_n} \\server\_compute:MAC = \sum\nolimits_{n 
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/09/28/VCD-FL/" rel="prev" title="VCD-FL">
-      <i class="fa fa-chevron-left"></i> VCD-FL
+    <a href="/2023/09/28/A-Survey-on-Securing-Federated-Learning/" rel="prev" title="A Survey on Securing Federated Learning: Analysis of Applications, Attacks, Challenges, and Trends">
+      <i class="fa fa-chevron-left"></i> A Survey on Securing Federated Learning: Analysis of Applications, Attacks, Challenges, and Trends
     </a></div>
       <div class="post-nav-item">
     <a href="/2023/10/02/VCD-FL-1/" rel="next" title="VCD-FL-1">
@@ -378,20 +398,20 @@ MA{C_n} = {K_n} + \alpha  \times {x_n} \\server\_compute:MAC = \sum\nolimits_{n 
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -452,12 +472,12 @@ MA{C_n} = {K_n} + \alpha  \times {x_n} \\server\_compute:MAC = \sum\nolimits_{n 
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">69k</span>
+    <span title="站点总字数">64k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:03</span>
+    <span title="站点阅读时长">58 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>

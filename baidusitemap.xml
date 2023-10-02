@@ -1,27 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://gabaili.top/2023/09/28/Privacy-Preserving-and-Verifiable-Federated-Learning-Framework-for-Edge-Computing/</loc>
-    <lastmod>2023-10-02</lastmod>
-  </url>
-  <url>
-    <loc>https://gabaili.top/2023/09/28/PPVerifier/</loc>
-    <lastmod>2023-10-02</lastmod>
-  </url>
-  <url>
-    <loc>https://gabaili.top/2023/09/28/Non-Interactive-Verifiable-Privacy-Preserving-Federated-Learning/</loc>
-    <lastmod>2023-10-02</lastmod>
-  </url>
-  <url>
-    <loc>https://gabaili.top/2023/09/28/VCD-FL/</loc>
-    <lastmod>2023-10-02</lastmod>
-  </url>
-  <url>
     <loc>https://gabaili.top/2023/09/28/A-Survey-on-Securing-Federated-Learning/</loc>
     <lastmod>2023-10-02</lastmod>
   </url>
   <url>
-    <loc>https://gabaili.top/2023/09/28/VFL/</loc>
+    <loc>https://gabaili.top/2023/09/28/Privacy-Preserving-and-Verifiable-Federated-Learning-Framework-for-Edge-Computing/</loc>
+    <lastmod>2023-10-02</lastmod>
+  </url>
+  <url>
+    <loc>https://gabaili.top/2023/05/26/Efficient-and-Secure-Federated-Learning-With-Verifiable-Weighted-Average-Aggregation/</loc>
+    <lastmod>2023-10-02</lastmod>
+  </url>
+  <url>
+    <loc>https://gabaili.top/2023/05/26/CGAN-Based-Collaborative-Intrusion-Detection-for-UAV-Networks-A-Blockchain-Empowered-Distributed-Federated-Learning-Approach/</loc>
+    <lastmod>2023-10-02</lastmod>
+  </url>
+  <url>
+    <loc>https://gabaili.top/2023/05/26/VerSA-Verifiable-Secure-Aggregation-for-Cross-Device-Federated-Learning/</loc>
+    <lastmod>2023-10-02</lastmod>
+  </url>
+  <url>
+    <loc>https://gabaili.top/2023/05/26/VerifyNet-Secure-and-Verifiable-Federated-Learning/</loc>
+    <lastmod>2023-10-02</lastmod>
+  </url>
+  <url>
+    <loc>https://gabaili.top/2023/07/12/Practical-Secure-Aggregation-for-Privacy-Preserving-Machine-Learning/</loc>
+    <lastmod>2023-10-02</lastmod>
+  </url>
+  <url>
+    <loc>https://gabaili.top/2023/05/26/FedSky-An-Efficient-and-Privacy-Preserving-Scheme-for-Federated-Mobile-Crowdsensing/</loc>
     <lastmod>2023-10-02</lastmod>
   </url>
   <url>
@@ -30,6 +38,14 @@
   </url>
   <url>
     <loc>https://gabaili.top/2023/09/28/Efficient-Verifiable-Protocol-for-Privacy-Preserving-Aggregation-in-Federated-Learning/</loc>
+    <lastmod>2023-10-02</lastmod>
+  </url>
+  <url>
+    <loc>https://gabaili.top/2023/09/28/Non-Interactive-Verifiable-Privacy-Preserving-Federated-Learning/</loc>
+    <lastmod>2023-10-02</lastmod>
+  </url>
+  <url>
+    <loc>https://gabaili.top/2023/05/26/SVeriFL-Successive-verifiable-federated-learning-with-privacy-preserving/</loc>
     <lastmod>2023-10-02</lastmod>
   </url>
   <url>
@@ -51,10 +67,6 @@
   <url>
     <loc>https://gabaili.top/2023/07/19/wiki-16/</loc>
     <lastmod>2023-07-19</lastmod>
-  </url>
-  <url>
-    <loc>https://gabaili.top/2023/05/26/SVeriFL-Successive-verifiable-federated-learning-with-privacy-preserving/</loc>
-    <lastmod>2023-07-18</lastmod>
   </url>
   <url>
     <loc>https://gabaili.top/2023/07/14/wiki-8/</loc>
@@ -123,30 +135,6 @@
   <url>
     <loc>https://gabaili.top/2023/07/14/wiki-15/</loc>
     <lastmod>2023-07-15</lastmod>
-  </url>
-  <url>
-    <loc>https://gabaili.top/2023/05/26/FedSky-An-Efficient-and-Privacy-Preserving-Scheme-for-Federated-Mobile-Crowdsensing/</loc>
-    <lastmod>2023-07-13</lastmod>
-  </url>
-  <url>
-    <loc>https://gabaili.top/2023/07/12/Practical-Secure-Aggregation-for-Privacy-Preserving-Machine-Learning/</loc>
-    <lastmod>2023-07-13</lastmod>
-  </url>
-  <url>
-    <loc>https://gabaili.top/2023/05/26/VerifyNet-Secure-and-Verifiable-Federated-Learning/</loc>
-    <lastmod>2023-07-13</lastmod>
-  </url>
-  <url>
-    <loc>https://gabaili.top/2023/05/26/VerSA-Verifiable-Secure-Aggregation-for-Cross-Device-Federated-Learning/</loc>
-    <lastmod>2023-07-13</lastmod>
-  </url>
-  <url>
-    <loc>https://gabaili.top/2023/05/26/CGAN-Based-Collaborative-Intrusion-Detection-for-UAV-Networks-A-Blockchain-Empowered-Distributed-Federated-Learning-Approach/</loc>
-    <lastmod>2023-05-26</lastmod>
-  </url>
-  <url>
-    <loc>https://gabaili.top/2023/05/26/Efficient-and-Secure-Federated-Learning-With-Verifiable-Weighted-Average-Aggregation/</loc>
-    <lastmod>2023-05-26</lastmod>
   </url>
   <url>
     <loc>https://gabaili.top/2023/05/25/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Hexo%E5%88%9B%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2%EF%BC%88%E9%9B%B6%E5%9F%BA%E7%A1%80%EF%BC%89/</loc>
