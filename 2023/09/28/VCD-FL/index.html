@@ -23,18 +23,21 @@
     var CONFIG = {"hostname":"gabaili.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="吾日三省吾身。为人谋而不忠乎？与朋友交而不信乎？传不习乎？">
+  <meta name="description" content="关键字：联邦学习、隐私保护、可验证性、抗共谋、动态性 摘要：本文中我们主要通过梯度分组来优化了拉格朗日插值定理，我们提出的框架VCD-FL实现了在合谋攻击下的可验证性以及在合谋攻击下的攻击检测功能（文中称之为动态性）。 主要工具：联邦学习、拉格朗日插值定理、承诺协议 系统预览主要贡献：我们设计了一个轻量级的梯度承诺方案以及一种基于优化拉格朗日插值的验证方案，我们通过梯度分组以及压缩来降低系统的通信">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VCD-FL">
 <meta property="og:url" content="https://gabaili.top/2023/09/28/VCD-FL/index.html">
 <meta property="og:site_name" content="态度决定生活">
-<meta property="og:description" content="吾日三省吾身。为人谋而不忠乎？与朋友交而不信乎？传不习乎？">
+<meta property="og:description" content="关键字：联邦学习、隐私保护、可验证性、抗共谋、动态性 摘要：本文中我们主要通过梯度分组来优化了拉格朗日插值定理，我们提出的框架VCD-FL实现了在合谋攻击下的可验证性以及在合谋攻击下的攻击检测功能（文中称之为动态性）。 主要工具：联邦学习、拉格朗日插值定理、承诺协议 系统预览主要贡献：我们设计了一个轻量级的梯度承诺方案以及一种基于优化拉格朗日插值的验证方案，我们通过梯度分组以及压缩来降低系统的通信">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gabaili.top/pic/Simple/2.png">
+<meta property="og:image" content="https://gabaili.top/pic/Simple/3.png">
 <meta property="article:published_time" content="2023-09-28T02:16:58.000Z">
-<meta property="article:modified_time" content="2023-09-28T02:16:58.921Z">
+<meta property="article:modified_time" content="2023-10-02T12:36:39.785Z">
 <meta property="article:author" content="Gabaili">
 <meta property="article:tag" content="技术|网络安全|分享|生活">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gabaili.top/pic/Simple/2.png">
 
 <link rel="canonical" href="https://gabaili.top/2023/09/28/VCD-FL/">
 
@@ -199,6 +202,13 @@
 
               <time title="创建时间：2023-09-28 10:16:58" itemprop="dateCreated datePublished" datetime="2023-09-28T10:16:58+08:00">2023-09-28</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-02 20:36:39" itemprop="dateModified" datetime="2023-10-02T20:36:39+08:00">2023-10-02</time>
+              </span>
 
           
   
@@ -220,14 +230,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
+              <span>2.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -239,7 +249,39 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <p><strong>关键字：联邦学习、隐私保护、可验证性、抗共谋、动态性</strong></p>
+<p><strong>摘要：</strong>本文中我们主要通过梯度分组来优化了拉格朗日插值定理，我们提出的框架VCD-FL实现了在合谋攻击下的可验证性以及在合谋攻击下的攻击检测功能（文中称之为动态性）。</p>
+<p><strong>主要工具：</strong>联邦学习、拉格朗日插值定理、承诺协议</p>
+<h3 id="系统预览"><a href="#系统预览" class="headerlink" title="系统预览"></a>系统预览</h3><p><strong>主要贡献：</strong>我们设计了一个轻量级的梯度承诺方案以及一种基于优化拉格朗日插值的验证方案，我们通过梯度分组以及压缩来降低系统的通信以及计算开销。</p>
+<ul>
+<li>抗合谋验证：我们使用了不可逆的梯度变化的承诺方案来保护用户的隐私，并且设计了一种基于优化拉格朗日插值的高效验证机制。</li>
+<li>识别恶意行为：常见的文章可以验证服务器是否返回了恶意的结果，但是无法是识别出服务器是懒惰还是恶意服务器，我们的文章则可以区分开服务器的意图</li>
+<li>动态联邦学习方案：动态指的是可以在用户存在掉线的情况下可以保证协议的正常执行。</li>
+<li>低计算以及通信开销：我们引入了梯度压缩算法，以及新的插值定理来帮助我们降低计算以及通信开销。</li>
+</ul>
+<p><strong>承诺方案：</strong>输入要提交的信息以及一个一次性的信息，输出一个承诺发布在公告板上。一次性消息负责解开承诺，应该保密到揭晓。任何用户都可以通过提交待承诺信息，以及一次一密俩检查消息的正确性，从而相信承诺。</p>
+<p><strong>B.系统模型</strong></p>
+<p><img src="/pic/Simple/2.png" alt="2" style="zoom:50%;" /></p>
+<p><strong>C.威胁模型</strong></p>
+<p>TA是完全可信的，用户是诚实但好奇的，聚合服务器（AS）是恶意的；此外我们考虑到一些用户可能会跟AS串通来绕过验证方案。AS主要分为两种情况，一种是懒惰的服务器，另一种是积极的恶意服务器。</p>
+<h3 id="VCD-FL的构建"><a href="#VCD-FL的构建" class="headerlink" title="VCD-FL的构建"></a>VCD-FL的构建</h3><p><img src="/pic/Simple/3.png" alt="2" style="zoom:50%;" /></p>
+<p>key：本文章主要使用了一种轻量级的梯度不可逆方案来实现承诺，而不是使用加密方案来证明可验证性。</p>
+<p><a target="_blank" rel="noopener" href="https://www.notion.so/1995b455bcd24aecaa69ac22d1a16e0c?pvs=21">算法细节</a></p>
+<h3 id="正确性及可验证性分析"><a href="#正确性及可验证性分析" class="headerlink" title="正确性及可验证性分析"></a>正确性及可验证性分析</h3><p><strong>定理1：</strong>如果AS在我们的VCD - FL中诚实地执行聚合操作，正确的聚合结果将通过验证。</p>
+<p><strong>定理2：</strong>如果AS在我们的VCD - FL中返回一个虚假的聚合结果，那么我们的检测规则可以以压倒性的概率在定义的威胁模型下识别虚假的聚合结果。</p>
+<p><strong>定理3：</strong>如果AS最多与N - 1个客户端合谋，则合谋攻击伪造的聚合结果可以以压倒性的概率在我们的VCD - FL中被检测到。</p>
+<p>本处的定理原因主要是因为，我们的验证信息是在验证结果出现之后进行构建的，这不会被AS恶意的操纵导致偏离协议行为的发生，并且该构建过程只要存在一个用户诚实的执行（不参与合谋）了协议，欺骗的行为便不会产生。</p>
+<p><strong>定理4：</strong>如果客户在验证过程中退出，只要退出的客户数不超过N - T，我们的VCD - FL仍然可以工作。</p>
+<p>因为只要是在线用户高于我们预定的门限值，我们可以通过秘密重构的方式对掉线用户的秘密信息进行一个重构，从而剔除其存在的偏差。</p>
+<h3 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h3><p>联邦学习的可验证性最早是通过密码学的相关证明来保证的，最经典是通过双掩码来实现隐私性，再辅以密码学来完成可验证性。在[19]文献中，使用了拉格朗日插值来完成可验证性，辅以盲化技术来实现抗共谋的隐私保护。</p>
+<p>也有学者[29]使用双线性的方法来验证AS的聚合正确性，也使用了paillier的同态性质完成了隐私的保护。Guo[20]提出了一种梯度哈希承诺和摊销验证方案来完成了这一目标。</p>
+<p>考虑到中心化的AS可能会导致单点失效、模型可信性和隐私泄露等问题，区块链作为底层的信任构建机器被引入到可验证的FL [ 21 ]，[ 30 ]中。特别地，Weng等人[ 21 ]提出了一种基于区块链的激励机制来实现可验证的FL。Peng等人[ 30 ]提出基于区块链选择有效的委员会进行集体模型聚合和可验证。然而，区块链的潜在弊端，如效率和可扩展性，使得这些方案不切实际。</p>
+<p>据我们所知，所有这些工作都容易受到合谋攻击的验证。腐败客户可能会协助AS，使伪造的加总结果通过验证。此外，一些复杂度较高的操作所带来的计算和通信开销仍然非常昂贵。</p>
+<blockquote>
+<p>参考文献如下所示： [19] A. Fu, X. Zhang, N. Xiong, Y. Gao, H. Wang, and J. Zhang, “VFL: A verifiable federated learning with privacy-preserving for big data in industrial IoT,” IEEE Trans. Ind. Informat., vol. 18, no. 5, pp. 3316–3326, May 2022. [20] X. Guo et al., “VeriFL: Communication-efficient and fast verifiable aggregation for federated learning,” IEEE Trans. Inf. Forensics Security, vol. 16, pp. 1736–1751, 2021. [21] J. Weng, J. Weng, J. Zhang, M. Li, Y. Zhang, and W. Luo, “DeepChain: Auditable and privacy-preserving deep learning with blockchain-based incentive,” IEEE Trans. Dependable Secur. Comput., vol. 18, no. 5, pp. 2438–2455, Nov. 2021. [29] X. Zhang, A. Fu, H. Wang, C. Zhou, and Z. Chen, “A privacy-preserving and verifiable federated learning scheme,” in Proc. IEEE Int. Conf. Commun. (ICC), Dublin, Ireland, Jun. 2020, pp. 1–6. [30] Z. Peng et al., “VFChain: Enabling verifiable and auditable federated learning via blockchain systems,” IEEE Trans. Netw. Sci., vol. 9, no. 1, pp. 173–186, Jan. 2020.</p>
+</blockquote>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>本文我们提出的方案不仅实现了可验证性，而且是抗合谋的，动态的一种联邦学习的框架。他在保护了梯度的同时，实现了一种轻量级高效的验证机制，不仅仅可以防止恶意行为的发生，还能够检测一定的恶意行为。</p>
+
     </div>
 
     
@@ -337,6 +379,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E9%A2%84%E8%A7%88"><span class="nav-number">1.</span> <span class="nav-text">系统预览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VCD-FL%E7%9A%84%E6%9E%84%E5%BB%BA"><span class="nav-number">2.</span> <span class="nav-text">VCD-FL的构建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E7%A1%AE%E6%80%A7%E5%8F%8A%E5%8F%AF%E9%AA%8C%E8%AF%81%E6%80%A7%E5%88%86%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text">正确性及可验证性分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="nav-number">4.</span> <span class="nav-text">相关工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -351,7 +394,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -425,12 +468,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">51k</span>
+    <span title="站点总字数">59k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">46 分钟</span>
+    <span title="站点阅读时长">54 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>

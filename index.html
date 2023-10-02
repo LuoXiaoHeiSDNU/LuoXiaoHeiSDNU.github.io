@@ -366,6 +366,149 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gabaili.top/2023/10/02/VCD-FL-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Gabaili">
+      <meta itemprop="description" content="吾日三省吾身。为人谋而不忠乎？与朋友交而不信乎？传不习乎？">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="态度决定生活">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/10/02/VCD-FL-1/" class="post-title-link" itemprop="url">VCD-FL-1</a>
+        </h2>
+
+        <div class="post-meta">
+
+
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-10-02 20:29:49 / 修改时间：20:39:37" itemprop="dateCreated datePublished" datetime="2023-10-02T20:29:49+08:00">2023-10-02</time>
+            </span>
+
+          
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="算法细节"><a href="#算法细节" class="headerlink" title="算法细节"></a>算法细节</h1><p>文章的系统构架可以如下进行描述：</p>
+<hr>
+<h3 id="A-初始化阶段"><a href="#A-初始化阶段" class="headerlink" title="A.初始化阶段"></a>A.初始化阶段</h3><p>初始化阶段，我们主要移除了密钥协商阶段导致的通信以及计算开销，TA直接为用户i，j生成密钥对$s_{i,j}$，该密钥的主要功能是用来盲化梯度信息；</p>
+<p>TA生成一个随机数 ${\rho _i}$，并将其通过秘密分享的办法分享给其他用户，而该变量的主要作用是用来处理用户掉线时候导致的额外问题。</p>
+<p>为了提高准确性，我们需要将 ${\rho _i}$生成的随机数PRG进行归一化处理：</p>
+<script type="math/tex; mode=display">
+\mathbb{A}_i \leftarrow \frac{\operatorname{PRG}\left(\rho_i\right)}{\max \left\{\left|\operatorname{PRG}\left(\rho_i\right)\right|\right\}}, i \in\{1,2, \ldots, N\}</script><p>【一些额外的注意事项】</p>
+<p>为了保证效率，我们通过对梯度 ${g_i}$进行分组（而不是分割他们），分为 $\left\lceil {\frac{d}{M}} \right\rceil$组，每组设置有$M$个元素</p>
+<p>TA需要额外的生成一个整数序列$\mathbb{Z}=\left\{a_i \mid i=1,2, \cdots,\left\lceil\frac{d}{M}\right\rceil(M+1)\right\}$作为插值点序列【纠结了一段时间到底是在哪里用到的$a_i$，仔细观察发现就是矩阵中的自变量，所以说以后读论文还是需要仔细一点】，以及一个奇异矩阵大小为 $U:M \times M$</p>
+<hr>
+<h3 id="B-本地模型训练阶段"><a href="#B-本地模型训练阶段" class="headerlink" title="B.本地模型训练阶段"></a>B.本地模型训练阶段</h3><p>用户下载SA的初始模型，并通过最小梯度下降法来得到梯度信息$g_i$</p>
+<p><strong>1）梯度加密</strong></p>
+<p>主要使用了单盲化方法以及拉格朗日插值法来帮助我们对抗推断攻击。</p>
+<script type="math/tex; mode=display">
+\mathbf{g}_i^{\prime}=\mathbf{g}_i+\sum_{P_j \in \mathbb{P}, i<j} \operatorname{PRG}\left(s_{i, j}\right)-\sum_{P_j \in \mathbb{P}, i>j} \operatorname{PRG}\left(s_{i, j}\right)</script><p>我们得到初步的 ${\bf{g}}_i^\prime$ 信息后，将其同A中所言进行一个分组，得到如下的分组示意图：</p>
+<p><img src="/pic/Simple/4.png" alt="2" style="zoom:50%;" /></p>
+<p>用户i对于其中的某一k行（也可以理解为k组），可以计算其对应的拉格朗日插值函数如下所示：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}f_{i,[k]}(x) & =\sum_{j=(k-1) M+1}^{k M}\left[L_{j,[k]}(x) \mathbf{g}_i^{\prime}(j)\right] \\+ & {\left[A_i(k) \prod_{h=(k-1)(M+1)+1}^{k(M+1)-1} \frac{x-a_h}{a_{k(M+1)}-a_h}\right]}\end{aligned}</script><p>其中对应的参数信息为：$L_{j,[k]}(x)=\prod_{h=(k-1)(M+1)+1, h \neq j+k-1}^{k(M+1)} \frac{x-a_h}{a_{j+k-1}-a_h} $</p>
+<p>至此，用户提交该拉格朗日函数的系数交付给SA，称之为$B_i$，其对应的信息如下：</p>
+<script type="math/tex; mode=display">
+\mathbf{B}_i=\left(\mathbf{B}_{i,[1]}, \mathbf{B}_{i,[2]}, \ldots, \mathbf{B}_{i,\left[\left[\frac{d}{M}\right]\right]}\right),
+\mathbf{B}_{i,[k]}=\left(b_{0,\langle i,[k]\rangle}, b_{1,\langle i,[k]\rangle}, \ldots, b_{M,\langle i,[k]\rangle}\right)</script><p>显然，我们使用拉格朗日函数来保护梯度信息可以增强隐私性，保护其不受到推理攻击的影响。</p>
+<p><strong>2）承诺生成</strong></p>
+<p>我们使用了一种不可逆的梯度变化来保证我们的信息未被篡改，而不是使用加密的证明，具体而言，使用下面的式子来生成承诺：</p>
+<script type="math/tex; mode=display">
+\mathbf{C}_{i,[k]}=\boldsymbol{U} \cdot \mathbf{g}_{i,[k]}</script><p><img src="/pic/Simple/5.png" alt="2" style="zoom:50%;" /></p>
+<p>因为奇异矩阵是不可逆矩阵，因此在直到奇异矩阵以及承诺被解放的情况下，依然无法解除相应的梯度信息。</p>
+<p>用户广播承诺信息$C_i$给其他用户，在用户接收到其他用户发送的承诺信息后，上传$B_i$给其他的用户。</p>
+<p><strong>3）插值优化</strong></p>
+<p>此部分主要是为了加快运算速度，不追求深刻理解的话，可以不用深究。</p>
+<hr>
+<h3 id="C-密文聚合"><a href="#C-密文聚合" class="headerlink" title="C.密文聚合"></a>C.密文聚合</h3><p>在AS收到全部的信息后，计算$B$如下所示：</p>
+<script type="math/tex; mode=display">
+\mathbf{B}=\sum_{i=1}^N \mathbf{B}_i=\left(\sum_{i=1}^N \mathbf{B}_{i,[1]}, \ldots, \sum_{i=1}^N \mathbf{B}_{i,\left[\left\lceil\frac{d}{M}\right]\right]}\right)</script><p>我们选择了对 ${\rho _i}$进行分享，而不是对初始的用户种子进行分享，这样我们可以克服在单盲化方案中可能存在的因为用户掉线而存在的隐私泄露问题。</p>
+<hr>
+<h3 id="D-聚合结果的验证"><a href="#D-聚合结果的验证" class="headerlink" title="D.聚合结果的验证"></a>D.聚合结果的验证</h3><p>用户通过AS提供的$B$来生成聚合后的信息，并通过承诺来帮助用户验证聚合结果的合理性。</p>
+<p><strong>1）梯度解密</strong></p>
+<p>用户首先重构出第k组的拉格朗日函数：</p>
+<script type="math/tex; mode=display">
+f_{[k]}(x)=\sum_{m=1}^{M+1} \mathbf{B}_{[k]}(m) x^{M-m+1},</script><p>我们可以简单的推断出拉格朗日具有如下的性质：</p>
+<script type="math/tex; mode=display">
+F({a_1}) = {f_1}({a_1}) + {f_2}({a_1}) = {g_1} + {g_2} = g</script><p>其中的 ${f_1}({a_1})$表示第一个拉格朗日插值的函数， ${f_2}({a_1})$表示第二个拉格朗日插值函数， $F({a_1})$表示聚合之后的拉格朗日函数，因此本出我们得到：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}\mathbf{g} & =\sum_{i=1}^N \mathbf{g}_i=\sum_{i=1}^N \mathbf{g}_i^{\prime} \\& =\left(\left(f_{[k]}\left(a_{(k-1) M+k}\right), \ldots, f_{[k]}\left(a_{k(M+1)-1}\right)\right)\right)^T\end{aligned}</script><p><strong>2）结果验证</strong></p>
+<p>每个用户$P_i$生成一个随机的行向量$\mathbf{R}_i=\left(r_{i, 1}, r_{i, 2}, \ldots, r_{i, M \cdot\left\lceil\frac{d}{M}\right\rceil}\right)$，用户接收到其他用户发送的全部$\mathbf{R}_i$信息后，通过聚合相加计算出随机的向量$\mathbf{R}$：</p>
+<script type="math/tex; mode=display">
+\mathbf{R}=\sum_{i=1}^N \mathbf{R}_i=\left(\sum_{i=1}^N r_{i, 1}, \sum_{i=1}^N r_{i, 2}, \ldots, \sum_{i=1}^N r_{i, M \cdot\left\lceil\frac{d}{M}\right\rceil}\right)</script><p>因为该随机向量是由用户集体计算得到的，因此其并不会因为某一个用户的操纵导致验证结果的泄露。</p>
+<p>我们按照前文所述相同的方式，对$\mathbf{R}$进行分组，并进而计算一个随机分组行向量作为验证向量$\mathbf{S}$，计算公式如下所述， ${S_{[k]}} = {R_{[k]}} \cdot U$。</p>
+<p><img src="/pic/Simple/6.png" alt="2" style="zoom:50%;" /></p>
+<p>为了实现验证的功能，用户需要对随机向量$\mathbf{S}$生成对应的验证码 ${v_{i,k}}$，具体而言其利用了承诺$\mathbf{C}$来帮助我们完成验证：</p>
+<script type="math/tex; mode=display">
+v_{i, k}=\mathbf{R}_{[k]} \cdot \mathbf{C}_{i,[k]}, \quad k \in\left\{1,2, \ldots,\left\lceil\frac{d}{M}\right\rceil\right\}</script><p>用户可以根据下面的式子来辅助验证聚合服务器是否诚实的进行了验证：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}f_{[k]}\left(a_{(M+1) k}\right) & \stackrel{?}{=} \sum_{i=1}^N A_i(k), k \in\left\{1,2, \ldots,\left\lceil\frac{d}{M}\right\rceil\right\} \\\sum_{m=1}^d \mathbf{S}(m) \mathbf{g}(m) & \stackrel{?}{=} \sum_{i=1}^N V_i\end{aligned}</script><p>对于第一部分来说：</p>
+<p>我们使用AS所提供的信息计算出对应的 ${f_{[k]}}(x)$信息，当 $x = {a_{(M + 1)k}}$时，该式计算的就是矩阵元素中对应的随机数那一列，但需要注意的是，本式子计算的是一个和式，而并非某一个元素。通过第一个等式我们可以初步判断，AS返回的结果是否符合要求，即验证结果的正确性。</p>
+<p>而第二个式子，则通过以下的一个简单推理可以看出
+$$
+{V_i} = \sum\nolimits_{k = 1}^{\left\lceil {\frac{d}{M}} \right\rceil } {{v_{i,k}}}  = \sum\nolimits_{k = 1}^{\left\lceil {\frac{d}{M}} \right\rceil } {{R_{[k]}} \cdot {C_{i,[k]}}}  = \sum\nolimits_{k = 1}^{\left\lceil {\frac{d}{M}} \right\rceil } {{R_{[k]}} \cdot (U \cdot {g_{i,[k]}})}  = \sum\nolimits_{k = 1}^{\left\lceil {\frac{d}{M}} \right\rceil } {({R_{[k]}} \cdot U) \cdot {g_{i,[k]}}}  = \sum\nolimits_{k = 1}^{\left\lceil {\frac{d}{M}} \right\rceil } {{S_{[k]}} \cdot {g_{i,[k]}}}
+$$ <br>主要使用了承诺以及生成的随机数来帮助我们完成结果的验证，这样可以防止用户与服务器进行串通。</p>
+<blockquote>
+<p>这个地方思考了很久，一部分是因为在最初阅读文献的时候并没有进行认真的阅读； 一部分是因为并没有注意到变量的含义问题，以及矩阵元素的行列关系等等； 因此以后读论文的时候还是要细心，多多注意变量之间的关系！</p>
+</blockquote>
+<p>在常见的双掩码方案中，我们保证系统安全性的前提是任何用户不会同时透露一个用户的线上和线下的份额，然而在本篇文章的假设中，客户可能会与AS进行串通，导致原始的信息被泄露。</p>
+<p>本文中的验证过程，当用户存在掉线的情况时，掉线用户的$\mathbb{A}_i$的信息会导致其他用户无法顺利的通过验证，因此我们需要对离线用户的$\mathbb{A}_i$进行恢复，服务器会请求掉线用户的随机种子${\rho _i}$，用来帮助其他用户完成验证的全部过程。</p>
+<p>作者给出的验证过程为：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}\sum_{i=1}^N V_i & =\sum_{i=1}^N \sum_{k=1}^{\left\lceil\frac{d}{M}\right\rceil} v_{i, k}=\sum_{i=1}^N \sum_{k=1}^{\left\lceil\frac{d}{M}\right\rceil} \mathbf{R}_{[k]} \cdot \mathbf{C}_{i,[k]} \\& =\sum_{i=1}^N \sum_{k=1}^{\left\lceil\frac{d}{M}\right\rceil} \mathbf{S}_{[k]} \cdot \mathbf{g}_{i,[k]}=\sum_{k=1}^{\left\lceil\frac{d}{M}\right\rceil} \mathbf{S}_{[k]} \cdot \sum_{i=1}^N \mathbf{g}_{i,[k]} \\& =\sum_{m=1}^d \mathbf{S}(m) f_{\left[\left\lceil\frac{m}{M}\right\rceil\right]}\left(a_{m+\left\lceil\frac{m}{M}\right\rceil-1}\right)+\sum_{m=d+1}^{\left\lceil\frac{d}{M}\right\rceil \cdot M} \mathbf{S}(m) \cdot 0 \\& =\sum_{m=1}^d \mathbf{S}(m) f_{\left[\left\lceil\frac{m}{M}\right\rceil\right]}\left(a_{m+\left\lceil\frac{m}{M}\right\rceil-1}\right)=\sum_{m=1}^d \mathbf{S}(m) \mathbf{g}(m) .\end{aligned}</script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://gabaili.top/2023/09/28/Efficient-Verifiable-Protocol-for-Privacy-Preserving-Aggregation-in-Federated-Learning/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -484,6 +627,13 @@
 
               <time title="创建时间：2023-09-28 10:16:58" itemprop="dateCreated datePublished" datetime="2023-09-28T10:16:58+08:00">2023-09-28</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-02 20:36:39" itemprop="dateModified" datetime="2023-10-02T20:36:39+08:00">2023-10-02</time>
+              </span>
 
           
   
@@ -493,14 +643,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
+              <span>2.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -512,7 +662,39 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <p><strong>关键字：联邦学习、隐私保护、可验证性、抗共谋、动态性</strong></p>
+<p><strong>摘要：</strong>本文中我们主要通过梯度分组来优化了拉格朗日插值定理，我们提出的框架VCD-FL实现了在合谋攻击下的可验证性以及在合谋攻击下的攻击检测功能（文中称之为动态性）。</p>
+<p><strong>主要工具：</strong>联邦学习、拉格朗日插值定理、承诺协议</p>
+<h3 id="系统预览"><a href="#系统预览" class="headerlink" title="系统预览"></a>系统预览</h3><p><strong>主要贡献：</strong>我们设计了一个轻量级的梯度承诺方案以及一种基于优化拉格朗日插值的验证方案，我们通过梯度分组以及压缩来降低系统的通信以及计算开销。</p>
+<ul>
+<li>抗合谋验证：我们使用了不可逆的梯度变化的承诺方案来保护用户的隐私，并且设计了一种基于优化拉格朗日插值的高效验证机制。</li>
+<li>识别恶意行为：常见的文章可以验证服务器是否返回了恶意的结果，但是无法是识别出服务器是懒惰还是恶意服务器，我们的文章则可以区分开服务器的意图</li>
+<li>动态联邦学习方案：动态指的是可以在用户存在掉线的情况下可以保证协议的正常执行。</li>
+<li>低计算以及通信开销：我们引入了梯度压缩算法，以及新的插值定理来帮助我们降低计算以及通信开销。</li>
+</ul>
+<p><strong>承诺方案：</strong>输入要提交的信息以及一个一次性的信息，输出一个承诺发布在公告板上。一次性消息负责解开承诺，应该保密到揭晓。任何用户都可以通过提交待承诺信息，以及一次一密俩检查消息的正确性，从而相信承诺。</p>
+<p><strong>B.系统模型</strong></p>
+<p><img src="/pic/Simple/2.png" alt="2" style="zoom:50%;" /></p>
+<p><strong>C.威胁模型</strong></p>
+<p>TA是完全可信的，用户是诚实但好奇的，聚合服务器（AS）是恶意的；此外我们考虑到一些用户可能会跟AS串通来绕过验证方案。AS主要分为两种情况，一种是懒惰的服务器，另一种是积极的恶意服务器。</p>
+<h3 id="VCD-FL的构建"><a href="#VCD-FL的构建" class="headerlink" title="VCD-FL的构建"></a>VCD-FL的构建</h3><p><img src="/pic/Simple/3.png" alt="2" style="zoom:50%;" /></p>
+<p>key：本文章主要使用了一种轻量级的梯度不可逆方案来实现承诺，而不是使用加密方案来证明可验证性。</p>
+<p><a target="_blank" rel="noopener" href="https://www.notion.so/1995b455bcd24aecaa69ac22d1a16e0c?pvs=21">算法细节</a></p>
+<h3 id="正确性及可验证性分析"><a href="#正确性及可验证性分析" class="headerlink" title="正确性及可验证性分析"></a>正确性及可验证性分析</h3><p><strong>定理1：</strong>如果AS在我们的VCD - FL中诚实地执行聚合操作，正确的聚合结果将通过验证。</p>
+<p><strong>定理2：</strong>如果AS在我们的VCD - FL中返回一个虚假的聚合结果，那么我们的检测规则可以以压倒性的概率在定义的威胁模型下识别虚假的聚合结果。</p>
+<p><strong>定理3：</strong>如果AS最多与N - 1个客户端合谋，则合谋攻击伪造的聚合结果可以以压倒性的概率在我们的VCD - FL中被检测到。</p>
+<p>本处的定理原因主要是因为，我们的验证信息是在验证结果出现之后进行构建的，这不会被AS恶意的操纵导致偏离协议行为的发生，并且该构建过程只要存在一个用户诚实的执行（不参与合谋）了协议，欺骗的行为便不会产生。</p>
+<p><strong>定理4：</strong>如果客户在验证过程中退出，只要退出的客户数不超过N - T，我们的VCD - FL仍然可以工作。</p>
+<p>因为只要是在线用户高于我们预定的门限值，我们可以通过秘密重构的方式对掉线用户的秘密信息进行一个重构，从而剔除其存在的偏差。</p>
+<h3 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h3><p>联邦学习的可验证性最早是通过密码学的相关证明来保证的，最经典是通过双掩码来实现隐私性，再辅以密码学来完成可验证性。在[19]文献中，使用了拉格朗日插值来完成可验证性，辅以盲化技术来实现抗共谋的隐私保护。</p>
+<p>也有学者[29]使用双线性的方法来验证AS的聚合正确性，也使用了paillier的同态性质完成了隐私的保护。Guo[20]提出了一种梯度哈希承诺和摊销验证方案来完成了这一目标。</p>
+<p>考虑到中心化的AS可能会导致单点失效、模型可信性和隐私泄露等问题，区块链作为底层的信任构建机器被引入到可验证的FL [ 21 ]，[ 30 ]中。特别地，Weng等人[ 21 ]提出了一种基于区块链的激励机制来实现可验证的FL。Peng等人[ 30 ]提出基于区块链选择有效的委员会进行集体模型聚合和可验证。然而，区块链的潜在弊端，如效率和可扩展性，使得这些方案不切实际。</p>
+<p>据我们所知，所有这些工作都容易受到合谋攻击的验证。腐败客户可能会协助AS，使伪造的加总结果通过验证。此外，一些复杂度较高的操作所带来的计算和通信开销仍然非常昂贵。</p>
+<blockquote>
+<p>参考文献如下所示： [19] A. Fu, X. Zhang, N. Xiong, Y. Gao, H. Wang, and J. Zhang, “VFL: A verifiable federated learning with privacy-preserving for big data in industrial IoT,” IEEE Trans. Ind. Informat., vol. 18, no. 5, pp. 3316–3326, May 2022. [20] X. Guo et al., “VeriFL: Communication-efficient and fast verifiable aggregation for federated learning,” IEEE Trans. Inf. Forensics Security, vol. 16, pp. 1736–1751, 2021. [21] J. Weng, J. Weng, J. Zhang, M. Li, Y. Zhang, and W. Luo, “DeepChain: Auditable and privacy-preserving deep learning with blockchain-based incentive,” IEEE Trans. Dependable Secur. Comput., vol. 18, no. 5, pp. 2438–2455, Nov. 2021. [29] X. Zhang, A. Fu, H. Wang, C. Zhou, and Z. Chen, “A privacy-preserving and verifiable federated learning scheme,” in Proc. IEEE Int. Conf. Commun. (ICC), Dublin, Ireland, Jun. 2020, pp. 1–6. [30] Z. Peng et al., “VFChain: Enabling verifiable and auditable federated learning via blockchain systems,” IEEE Trans. Netw. Sci., vol. 9, no. 1, pp. 173–186, Jan. 2020.</p>
+</blockquote>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>本文我们提出的方案不仅实现了可验证性，而且是抗合谋的，动态的一种联邦学习的框架。他在保护了梯度的同时，实现了一种轻量级高效的验证机制，不仅仅可以防止恶意行为的发生，还能够检测一定的恶意行为。</p>
+
       
     </div>
 
@@ -902,90 +1084,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://gabaili.top/2023/09/27/Literature/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Gabaili">
-      <meta itemprop="description" content="吾日三省吾身。为人谋而不忠乎？与朋友交而不信乎？传不习乎？">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="态度决定生活">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/09/27/Literature/" class="post-title-link" itemprop="url">文献索引界面</a>
-        </h2>
-
-        <div class="post-meta">
-
-
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2023-09-27 16:54:18 / 修改时间：16:58:08" itemprop="dateCreated datePublished" datetime="2023-09-27T16:54:18+08:00">2023-09-27</time>
-            </span>
-
-          
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>本界面主要包含了博主自己阅读的一些文献，大家可以参考进行学习讨论，并不保证准确性！</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/09/27/Literature/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1056,7 +1154,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1130,12 +1228,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">51k</span>
+    <span title="站点总字数">59k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">46 分钟</span>
+    <span title="站点阅读时长">54 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
