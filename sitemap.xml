@@ -2,6 +2,78 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://gabaili.top/2023/09/28/VFL/</loc>
+    
+    <lastmod>2023-10-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://gabaili.top/2023/05/26/VerSA-Verifiable-Secure-Aggregation-for-Cross-Device-Federated-Learning/</loc>
+    
+    <lastmod>2023-10-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://gabaili.top/2023/05/26/VerifyNet-Secure-and-Verifiable-Federated-Learning/</loc>
+    
+    <lastmod>2023-10-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://gabaili.top/2023/09/28/Privacy-Preserving-and-Verifiable-Federated-Learning-Framework-for-Edge-Computing/</loc>
+    
+    <lastmod>2023-10-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://gabaili.top/2023/07/12/Practical-Secure-Aggregation-for-Privacy-Preserving-Machine-Learning/</loc>
+    
+    <lastmod>2023-10-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://gabaili.top/2023/09/28/PPVerifier/</loc>
+    
+    <lastmod>2023-10-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://gabaili.top/2023/05/26/FedSky-An-Efficient-and-Privacy-Preserving-Scheme-for-Federated-Mobile-Crowdsensing/</loc>
+    
+    <lastmod>2023-10-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://gabaili.top/2023/05/26/Efficient-and-Secure-Federated-Learning-With-Verifiable-Weighted-Average-Aggregation/</loc>
+    
+    <lastmod>2023-10-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://gabaili.top/2023/10/02/wiki-19/</loc>
     
     <lastmod>2023-10-02</lastmod>
@@ -92,24 +164,6 @@
   </url>
   
   <url>
-    <loc>https://gabaili.top/2023/09/28/PPVerifier/</loc>
-    
-    <lastmod>2023-10-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://gabaili.top/2023/09/28/VFL/</loc>
-    
-    <lastmod>2023-10-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://gabaili.top/2023/10/02/VCD-FL-1/</loc>
     
     <lastmod>2023-10-02</lastmod>
@@ -138,60 +192,6 @@
   
   <url>
     <loc>https://gabaili.top/2023/05/26/CGAN-Based-Collaborative-Intrusion-Detection-for-UAV-Networks-A-Blockchain-Empowered-Distributed-Federated-Learning-Approach/</loc>
-    
-    <lastmod>2023-10-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://gabaili.top/2023/09/28/Privacy-Preserving-and-Verifiable-Federated-Learning-Framework-for-Edge-Computing/</loc>
-    
-    <lastmod>2023-10-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://gabaili.top/2023/05/26/Efficient-and-Secure-Federated-Learning-With-Verifiable-Weighted-Average-Aggregation/</loc>
-    
-    <lastmod>2023-10-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://gabaili.top/2023/05/26/VerSA-Verifiable-Secure-Aggregation-for-Cross-Device-Federated-Learning/</loc>
-    
-    <lastmod>2023-10-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://gabaili.top/2023/05/26/VerifyNet-Secure-and-Verifiable-Federated-Learning/</loc>
-    
-    <lastmod>2023-10-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://gabaili.top/2023/07/12/Practical-Secure-Aggregation-for-Privacy-Preserving-Machine-Learning/</loc>
-    
-    <lastmod>2023-10-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://gabaili.top/2023/05/26/FedSky-An-Efficient-and-Privacy-Preserving-Scheme-for-Federated-Mobile-Crowdsensing/</loc>
     
     <lastmod>2023-10-02</lastmod>
     
@@ -484,7 +484,14 @@
   </url>
   
   <url>
-    <loc>https://gabaili.top/tags/%E5%90%8C%E6%80%81%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0/</loc>
+    <loc>https://gabaili.top/tags/%E5%B7%AE%E5%88%86%E9%9A%90%E7%A7%81/</loc>
+    <lastmod>2023-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://gabaili.top/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</loc>
     <lastmod>2023-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -492,27 +499,6 @@
   
   <url>
     <loc>https://gabaili.top/tags/%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/</loc>
-    <lastmod>2023-10-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://gabaili.top/tags/Secure-Aggregation/</loc>
-    <lastmod>2023-10-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://gabaili.top/tags/diffhallman%E5%AF%86%E9%92%A5%E5%88%86%E4%BA%AB%E5%8D%8F%E8%AE%AE/</loc>
-    <lastmod>2023-10-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://gabaili.top/tags/pailliar%E5%8A%A0%E5%AF%86/</loc>
     <lastmod>2023-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -527,6 +513,34 @@
   
   <url>
     <loc>https://gabaili.top/tags/Diffhallman%E5%AF%86%E9%92%A5%E5%88%86%E4%BA%AB%E5%8D%8F%E8%AE%AE/</loc>
+    <lastmod>2023-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://gabaili.top/tags/%E5%90%8C%E6%80%81%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0/</loc>
+    <lastmod>2023-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://gabaili.top/tags/Secure-Aggregation/</loc>
+    <lastmod>2023-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://gabaili.top/tags/pailliar%E5%8A%A0%E5%AF%86/</loc>
+    <lastmod>2023-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://gabaili.top/tags/%E5%A4%A9%E9%99%85%E7%BA%BF/</loc>
     <lastmod>2023-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -555,27 +569,6 @@
   
   <url>
     <loc>https://gabaili.top/tags/%E7%AD%BE%E5%90%8D%E6%96%B9%E6%A1%88/</loc>
-    <lastmod>2023-10-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://gabaili.top/tags/%E5%90%8C%E5%8F%B0%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0/</loc>
-    <lastmod>2023-10-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://gabaili.top/tags/%E5%B7%AE%E5%88%86%E9%9A%90%E7%A7%81/</loc>
-    <lastmod>2023-10-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://gabaili.top/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</loc>
     <lastmod>2023-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -647,13 +640,6 @@
   </url>
   
   <url>
-    <loc>https://gabaili.top/categories/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/%E5%A4%A9%E9%99%85%E7%BA%BF/</loc>
-    <lastmod>2023-10-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://gabaili.top/categories/%E5%8D%9A%E5%AE%A2/</loc>
     <lastmod>2023-10-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -675,20 +661,6 @@
   </url>
   
   <url>
-    <loc>https://gabaili.top/categories/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/%E8%B7%A8%E8%AE%BE%E5%A4%87/%E5%AE%89%E5%85%A8%E8%81%9A%E5%90%88/</loc>
-    <lastmod>2023-10-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://gabaili.top/categories/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/%E5%A4%A9%E9%99%85%E7%BA%BF/%E8%B7%A8%E8%AE%BE%E5%A4%87/</loc>
-    <lastmod>2023-10-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://gabaili.top/categories/%E5%8D%9A%E5%AE%A2/%E5%86%99%E4%BD%9C/</loc>
     <lastmod>2023-10-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -696,21 +668,14 @@
   </url>
   
   <url>
-    <loc>https://gabaili.top/categories/%E5%8D%9A%E5%AE%A2/%E4%BC%98%E5%8C%96/</loc>
-    <lastmod>2023-10-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://gabaili.top/categories/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/%E5%A4%A9%E9%99%85%E7%BA%BF/%E8%B7%A8%E8%AE%BE%E5%A4%87/%E5%A4%A9%E9%99%85%E7%BA%BF/</loc>
-    <lastmod>2023-10-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://gabaili.top/categories/%E5%8D%9A%E5%AE%A2/%E5%88%9B%E4%BD%9C/</loc>
+    <lastmod>2023-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://gabaili.top/categories/%E5%8D%9A%E5%AE%A2/%E4%BC%98%E5%8C%96/</loc>
     <lastmod>2023-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
