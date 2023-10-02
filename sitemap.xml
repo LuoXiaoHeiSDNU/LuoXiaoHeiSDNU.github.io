@@ -2,7 +2,61 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://gabaili.top/2023/09/28/VCD-FL/</loc>
+    
+    <lastmod>2023-10-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://gabaili.top/2023/09/28/PPVerifier/</loc>
+    
+    <lastmod>2023-10-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://gabaili.top/2023/09/28/VFL/</loc>
+    
+    <lastmod>2023-10-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://gabaili.top/2023/10/02/VCD-FL-1/</loc>
+    
+    <lastmod>2023-10-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://gabaili.top/2023/09/27/Literature/</loc>
+    
+    <lastmod>2023-10-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://gabaili.top/2023/09/28/A-Survey-on-Securing-Federated-Learning/</loc>
+    
+    <lastmod>2023-10-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://gabaili.top/2023/05/26/CGAN-Based-Collaborative-Intrusion-Detection-for-UAV-Networks-A-Blockchain-Empowered-Distributed-Federated-Learning-Approach/</loc>
     
     <lastmod>2023-10-02</lastmod>
     
@@ -21,15 +75,6 @@
   
   <url>
     <loc>https://gabaili.top/2023/05/26/Efficient-and-Secure-Federated-Learning-With-Verifiable-Weighted-Average-Aggregation/</loc>
-    
-    <lastmod>2023-10-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://gabaili.top/2023/05/26/CGAN-Based-Collaborative-Intrusion-Detection-for-UAV-Networks-A-Blockchain-Empowered-Distributed-Federated-Learning-Approach/</loc>
     
     <lastmod>2023-10-02</lastmod>
     
@@ -74,15 +119,6 @@
   </url>
   
   <url>
-    <loc>https://gabaili.top/2023/10/02/VCD-FL-1/</loc>
-    
-    <lastmod>2023-10-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://gabaili.top/2023/09/28/Efficient-Verifiable-Protocol-for-Privacy-Preserving-Aggregation-in-Federated-Learning/</loc>
     
     <lastmod>2023-10-02</lastmod>
@@ -111,15 +147,6 @@
   
   <url>
     <loc>https://gabaili.top/2023/05/25/%E7%B4%A2%E5%BC%95%E7%95%8C%E9%9D%A2/</loc>
-    
-    <lastmod>2023-09-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://gabaili.top/2023/09/27/Literature/</loc>
     
     <lastmod>2023-09-27</lastmod>
     
@@ -394,20 +421,6 @@
   </url>
   
   <url>
-    <loc>https://gabaili.top/tags/%E5%B7%AE%E5%88%86%E9%9A%90%E7%A7%81/</loc>
-    <lastmod>2023-10-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://gabaili.top/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</loc>
-    <lastmod>2023-10-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://gabaili.top/tags/%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/</loc>
     <lastmod>2023-10-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -457,6 +470,13 @@
   </url>
   
   <url>
+    <loc>https://gabaili.top/tags/%E7%B4%A2%E5%BC%95/</loc>
+    <lastmod>2023-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://gabaili.top/tags/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E6%8F%92%E5%80%BC%E5%AE%9A%E7%90%86/</loc>
     <lastmod>2023-10-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -485,7 +505,28 @@
   </url>
   
   <url>
+    <loc>https://gabaili.top/tags/%E5%B7%AE%E5%88%86%E9%9A%90%E7%A7%81/</loc>
+    <lastmod>2023-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://gabaili.top/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</loc>
+    <lastmod>2023-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://gabaili.top/tags/%E5%8D%9A%E5%AE%A2/</loc>
+    <lastmod>2023-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://gabaili.top/tags/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E5%B7%AE%E5%80%BC%E5%AE%9A%E7%90%86/</loc>
     <lastmod>2023-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -557,6 +598,13 @@
   </url>
   
   <url>
+    <loc>https://gabaili.top/categories/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/%E5%8F%AF%E9%AA%8C%E8%AF%81/%E8%B7%A8%E8%AE%BE%E5%A4%87/</loc>
+    <lastmod>2023-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://gabaili.top/categories/wiki/</loc>
     <lastmod>2023-10-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -585,13 +633,6 @@
   </url>
   
   <url>
-    <loc>https://gabaili.top/categories/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/%E5%8F%AF%E9%AA%8C%E8%AF%81/%E8%B7%A8%E8%AE%BE%E5%A4%87/</loc>
-    <lastmod>2023-10-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://gabaili.top/categories/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/%E5%A4%A9%E9%99%85%E7%BA%BF/%E8%B7%A8%E8%AE%BE%E5%A4%87/</loc>
     <lastmod>2023-10-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -599,14 +640,14 @@
   </url>
   
   <url>
-    <loc>https://gabaili.top/categories/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/%E5%A4%A9%E9%99%85%E7%BA%BF/%E8%B7%A8%E8%AE%BE%E5%A4%87/%E5%A4%A9%E9%99%85%E7%BA%BF/</loc>
+    <loc>https://gabaili.top/categories/%E5%8D%9A%E5%AE%A2/%E5%88%9B%E4%BD%9C/</loc>
     <lastmod>2023-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://gabaili.top/categories/%E5%8D%9A%E5%AE%A2/%E5%88%9B%E4%BD%9C/</loc>
+    <loc>https://gabaili.top/categories/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/%E5%A4%A9%E9%99%85%E7%BA%BF/%E8%B7%A8%E8%AE%BE%E5%A4%87/%E5%A4%A9%E9%99%85%E7%BA%BF/</loc>
     <lastmod>2023-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
