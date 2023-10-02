@@ -23,18 +23,20 @@
     var CONFIG = {"hostname":"gabaili.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="吾日三省吾身。为人谋而不忠乎？与朋友交而不信乎？传不习乎？">
+  <meta name="description" content="方向总结【联邦学习的发展过程：在最初云中心计算概念的提出（一部分是因为深度学习的发展需要大量的训练数据），人们通过云这个拥有大量计算资源的单位来帮助我们改善生活。常见的一个例子是，在医院中，人们穿戴各种传感设备，设备会采集用户的各项数据，进而发送给云服务器，交由服务器来进行各种数据的处理。但是随着信息安全的深入人心，各国政府都颁布了严格的信息安全法规，这种行为破坏了个人数据保护法的法规条例，因此联">
 <meta property="og:type" content="article">
 <meta property="og:title" content="A-Survey-on-Securing-Federated-Learning">
 <meta property="og:url" content="https://gabaili.top/2023/09/28/A-Survey-on-Securing-Federated-Learning/index.html">
 <meta property="og:site_name" content="态度决定生活">
-<meta property="og:description" content="吾日三省吾身。为人谋而不忠乎？与朋友交而不信乎？传不习乎？">
+<meta property="og:description" content="方向总结【联邦学习的发展过程：在最初云中心计算概念的提出（一部分是因为深度学习的发展需要大量的训练数据），人们通过云这个拥有大量计算资源的单位来帮助我们改善生活。常见的一个例子是，在医院中，人们穿戴各种传感设备，设备会采集用户的各项数据，进而发送给云服务器，交由服务器来进行各种数据的处理。但是随着信息安全的深入人心，各国政府都颁布了严格的信息安全法规，这种行为破坏了个人数据保护法的法规条例，因此联">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gabaili.top/pic/Simple/9.png">
 <meta property="article:published_time" content="2023-09-28T02:16:10.000Z">
-<meta property="article:modified_time" content="2023-09-28T02:16:10.504Z">
+<meta property="article:modified_time" content="2023-10-02T12:45:05.065Z">
 <meta property="article:author" content="Gabaili">
 <meta property="article:tag" content="技术|网络安全|分享|生活">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gabaili.top/pic/Simple/9.png">
 
 <link rel="canonical" href="https://gabaili.top/2023/09/28/A-Survey-on-Securing-Federated-Learning/">
 
@@ -199,6 +201,13 @@
 
               <time title="创建时间：2023-09-28 10:16:10" itemprop="dateCreated datePublished" datetime="2023-09-28T10:16:10+08:00">2023-09-28</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-02 20:45:05" itemprop="dateModified" datetime="2023-10-02T20:45:05+08:00">2023-10-02</time>
+              </span>
 
           
   
@@ -220,14 +229,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
+              <span>3.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -239,7 +248,27 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <h1 id="方向总结"><a href="#方向总结" class="headerlink" title="方向总结"></a>方向总结</h1><p>【联邦学习的发展过程：在最初云中心计算概念的提出（一部分是因为深度学习的发展需要大量的训练数据），人们通过云这个拥有大量计算资源的单位来帮助我们改善生活。常见的一个例子是，在医院中，人们穿戴各种传感设备，设备会采集用户的各项数据，进而发送给云服务器，交由服务器来进行各种数据的处理。但是随着信息安全的深入人心，各国政府都颁布了严格的信息安全法规，这种行为破坏了个人数据保护法的法规条例，因此联邦学习的概念才被提出来，而联邦学习的数据总是在本地进行处理，而全局操作会在不访问参与者存储的情况下进行模型的聚合】</p>
+<p>联邦学习中各个部分的功能：1）服务器：不仅仅要进行模型的聚合，它也负担着选择用户的过程。2）用户：负责使用本地的数据进行模型的训练工作。在联邦学习中主要的算法为联邦平均算法，可以简述为：服务器选择特定的用户，向用户发送初始的模型参数信息，用户收到参数后，使用本地的数据进行模型的训练，将训练得到的收敛结果发还给服务器。服务器收到用户集合的参数信息后将进行参数聚合（一般为加权平均），得到聚合后的参数信息返还给用户，重启前面的步骤。直到模型收敛或者达到我们预定的训练轮数即可。</p>
+<p>联邦学习根据数据的跨度可以分为，跨组织的联邦学习以及跨设备的联邦学习；两者最明显的不同在于服务的对象，跨组织的联邦学习服务对象是不同的组织机构，他们拥有大量的数据，且每个机构拥有一定算力支持的服务器。就隐私保护角度而言，因为他们之间涉及到许多不同的组织，因此组织上传的参数信息应该更加的安全；不同组织处理数据的能力也是不同的，如何合理的调度他们的计算能力也是需要考虑的问题。而对于跨设备的联邦学习，服务对象可以想象成是某一服务商，他们想利用广大用户手中的数据来训练自己的模型（广告模型或者推荐模型），因此他们面对的问题不同于跨组织的联邦学习，我们需要考虑如何使用尽可能小的带宽，来完成我们的目标，同时在跨设备联邦学习中最重要的一点是，在我们训练的过程中，用户有可能会发生掉线的情况，我们在设计方案时需要保证即使存在用户掉线也不会影响我们聚合的结果。</p>
+<p>【按照联邦学习处理对象的分类：横向联邦学习，纵向联邦学习以及迁移联邦学习</p>
+<p><img src="/pic/Simple/9.png" alt="2" style="zoom:50%;" /></p>
+<p>横向联邦学习指的是，每个样本的数据特征相同，但是数据量不同，可以视为对样本数量的扩充，我们也称之为，样本对齐的联邦学习；纵向联邦学习指的是，数据用户相同，但是用户所持有的特征不同，特征对齐的联邦学习。两者的研究重点都是如何高效的处理维度或者大小不同的数据，我们并不将其作为研究的方向】</p>
+<p>但是联邦学习中也存在一些问题，例如，用户可以通过特定的手法来揭示出用户的本地隐私数据（有文献指出，在用户上传的梯度信息中，我们可以恢复出用户的原始数据），并且恶意用户可以引导全局模型来降低系统对某一特定类的（识别）性能。用户如何保证服务器诚实的进行了模型的更新，而服务器又如何保证用户进行了诚实的模型训练，都可以作为研究点。</p>
+<p>因此我们可以简单将联邦学习中存在的问题分为，完整性以及机密性；联邦学习的完整性是指用于保证联邦学习的参数在传输的过程中，不会被恶意的用户进行篡改。它可以主要分为两方面，用户如何验证服务器聚合信息的正确性（因为服务器有可能会为了节省自己的计算资源而返回一个随意的结果，这显然不符合我们的要求）以及服务器如何验证用户真实的执行了模型的训练过程（因为可能存在一些恶意用户，他们想要不付出任何努力的情况下获得服务器的聚合结果，这显然也破坏了我们的公平性）。而联邦学习的机密性则是指，服务器无法从用户上传的信息中揭示用户本地的任何原始数据，用户也无法从收到服务器发送的聚合信息中推断出其他用户的相关信息。</p>
+<p>除了上所属的大问题，也存在一些设计方面的小问题，例如如何选择出高效的用户来执行我们的训练，大多数的可验证方案都需要一个可信的第三方TA，如何在免除可信第三方的前提下完成我们的验证方案也是一个需要解决的问题【大多数的解决方案要么计算按开销太大，要么通信开销过大】。</p>
+<p>我主要的研究内容为：如何在保证用户可能存在掉线的情况下，实现用户完整性的验证（我们主要的研究背景为跨设备的情况下）。</p>
+<p>常用的联邦学习的方法包括了：MEC（边缘多方计算）可以简述为：通过将计算资源部署在更靠近终端设备的一段，进而可以降低数据传输的延迟以及通信开销。但是该技术也存在着一些问题，例如，隐私数据的泄露问题，以及高额的通信开销；除此之外，还有一种技术称之为SMC（安全多方计算技术），它允许了多个参与方可以在不批露自己的私有数据的前提下，完成服务器的一个公共函数计算，例如聚合运算等等，这是我们常用的技术手段。</p>
+<p>常见的密码学方案包括了：对称加密，同态加密，双线性配对，秘密分享，为随机函数，difuhallman密钥分享等常规的技术，同时包含了安全多方计算中的相关技术。就其普遍性而言，一般的设计方案是这样的，为参数信息设计一种加密方案，使得密文可以某种运算下得出的结果，为明文通过某种运算结果的密文（常见的为密文相乘等于明文相加），这样可以保证了联邦学习中机密性的要求。而在此基础上，我们需要额外设计一种验证码【一般常用双线性映射的手法，将明文的加法映射到双线性的性质中来帮助我们验证】，来帮助我们验证服务器诚实的完成了聚合的功能，其码要求为，尽可能的短，不能够通过验证码来推出用户的原始数据。并且应该易于验证，方便用户进行验证。我们也需要考虑掉用户掉线对于我们方案的影响，在现在的研究阶段，已经形成了一种较为成熟的方案，称为SA（secure aggregation）【其原理即为通过构建两个盲化因子，一个盲化因子用来保护用户的梯度信息，另一个用来抵抗用户掉线的情况，将秘密通过秘密分享的方式共享给其他用户用于重构出秘密值】。至此这就是一种完整的系统，除此之外，我们还可以将如何选择更为高效的用户考虑到其中，来提高整个系统的效率。</p>
+<p>联邦学习中常见的问题：1）较大的通信开销问题，在联邦学习中往往参与方会是成千上万的移动终端，因此如何减少通信开销是成待解决的一个问题，主要是两个方面：减少通信总轮数以及每轮中传输的数据量；2）设备之间的异构性：不同的设备之间的存储、计算、通信都是不同的，因此可能存在参与者失败或者掉线的情况，因此联邦学习的方案需要考虑到用户掉线的问题；</p>
+<p>联邦学习的应用场景：1）网络安全检测，常见的网络安全检测系统都使用了深度学习来进行构建，但是其需要大量的隐私数据进行训练，因此，我们常常使用联邦学习来进行构建。此处导出了一种算法，称为联邦学习模拟退火算法（Fed-SA），以及力门控制环单元神经网络。2）用于优化多方边缘计算效率。3）车联网：车联网可以简单的理解为通过从多个车辆上收集数据，用来改善交通管理和安全，而联邦学习的应用场景正好可以适用与我们的这个场景。4）医疗场景，医疗领域中涉及到大量用户的隐私数据，以及不同医院之间的数据共享，设置医院和政府也会进行合作，这时联邦学的功效就大大的显示出来了。</p>
+<p>其实联邦学利用了边缘设备（用户）的处理能力来保证本地数据的隐私性，究其根源，联邦学习即为一种分布式的机器学习模型，参与者在本地执行部分的学习任务，并对全局模型做出贡献。</p>
+<p>一些杂项：</p>
+<ul>
+<li>联邦学习中常见的攻击方式有两种，一种是模型逆向攻击以及成员推断攻击，分别来说，模型逆向攻击可以恢复训练数据，成员推断攻击可以推测样本是否存在训练集中。</li>
+<li>联邦学习中的隐私保护方法主要可以分为：密码学的方法以及差分隐私的方法（Differential Privacy,DP），其中密码学的方法主要可以分为安全多方计算(Secure Muti-party Computation,MPC)，以及同态加密（Homomorphic Encryption,HE）等，相较而言，密码学的方法通信开销和计算开销较大，但是精度更高。而差分隐私则是依靠低通信开销以及计算，对信息进加噪，因此差分隐私的方法更加的常见。</li>
+</ul>
+
     </div>
 
     
@@ -337,6 +366,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%B9%E5%90%91%E6%80%BB%E7%BB%93"><span class="nav-number">1.</span> <span class="nav-text">方向总结</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -425,12 +455,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">59k</span>
+    <span title="站点总字数">67k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">54 分钟</span>
+    <span title="站点阅读时长">1:01</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>

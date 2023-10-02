@@ -632,7 +632,7 @@ $$ <br>主要使用了承诺以及生成的随机数来帮助我们完成结果�
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-02 20:36:39" itemprop="dateModified" datetime="2023-10-02T20:36:39+08:00">2023-10-02</time>
+                <time title="修改时间：2023-10-02 20:45:10" itemprop="dateModified" datetime="2023-10-02T20:45:10+08:00">2023-10-02</time>
               </span>
 
           
@@ -741,6 +741,13 @@ $$ <br>主要使用了承诺以及生成的随机数来帮助我们完成结果�
 
               <time title="创建时间：2023-09-28 10:16:39" itemprop="dateCreated datePublished" datetime="2023-09-28T10:16:39+08:00">2023-09-28</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-02 20:44:06" itemprop="dateModified" datetime="2023-10-02T20:44:06+08:00">2023-10-02</time>
+              </span>
 
           
   
@@ -750,7 +757,7 @@ $$ <br>主要使用了承诺以及生成的随机数来帮助我们完成结果�
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
+              <span>900</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -769,7 +776,23 @@ $$ <br>主要使用了承诺以及生成的随机数来帮助我们完成结果�
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <p><strong>摘要：</strong>本文中我们使用了拉格朗日差值定理，选取精心挑选的插值点，来帮助我们完成模型验证的功能。并且不管参与的用户的数量如何变化，我们的验证开销都保持不变。我们采用了盲化技术来保护用户隐私，且任何$n-2$个用户合谋都无法恢复出原始数据。</p>
+<p><strong>关键字：大数据、联邦学习( FL )、工业物联网( IoT )、隐私保护、可验证</strong></p>
+<h3 id="系统框架："><a href="#系统框架：" class="headerlink" title="系统框架："></a>系统框架：</h3><p><img src="/pic/Simple/7.png" alt="2" style="zoom:50%;" /></p>
+<p>系统主要包括三部分：PKG，AS，P</p>
+<p>PKG：可信任第三方，生成初始的模型，密钥对，伪随机函数生成器以及某些参数；</p>
+<p>AS：负责上传梯度的聚合，我们认为该服务器是恶意的情况，可以跟用户进行串通；</p>
+<p>P：上传加密的梯度信息；</p>
+<p><strong>初始化阶段：</strong></p>
+<p>所有的参与者收到$m+1$个正整数，两两互为素数，记为$g,g_1,g_2,…,g_m$，$m$安全参数；</p>
+<p>两个随机无交集的整数序列： $\{ {a_i}|i = 1,2,…,m\}$ 以及$\{ {b_i}|i = 1,2,…,m\}$</p>
+<p>TA发送给用户三个部件，一个随机数生成器$PRG$，三个种子序列 $\{ {\alpha _i}|i \in N\}$， $\{ s_i^{(j)}|j \in N,j \ne i\}$ 以及$\{ s_j^{(i)}|j \in N,j \ne i\}$ ，随机数生成器满足： $PRG( \cdot + <em> ) = (PRG( \cdot ) + PRG( </em> ))(\bmod g)$ 具有可加的性质</p>
+<p><strong>模型训练阶段：</strong></p>
+<p>我们假设神经网络的函数为：$f(x,M)$，其中的$x$是输入，$M$是模型的参数，用户本地持有的信息为 ${D^i} = \{ &lt; {x_j},{y_j} &gt; |j = 1,2,…,T\}$ ， ${x_j}$是输入，${y_j}$是标签信息，$T$是${D^i}$的大小，我们主要是使用了反向梯度传播法来进行模型的一个训练。</p>
+<script type="math/tex; mode=display">
+L_f\left(D^i, M\right)=\frac{1}{T} \sum_{\left\langle x_j, y_j\right\rangle \in D^i}\left(y_j-f\left(x_j, M\right)\right)^2</script><p>梯度加密算法：</p>
+<p><img src="/pic/Simple/8.png" alt="2" style="zoom:50%;" /></p>
+
       
     </div>
 
@@ -816,6 +839,13 @@ $$ <br>主要使用了承诺以及生成的随机数来帮助我们完成结果�
 
               <time title="创建时间：2023-09-28 10:16:10" itemprop="dateCreated datePublished" datetime="2023-09-28T10:16:10+08:00">2023-09-28</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-02 20:45:05" itemprop="dateModified" datetime="2023-10-02T20:45:05+08:00">2023-10-02</time>
+              </span>
 
           
   
@@ -825,14 +855,14 @@ $$ <br>主要使用了承诺以及生成的随机数来帮助我们完成结果�
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
+              <span>3.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -844,7 +874,27 @@ $$ <br>主要使用了承诺以及生成的随机数来帮助我们完成结果�
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <h1 id="方向总结"><a href="#方向总结" class="headerlink" title="方向总结"></a>方向总结</h1><p>【联邦学习的发展过程：在最初云中心计算概念的提出（一部分是因为深度学习的发展需要大量的训练数据），人们通过云这个拥有大量计算资源的单位来帮助我们改善生活。常见的一个例子是，在医院中，人们穿戴各种传感设备，设备会采集用户的各项数据，进而发送给云服务器，交由服务器来进行各种数据的处理。但是随着信息安全的深入人心，各国政府都颁布了严格的信息安全法规，这种行为破坏了个人数据保护法的法规条例，因此联邦学习的概念才被提出来，而联邦学习的数据总是在本地进行处理，而全局操作会在不访问参与者存储的情况下进行模型的聚合】</p>
+<p>联邦学习中各个部分的功能：1）服务器：不仅仅要进行模型的聚合，它也负担着选择用户的过程。2）用户：负责使用本地的数据进行模型的训练工作。在联邦学习中主要的算法为联邦平均算法，可以简述为：服务器选择特定的用户，向用户发送初始的模型参数信息，用户收到参数后，使用本地的数据进行模型的训练，将训练得到的收敛结果发还给服务器。服务器收到用户集合的参数信息后将进行参数聚合（一般为加权平均），得到聚合后的参数信息返还给用户，重启前面的步骤。直到模型收敛或者达到我们预定的训练轮数即可。</p>
+<p>联邦学习根据数据的跨度可以分为，跨组织的联邦学习以及跨设备的联邦学习；两者最明显的不同在于服务的对象，跨组织的联邦学习服务对象是不同的组织机构，他们拥有大量的数据，且每个机构拥有一定算力支持的服务器。就隐私保护角度而言，因为他们之间涉及到许多不同的组织，因此组织上传的参数信息应该更加的安全；不同组织处理数据的能力也是不同的，如何合理的调度他们的计算能力也是需要考虑的问题。而对于跨设备的联邦学习，服务对象可以想象成是某一服务商，他们想利用广大用户手中的数据来训练自己的模型（广告模型或者推荐模型），因此他们面对的问题不同于跨组织的联邦学习，我们需要考虑如何使用尽可能小的带宽，来完成我们的目标，同时在跨设备联邦学习中最重要的一点是，在我们训练的过程中，用户有可能会发生掉线的情况，我们在设计方案时需要保证即使存在用户掉线也不会影响我们聚合的结果。</p>
+<p>【按照联邦学习处理对象的分类：横向联邦学习，纵向联邦学习以及迁移联邦学习</p>
+<p><img src="/pic/Simple/9.png" alt="2" style="zoom:50%;" /></p>
+<p>横向联邦学习指的是，每个样本的数据特征相同，但是数据量不同，可以视为对样本数量的扩充，我们也称之为，样本对齐的联邦学习；纵向联邦学习指的是，数据用户相同，但是用户所持有的特征不同，特征对齐的联邦学习。两者的研究重点都是如何高效的处理维度或者大小不同的数据，我们并不将其作为研究的方向】</p>
+<p>但是联邦学习中也存在一些问题，例如，用户可以通过特定的手法来揭示出用户的本地隐私数据（有文献指出，在用户上传的梯度信息中，我们可以恢复出用户的原始数据），并且恶意用户可以引导全局模型来降低系统对某一特定类的（识别）性能。用户如何保证服务器诚实的进行了模型的更新，而服务器又如何保证用户进行了诚实的模型训练，都可以作为研究点。</p>
+<p>因此我们可以简单将联邦学习中存在的问题分为，完整性以及机密性；联邦学习的完整性是指用于保证联邦学习的参数在传输的过程中，不会被恶意的用户进行篡改。它可以主要分为两方面，用户如何验证服务器聚合信息的正确性（因为服务器有可能会为了节省自己的计算资源而返回一个随意的结果，这显然不符合我们的要求）以及服务器如何验证用户真实的执行了模型的训练过程（因为可能存在一些恶意用户，他们想要不付出任何努力的情况下获得服务器的聚合结果，这显然也破坏了我们的公平性）。而联邦学习的机密性则是指，服务器无法从用户上传的信息中揭示用户本地的任何原始数据，用户也无法从收到服务器发送的聚合信息中推断出其他用户的相关信息。</p>
+<p>除了上所属的大问题，也存在一些设计方面的小问题，例如如何选择出高效的用户来执行我们的训练，大多数的可验证方案都需要一个可信的第三方TA，如何在免除可信第三方的前提下完成我们的验证方案也是一个需要解决的问题【大多数的解决方案要么计算按开销太大，要么通信开销过大】。</p>
+<p>我主要的研究内容为：如何在保证用户可能存在掉线的情况下，实现用户完整性的验证（我们主要的研究背景为跨设备的情况下）。</p>
+<p>常用的联邦学习的方法包括了：MEC（边缘多方计算）可以简述为：通过将计算资源部署在更靠近终端设备的一段，进而可以降低数据传输的延迟以及通信开销。但是该技术也存在着一些问题，例如，隐私数据的泄露问题，以及高额的通信开销；除此之外，还有一种技术称之为SMC（安全多方计算技术），它允许了多个参与方可以在不批露自己的私有数据的前提下，完成服务器的一个公共函数计算，例如聚合运算等等，这是我们常用的技术手段。</p>
+<p>常见的密码学方案包括了：对称加密，同态加密，双线性配对，秘密分享，为随机函数，difuhallman密钥分享等常规的技术，同时包含了安全多方计算中的相关技术。就其普遍性而言，一般的设计方案是这样的，为参数信息设计一种加密方案，使得密文可以某种运算下得出的结果，为明文通过某种运算结果的密文（常见的为密文相乘等于明文相加），这样可以保证了联邦学习中机密性的要求。而在此基础上，我们需要额外设计一种验证码【一般常用双线性映射的手法，将明文的加法映射到双线性的性质中来帮助我们验证】，来帮助我们验证服务器诚实的完成了聚合的功能，其码要求为，尽可能的短，不能够通过验证码来推出用户的原始数据。并且应该易于验证，方便用户进行验证。我们也需要考虑掉用户掉线对于我们方案的影响，在现在的研究阶段，已经形成了一种较为成熟的方案，称为SA（secure aggregation）【其原理即为通过构建两个盲化因子，一个盲化因子用来保护用户的梯度信息，另一个用来抵抗用户掉线的情况，将秘密通过秘密分享的方式共享给其他用户用于重构出秘密值】。至此这就是一种完整的系统，除此之外，我们还可以将如何选择更为高效的用户考虑到其中，来提高整个系统的效率。</p>
+<p>联邦学习中常见的问题：1）较大的通信开销问题，在联邦学习中往往参与方会是成千上万的移动终端，因此如何减少通信开销是成待解决的一个问题，主要是两个方面：减少通信总轮数以及每轮中传输的数据量；2）设备之间的异构性：不同的设备之间的存储、计算、通信都是不同的，因此可能存在参与者失败或者掉线的情况，因此联邦学习的方案需要考虑到用户掉线的问题；</p>
+<p>联邦学习的应用场景：1）网络安全检测，常见的网络安全检测系统都使用了深度学习来进行构建，但是其需要大量的隐私数据进行训练，因此，我们常常使用联邦学习来进行构建。此处导出了一种算法，称为联邦学习模拟退火算法（Fed-SA），以及力门控制环单元神经网络。2）用于优化多方边缘计算效率。3）车联网：车联网可以简单的理解为通过从多个车辆上收集数据，用来改善交通管理和安全，而联邦学习的应用场景正好可以适用与我们的这个场景。4）医疗场景，医疗领域中涉及到大量用户的隐私数据，以及不同医院之间的数据共享，设置医院和政府也会进行合作，这时联邦学的功效就大大的显示出来了。</p>
+<p>其实联邦学利用了边缘设备（用户）的处理能力来保证本地数据的隐私性，究其根源，联邦学习即为一种分布式的机器学习模型，参与者在本地执行部分的学习任务，并对全局模型做出贡献。</p>
+<p>一些杂项：</p>
+<ul>
+<li>联邦学习中常见的攻击方式有两种，一种是模型逆向攻击以及成员推断攻击，分别来说，模型逆向攻击可以恢复训练数据，成员推断攻击可以推测样本是否存在训练集中。</li>
+<li>联邦学习中的隐私保护方法主要可以分为：密码学的方法以及差分隐私的方法（Differential Privacy,DP），其中密码学的方法主要可以分为安全多方计算(Secure Muti-party Computation,MPC)，以及同态加密（Homomorphic Encryption,HE）等，相较而言，密码学的方法通信开销和计算开销较大，但是精度更高。而差分隐私则是依靠低通信开销以及计算，对信息进加噪，因此差分隐私的方法更加的常见。</li>
+</ul>
+
       
     </div>
 
@@ -891,6 +941,13 @@ $$ <br>主要使用了承诺以及生成的随机数来帮助我们完成结果�
 
               <time title="创建时间：2023-09-28 10:15:28" itemprop="dateCreated datePublished" datetime="2023-09-28T10:15:28+08:00">2023-09-28</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-02 20:50:18" itemprop="dateModified" datetime="2023-10-02T20:50:18+08:00">2023-10-02</time>
+              </span>
 
           
   
@@ -900,14 +957,14 @@ $$ <br>主要使用了承诺以及生成的随机数来帮助我们完成结果�
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
+              <span>3.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -919,7 +976,50 @@ $$ <br>主要使用了承诺以及生成的随机数来帮助我们完成结果�
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <p><strong>摘要：</strong>常见的联邦学习要么不考系统的可验证性，要么将可验证性与系统的安全性分开进行考虑，本文我们使用了双服务器的方法，保证即使有少部分用户与服务器进行合谋也可以保证其他的用户不会受到欺骗。</p>
+<hr>
+<h3 id="预备知识："><a href="#预备知识：" class="headerlink" title="预备知识："></a>预备知识：</h3><p><a target="_blank" rel="noopener" href="https://www.notion.so/45637469e3504512afcc78f6c91051a4?pvs=21">随机矩阵编码</a>、<a target="_blank" rel="noopener" href="https://www.notion.so/ccb3ab1ab428471fa2fe24992ed40655?pvs=21">承诺方案</a>、<a target="_blank" rel="noopener" href="https://www.notion.so/9855943440ed434ca50db9a9b830334c?pvs=21">数字签名</a></p>
+<h3 id="系统模型，威胁模型，设计目标："><a href="#系统模型，威胁模型，设计目标：" class="headerlink" title="系统模型，威胁模型，设计目标："></a>系统模型，威胁模型，设计目标：</h3><p>用户与服务器之间的交互轮数较少，用户提交自己的基础信息后，等待验证即可。安全性主要考虑，服务器和用户都是诚实且好奇的，服务器可以与少于$(n-2)$合谋来推测出另一些用户或者欺骗其他用户接受信息。即使存在大规模的用户掉线我们的系统应该也是可以正常运行的，我们希望系统的成本应该尽可能的降低。</p>
+<h3 id="系统基本方案："><a href="#系统基本方案：" class="headerlink" title="系统基本方案："></a>系统基本方案：</h3><p>首先将原始的梯度矩阵分为两部分， $[W_i^{(1)},W_i^{(2)}]$，选择四个随机数 $\{ {x_1},{x_2},{x_3},{x_4}\}$ ，生成其对应的多项式值$\{ W_i^1,W_i^2,W_i^3,W_i^4\}$，具体而言其多项式如下所述：</p>
+<script type="math/tex; mode=display">
+{F_}(x) \triangleq W_i^{(1)} + W_i^{(2)}x + {R_i}{x^2}</script><p>系统的流程图如下所示：</p>
+<p><img src="/pic/Simple/10.png" alt="2" style="zoom:50%;" /></p>
+<p><strong>step1：</strong>用户使用本地数据训练模型</p>
+<p><strong>step2：</strong>对本地梯度进行编码：如果用户本地训练出来的信息是奇数，我们选择一个随机的列向量添加到梯度矩阵中，使其满足 ${W_i} \triangleq [W_i^{(1)},W_i^{(2)}]$，以及生成一个随机矩阵（用于保护原始梯度不会被纰漏），满足：</p>
+<script type="math/tex; mode=display">
+{F_}(x) \triangleq W_i^{(1)} + W_i^{(2)}x + {R_i}{x^2}</script><p>用户通过协同的生成四个随机数 ${x_1},{x_2},{x_3},{x_4}$，并计算其对应的函数值 $W_i^1 = {F_}({x_1}),W_i^2 = {F_}({x_2}),W_i^3 = {F_}({x_3}),W_i^4 = {F_}({x_4})$，将信息 $\{ W_i^1,W_i^2\}$ 发送给服务器1，将信息 $\{ W_i^3,W_i^4\}$发送给服务器2。</p>
+<p><strong>step3：</strong>聚合加密结果：服务器将从用户手里收到的各部分信息进行聚合</p>
+<p><strong>step4：</strong>交换一个聚合编码矩阵：双服务器分别向对方发送一个聚合编码矩阵，因此任意一个服务器都可以通过持有的信息恢复出聚合多项式。</p>
+<p><strong>step5：</strong>恢复聚合梯度：</p>
+<script type="math/tex; mode=display">
+\mathbf{F}_{\mathbf{W}}(x) \triangleq \mathbf{W}^{(1)}+\mathbf{W}^{(2)} x+\mathbf{R} x^2=\sum_i \mathbf{W}_i^{(1)}+\sum_i \mathbf{W}_i^{(2)} x+\sum_i \mathbf{R}_i x^2</script><p>对于服务器Server1来说：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mathbf{F}_{\mathbf{W}}(x) \triangleq & \mathbf{W}^1 \frac{\left(x-x_2\right)\left(x-x_k\right)}{\left(x_1-x_2\right)\left(x_1-x_k\right)}+\mathbf{W}^2 \frac{\left(x-x_1\right)\left(x-x_k\right)}{\left(x_2-x_1\right)\left(x_2-x_k\right)} \\
+& +\mathbf{W}^{k^{\prime}} \frac{\left(x-x_1\right)\left(x-x_2\right)}{\left(x_k-x_1\right)\left(x_k-x_2\right)}, k \in\{3,4\} .
+\end{aligned}</script><p>对于服务器server2来说：</p>
+<script type="math/tex; mode=display">
+\begin{aligned} \mathbf{F}_{\mathbf{W}^{\prime}}(x) \triangleq & \mathbf{W}^3 \frac{\left(x-x_4\right)\left(x-x_k\right)}{\left(x_3-x_4\right)\left(x_3-x_k\right)}+\mathbf{W}^4 \frac{\left(x-x_3\right)\left(x-x_k\right)}{\left(x_4-x_3\right)\left(x_4-x_k\right)} \\ & +\mathbf{W}^k \frac{\left(x-x_3\right)\left(x-x_4\right)}{\left(x_k-x_3\right)\left(x_k-x_4\right)}, k \in\{1,2\} . \end{aligned}</script><p>服务器server1可以利用已有的信息计算出第一部分的梯度数值，即为多项式的常数项部分，如下所示：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}\mathbf{W}^{(1)}= & \mathbf{W}^1 \frac{x_2 x_k}{\left(x_1-x_2\right)\left(x_1-x_k\right)}+\mathbf{W}^2 \frac{x_1 x_k}{\left(x_2-x_1\right)\left(x_2-x_k\right)} \\& +\mathbf{W}^{k^{\prime}} \frac{x_1 x_2}{\left(x_k-x_1\right)\left(x_k-x_2\right)}, k \in\{3,4\} .\end{aligned}</script><p>服务器server2可以利用已有的信息计算出第二部分的梯度数值，即为多项式中的一次项部分，如下所示：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}\mathbf{W}^{(2)}= & \mathbf{W}^3 \frac{-\left(x_4+x_k\right)}{\left(x_3-x_4\right)\left(x_3-x_k\right)}+\mathbf{W}^4 \frac{-\left(x_3+x_k\right)}{\left(x_4-x_3\right)\left(x_4-x_k\right)} \\& +\mathbf{W}^k \frac{-\left(x_3+x_4\right)}{\left(x_k-x_3\right)\left(x_k-x_4\right)}, k \in\{3,4\} .\end{aligned}</script><p><strong>step6：</strong>每个用户可以接收到信息 ${W^{(1)}},{W^{(2)}}$，用户可以直接聚合信息 ${W_{global}} \triangleq [{W^{(1)}},{W^{(2)}}]$</p>
+<p>但是该系统存在一定的漏洞问题，在我们提到的第四个步骤，如果其中的一个服务器优先得到了信息，则其可以利用手中已有的信息去构造一个“伪”多项式，该多项式可以被另一服务器所接受，进而操纵聚合结果向错误的方向偏离。</p>
+<p>因此我们引入承诺和签名的方法来防止该问题的出现，</p>
+<p><strong>step4b：签名和承诺</strong></p>
+<p>生成签名的相关信息，利用公共参数生成所需的密钥， $Sign,gen({1^k}) \to (p{k_1},s{k_1});(p{k_2},s{k_2})$。每个服务器依据密钥生成对梯度矩阵的承诺矩阵 $co{m_k} \leftarrow Com.cmt({h_k},Hash({W^k}))$，我们依据用户的承诺信息生成对应的签名， $sig{n_k} \leftarrow Sign.sig(co{m_k},s{k_k})$。两个服务器收到对应的验证信息后，首先验证签名的是否是正常的，具体而言有：</p>
+<script type="math/tex; mode=display">
+Sign.ver(sig{n_k},p{k_k},co{m_k}) = 1(ortherwise\ abort)</script><p>倘若验证通过，双云服务器发送给对方所需的另一个矩阵信息 ${W^k}$，双服务器分别的验证下面的信息：</p>
+<script type="math/tex; mode=display">
+Com.ver({h_k},Hash({W^}),co{m_k}) = 1(ortherwise\ abort)</script><p>验证通过，则接受系数矩阵${W^k}$的可行性，将其作为计算的一部分，</p>
+<p><strong>step5b：恢复聚合梯度</strong></p>
+<p>每个服务器分别结算其对应部分的 $\{ {W_{global}},Hash({W_{global}})\}$ 发还给用户</p>
+<p><strong>step 6b：验证聚合结果的正确性</strong></p>
+<p>用户收到信息后，自行计算$Hash({W_{global}})$信息，若和服务器返回结果相同，则接受最后的结果。</p>
+<p>系统的流程图如下所示：</p>
+<p><img src="/pic/Simple/11.png" alt="2" style="zoom:50%;" /></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>我们的方案主要考虑了在受限的环境下，如何以较低的通信以及计算开销来帮助我们验证和保护用户的梯度信息，值得注意的是在用户端我们只是用了线性运算，这无疑降低了大量的计算开销。在未来我们将考虑如何在恶意的用户参与下实现系统的安全性。</p>
+
       
     </div>
 
@@ -1228,12 +1328,12 @@ $$ <br>主要使用了承诺以及生成的随机数来帮助我们完成结果�
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">59k</span>
+    <span title="站点总字数">67k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">54 分钟</span>
+    <span title="站点阅读时长">1:01</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
