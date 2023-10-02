@@ -1066,6 +1066,13 @@ Com.ver({h_k},Hash({W^}),co{m_k}) = 1(ortherwise\ abort)</script><p>验证通过
 
               <time title="创建时间：2023-09-28 10:14:31" itemprop="dateCreated datePublished" datetime="2023-09-28T10:14:31+08:00">2023-09-28</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-02 20:55:20" itemprop="dateModified" datetime="2023-10-02T20:55:20+08:00">2023-10-02</time>
+              </span>
 
           
   
@@ -1075,7 +1082,7 @@ Com.ver({h_k},Hash({W^}),co{m_k}) = 1(ortherwise\ abort)</script><p>验证通过
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
+              <span>1.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -1094,7 +1101,36 @@ Com.ver({h_k},Hash({W^}),co{m_k}) = 1(ortherwise\ abort)</script><p>验证通过
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <h3 id="摘要："><a href="#摘要：" class="headerlink" title="摘要："></a>摘要：</h3><p>联邦学习是一种分布式的计算方法，通过上传用户梯度来代替上传用户的原始信息，然而梯度信息也可能会泄露用户的个人隐私。因此我们借助了同态加密以及伪随机数生成器来帮助我们完成对梯度的掩盖以及对聚合结果的验证。本文我们考虑了，服务器之前可能存在的合谋，边缘节点可能存在的合谋以及用户之间可能存在的合谋，在验证聚合结果的同时可以检测出可能存在的懒惰服务器。</p>
+<h3 id="问题说明："><a href="#问题说明：" class="headerlink" title="问题说明："></a>问题说明：</h3><p><strong>本文主要使用到的系统框架：</strong></p>
+<p><img src="/pic/PPVerifier/1.png" alt="2" style="zoom:50%;" /></p>
+<p><em>Cloud server：</em>负责对提交的梯度信息进行聚合</p>
+<p><em>Edge node：</em>通常是某些基站等，负责生成公私钥对，将公钥信息发送给服务器私钥信息发送给用户，并且可以协助用户生成验证信息，但是其不参与服务器的对梯度的聚合阶段。</p>
+<p><em>Participant：</em>不考虑用户可能的掉线情况，用户通过本地训练模型参数，对参数进行盲化操作，并且生成参数的$hash$值作为验证信息使用。</p>
+<p><strong>安全模型及设计目标：</strong></p>
+<p>我们认为用户以及边缘节点时半诚实的，他们诚实的执行协议但是企图在其中推断出其他用户更多的信息。聚合服务器我们认为是恶意的，他有可能会欺骗用户接受聚合结果，有可能会增加或者减少用户提交的数量。并且也考虑到了云-边缘节点-端进行合谋的情况。（本文中并不考虑用户可能存在的掉线问题）</p>
+<h3 id="系统设计"><a href="#系统设计" class="headerlink" title="系统设计"></a>系统设计</h3><p><img src="/pic/PPVerifier/2.png" alt="2" style="zoom:50%;" /></p>
+<p><img src="/pic/PPVerifier/3.png" alt="2" style="zoom:50%;" /></p>
+<p><strong>A. 工作原理</strong></p>
+<p><em>初始化阶段：</em>选择一个边缘节点作为特殊的边缘节点，特殊节点通过随机数生成器随机选择一个节点，用于生成密钥对以及哈希函数给每一个用户。每个用户在本地初始化参数模型，通过随机数生成器以及份额生成随机数以及其份额。</p>
+<p><em>模型训练阶段：</em>每个用户在本地训练模型，生成模型的参数信息，通过随机数对其进行掩码（具体来说将随机数乘到每一个梯度元素上面），并计算其对应的哈希值，发送给云服务器进行计算。</p>
+<p><em>模型聚合阶段：</em>每个参与方上传自己的梯度信息，以及盲化的梯度信息，并且有序的随机选择份额分享给边缘节点（目前我的问题是分享的是哪些份额部分？）。被选择的边缘节点更新密文梯度以及密文梯度对应的哈希值给服务器节点。每个节点通过加法秘密分享的方法将用户的份额添加到其中。云服务器聚合用户提交的密文梯度信息以及密文梯度信息的哈希值，将结果返还给特定的边缘节点。同时，边缘节点将用户上传的秘密分享份额返回用户，用户通过加法秘密分享份额的恢复，恢复出原始的数据信息，进而得到我们所需的聚合结果。</p>
+<p><em>模型更新阶段</em>：用户得到聚合结果之后，利用加法秘密分享的方式对随机数进行重构，得到原始随机数后，利用加密后的梯度信息减去我们的随机数，就可以得到想要的聚合结果。</p>
+<p><strong>B.参数初始化阶段</strong></p>
+<p>每个用户在本地生成随机数 $randnu{m^i} = f(year,month,day,hour,minute,sec ond),i = 1$将该随机数以加法秘密分享分方式分享给边缘节点。</p>
+<p><strong>C.模型训练阶段</strong></p>
+<p><img src="/pic/PPVerifier/4.png" alt="2" style="zoom:50%;" /></p>
+<p><img src="/pic/PPVerifier/5.png" alt="2" style="zoom:50%;" /></p>
+<p><strong>D. 模型聚合阶段</strong></p>
+<p><img src="/pic/PPVerifier/6.png" alt="2" style="zoom:50%;" /></p>
+<p><img src="/pic/PPVerifier/7.png" alt="2" style="zoom:50%;" /></p>
+<p><strong>E. 模型更新阶段</strong></p>
+<p><img src="/pic/PPVerifier/8.png" alt="2" style="zoom:50%;" /></p>
+<p>系统的简易模型图可以参考如下：</p>
+<p><img src="/pic/PPVerifier/9.png" alt="2" style="zoom:50%;" /></p>
+<h3 id="总结及未来展望"><a href="#总结及未来展望" class="headerlink" title="总结及未来展望"></a>总结及未来展望</h3><p>本文提出了一种既可以保护用户隐私信息不被泄露，又可以完成验证功能的联邦学习模型。我们主要引入了一个加法秘密共享的方案来抵抗可能存在的用户与服务器合谋的攻击情况，相较于双线性变换的手段，我们的方案具有更高的效率。</p>
+<p>但是我们的方案未考虑到用户的掉线问题，这有可能导致系统出现偏差。我们的验证方案也存在一些偏差，并不能可靠的完成既定目标。同时，如果我们的边缘节点出现掉线的情况，亦会导致我们的系统无法恢复出引入的随机数，进而导致系统出现偏差问题。</p>
+
       
     </div>
 
@@ -1141,6 +1177,13 @@ Com.ver({h_k},Hash({W^}),co{m_k}) = 1(ortherwise\ abort)</script><p>验证通过
 
               <time title="创建时间：2023-09-28 10:14:13" itemprop="dateCreated datePublished" datetime="2023-09-28T10:14:13+08:00">2023-09-28</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-02 20:57:55" itemprop="dateModified" datetime="2023-10-02T20:57:55+08:00">2023-10-02</time>
+              </span>
 
           
   
@@ -1150,7 +1193,7 @@ Com.ver({h_k},Hash({W^}),co{m_k}) = 1(ortherwise\ abort)</script><p>验证通过
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
+              <span>454</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -1169,7 +1212,18 @@ Com.ver({h_k},Hash({W^}),co{m_k}) = 1(ortherwise\ abort)</script><p>验证通过
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>尽管现阶段的工作已经将边缘节点与可验证性进行了结合，但在分析边缘计算的验证以及丢包的方面依然缺乏研究。我们研究的PVFL具有下面的三个性质：1）用于验证的通信开销与用户掉线以及参数的维度无关 2） 验证的计算开销与掉线用户无关 3） 损失函数与掉线用户呈现负相关性</p>
+<p><strong>关键字：联邦学习，差分隐私，收敛性能，可验证性，边缘计算</strong></p>
+<h3 id="预备知识："><a href="#预备知识：" class="headerlink" title="预备知识："></a>预备知识：</h3><p>预备知识：联邦学习、<a target="_blank" rel="noopener" href="https://www.notion.so/aa2819307fc34b328d9e53e7e09af86e?pvs=21">差分隐私</a>、<a target="_blank" rel="noopener" href="https://www.notion.so/HASH-19bb4a3e923f4b20bf431387a3a39442?pvs=21">同态哈希</a> 系统模型：为常见的，TA，CS和用户； 系统的简单流程为，①密钥分配协商、②噪声的分布与聚合、③参数的聚合与验证；</p>
+<p>系统的威胁模型可以描述如下：</p>
+<p><img src="/pic/Privacy-Preserving/1.png" alt="2" style="zoom:50%;" /></p>
+<p>安全性：我们在用户更新梯度到服务器之前，对服务器进行了加噪的处理；鲁棒性：我们的验证方案独立于用户掉线的数量；高效性：我们的方案是一种非抵消的聚合证明方法。</p>
+<h3 id="系统方案"><a href="#系统方案" class="headerlink" title="系统方案"></a>系统方案</h3><p>系统总览：在我们的方案中，我们主要涉及到了可信第三方<code>（TA）</code>，一个云服务器<code>（CS）</code>和N个<code>边缘节点</code>。我们将系统的过程分为三个部分，分发协商密钥阶段，分发聚合噪声阶段以及聚合验证参数阶段，系统框架如下图所示：</p>
+<p><img src="/pic/Privacy-Preserving/2.png" alt="2" style="zoom:50%;" /></p>
+<p>系统的整体算法如图所示：</p>
+<p><img src="/pic/Privacy-Preserving/3.png" alt="2" style="zoom:50%;" /></p>
+<p><img src="/pic/Privacy-Preserving/4.png" alt="2" style="zoom:50%;" /></p>
+
       
     </div>
 
@@ -1328,12 +1382,12 @@ Com.ver({h_k},Hash({W^}),co{m_k}) = 1(ortherwise\ abort)</script><p>验证通过
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">67k</span>
+    <span title="站点总字数">69k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:01</span>
+    <span title="站点阅读时长">1:03</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
